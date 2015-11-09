@@ -2,7 +2,7 @@
 Project Fasten your Seatbelts
 
 Gemaakt voor het HvA
-Door:
+Door IS106:
 
 - Robby
 - Jeffrey
