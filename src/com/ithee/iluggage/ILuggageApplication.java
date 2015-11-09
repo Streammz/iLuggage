@@ -6,6 +6,7 @@
 package com.ithee.iluggage;
 
 import com.ithee.iluggage.core.database.DatabaseConnection;
+import com.ithee.iluggage.core.scene.PopupSceneController;
 import com.ithee.iluggage.core.scene.SceneController;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
@@ -30,7 +31,7 @@ public class ILuggageApplication extends Application {
         primaryStage.setTitle("Bagage (Corendon)");
     }
     
-    public <T extends SceneController> void switchScene(Class<T> sceneClass) {
+    public <T extends SceneController> void switchMainScene(Class<T> sceneClass) {
         SceneController scene = initScene(sceneClass);
         
         if (this.currentScene != null) {
@@ -46,14 +47,16 @@ public class ILuggageApplication extends Application {
     
     private <T extends SceneController> T initScene(Class<T> sceneClass) {
         try {
-            return sceneClass.getConstructor(ILuggageApplication.class).newInstance(this);
+            SceneController controller = sceneClass.getConstructor().newInstance();
+            controller.app = this;
+            return (T) controller;
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex) {
             throw new RuntimeException(ex);
         }
     }
     
-    public <T extends SceneController> void openScene(Class<T> sceneClass) {
-        SceneController scene = initScene(sceneClass);
+    public <T extends PopupSceneController> void openScene(Class<T> sceneClass) {
+        PopupSceneController scene = initScene(sceneClass);
         
         scene.myStage = new Stage();
         scene.myStage.setScene(scene.onCreate());

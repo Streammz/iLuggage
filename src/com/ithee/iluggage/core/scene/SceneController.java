@@ -10,23 +10,9 @@ import javafx.stage.Stage;
  */
 public abstract class SceneController {
     /**
-     * In case of a pop-up screen, this is the stage of this scene.
-     */
-    public Stage myStage;
-    
-    /**
      * The application.
      */
     public ILuggageApplication app;
-    
-    /**
-     * Gets called using reflection. Super classes need to extend this.
-     * @param app The application
-     */
-    public SceneController(ILuggageApplication app) {
-        this.app = app;
-    }
-    
     
     /**
      * Empty function to be optionally implemented by subclasses
