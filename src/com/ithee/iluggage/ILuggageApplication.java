@@ -59,14 +59,11 @@ public class ILuggageApplication extends Application {
     private <T extends SceneController> T initScene(Class<T> sceneClass) {
         String fxmlName = "/" + sceneClass.getPackage().getName().replace('.', '/') + "/" + sceneClass.getSimpleName() + ".fxml";
         try {
-            SceneController controller = sceneClass.getConstructor().newInstance();
-            controller.app = this;
-            
-            // Load the fxml
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setController(controller);
             fxmlLoader.setLocation(getClass().getResource(fxmlName));
             Parent root = fxmlLoader.load();
+            SceneController controller = fxmlLoader.getController();
+            controller.app = this;
             controller.scene = new Scene(root);
             
             return (T) controller;

@@ -2,7 +2,9 @@
 package com.ithee.iluggage.core.scene;
 
 import com.ithee.iluggage.ILuggageApplication;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -30,4 +32,14 @@ public abstract class SceneController {
      * Gets called when this scene gets initialised
      */
     public void onCreate() {}
+    
+    
+    public void removeNode(Node... nodes) {
+        for (Node node : nodes) {
+            if (node.getParent() instanceof Pane) {
+                Pane pane = (Pane) node.getParent();
+                pane.getChildren().remove(node);
+            }
+        }
+    }
 }

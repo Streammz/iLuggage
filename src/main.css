@@ -1,6 +1,6 @@
 
 .title {
-    -fx-font-size: 36;
-    -fx-font-family: "Courier new";
+    -fx-font-size: 24;
+    /*-fx-font-family: "Courier new";*/
     -fx-font-weight: bold;
 }
