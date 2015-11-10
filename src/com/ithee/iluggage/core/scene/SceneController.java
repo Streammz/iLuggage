@@ -15,6 +15,11 @@ public abstract class SceneController {
     public ILuggageApplication app;
     
     /**
+     * The scene
+     */
+    public Scene scene;
+    
+    /**
      * Empty function to be optionally implemented by subclasses
      * Gets called when this scene gets changed/destroyed
      */
@@ -23,7 +28,6 @@ public abstract class SceneController {
     /**
      * Empty function to be implemented by subclasses
      * Gets called when this scene gets initialised
-     * @return A scene to be used for rendering
      */
-    public abstract Scene onCreate();
+    public void onCreate() {}
 }

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@MainMenu.css" />
+        <URL value="@../../../../main.css" />
+    </stylesheets>
+    
+    <top>
+        <VBox alignment="CENTER_RIGHT" prefHeight="60" spacing="5">
+            <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
+            <children>
+                <TextFlow textAlignment="RIGHT">
+                    <children>
+                        <Text text="U bent ingelogd als " />
+                        <Text fx:id="loggedinUser" styleClass="italic" text="Admin" />
+                    </children>
+                </TextFlow>
+                <Button onAction="#onPressLogout">
+                    <text>Uitloggen</text> 
+                </Button>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <HBox style="-fx-border-color: black; -fx-border-style: solid hidden hidden hidden;">
+         <children>
+            <VBox styleClass="buttonContainer" alignment="BASELINE_CENTER" minWidth="210.0" spacing="10" style="-fx-border-color: black; -fx-border-style: hidden solid hidden hidden">
+               <children>
+                  <Text styleClass="title" text="Bagage" underline="true" />
+                  <Button text="Gevonden bagage invoeren" onAction="#onPressFoundLuggage" >
+                     <VBox.margin>
+                        <Insets top="50.0" />
+                     </VBox.margin>
+                  </Button> 
+                  <Button text="Verloren bagage invoeren" onAction="#onPressLostLuggage" />
+                  <Button text="Bagage doorzoeken" onAction="#onPressSearchLuggage" />
+               </children>
+            </VBox>
+            <VBox styleClass="buttonContainer" alignment="BASELINE_CENTER" minWidth="210.0" spacing="10">
+               <children>
+                  <Text styleClass="title" text="Klanten" underline="true" />
+                  <Button text="Klant invoeren" onAction="#onPressFoundLuggage" >
+                     <VBox.margin>
+                        <Insets top="50.0" />
+                     </VBox.margin>
+                  </Button> 
+                  <Button text="Klanten doorzoeken" onAction="#onPressLostLuggage" />
+               </children>
+            </VBox>
+         </children></HBox>
+    </center>
+</BorderPane>

@@ -8,10 +8,14 @@ package com.ithee.iluggage;
 import com.ithee.iluggage.core.database.DatabaseConnection;
 import com.ithee.iluggage.core.scene.PopupSceneController;
 import com.ithee.iluggage.core.scene.SceneController;
+import com.ithee.iluggage.screens.MainMenu;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
@@ -28,7 +32,12 @@ public class ILuggageApplication extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
+        this.primaryStage.setMinWidth(640);
+        this.primaryStage.setMinHeight(480);
+        //this.primaryStage.setMaximized(true);
         primaryStage.setTitle("Bagage (Corendon)");
+        
+        this.switchMainScene(MainMenu.class);
     }
     
     public <T extends SceneController> void switchMainScene(Class<T> sceneClass) {
@@ -37,7 +46,9 @@ public class ILuggageApplication extends Application {
         if (this.currentScene != null) {
             this.currentScene.onDestroy();
         }
-        this.primaryStage.setScene(scene.onCreate());
+        
+        scene.onCreate();
+        this.primaryStage.setScene(scene.scene);
         this.currentScene = scene;
         
         if (!this.primaryStage.isShowing()) {
@@ -46,11 +57,20 @@ public class ILuggageApplication extends Application {
     }
     
     private <T extends SceneController> T initScene(Class<T> sceneClass) {
+        String fxmlName = "/" + sceneClass.getPackage().getName().replace('.', '/') + "/" + sceneClass.getSimpleName() + ".fxml";
         try {
             SceneController controller = sceneClass.getConstructor().newInstance();
             controller.app = this;
+            
+            // Load the fxml
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setController(controller);
+            fxmlLoader.setLocation(getClass().getResource(fxmlName));
+            Parent root = fxmlLoader.load();
+            controller.scene = new Scene(root);
+            
             return (T) controller;
-        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex) {
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
     }
@@ -59,7 +79,7 @@ public class ILuggageApplication extends Application {
         PopupSceneController scene = initScene(sceneClass);
         
         scene.myStage = new Stage();
-        scene.myStage.setScene(scene.onCreate());
+        //scene.myStage.setScene(scene.onCreate());
         scene.myStage.setTitle("????????");
         scene.myStage.show();
     }

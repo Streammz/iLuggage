@@ -1,0 +1,11 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.italic {
+    -fx-font-style: italic;
+}
+
+.buttonContainer .button {
+    -fx-pref-width: 165;
+}
