@@ -50,6 +50,7 @@ public class MainMenu extends SceneController {
     }
 
     public void onPressLogout(ActionEvent event) {
+        app.switchMainScene(Login.class);
     }
     
 }
