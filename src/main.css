@@ -4,3 +4,7 @@
     /*-fx-font-family: "Courier new";*/
     -fx-font-weight: bold;
 }
+
+.italic {
+    -fx-font-style: italic;
+}
