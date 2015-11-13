@@ -1,6 +1,7 @@
 package com.ithee.iluggage;
 
 import com.ithee.iluggage.core.database.DatabaseConnection;
+import com.ithee.iluggage.core.database.classes.Account;
 import com.ithee.iluggage.core.scene.PopupSceneController;
 import com.ithee.iluggage.core.scene.SceneController;
 import com.ithee.iluggage.screens.MainMenu;
@@ -31,6 +32,8 @@ public class ILuggageApplication extends Application {
         this.primaryStage.setMinHeight(480);
         //this.primaryStage.setMaximized(true);
         primaryStage.setTitle("Bagage (Corendon)");
+        
+        this.db = new DatabaseConnection(this);
         
         this.switchMainScene(MainMenu.class);
     }
@@ -75,10 +78,20 @@ public class ILuggageApplication extends Application {
         scene.myStage.setTitle("????????");
         scene.myStage.show();
     }
+    
+    public boolean tryLogin(String username, String password) {
+        if (username == null || password == null) return false;
+        long hash = password.hashCode();
+        
+        Account a = db.executeAndReadSingle(Account.class, "SELECT * FROM accounts WHERE `Username` = ? AND `Password` = ?", username, hash);
+        if (a == null) {
+            return false;
+        } else {
+            System.out.println("Logged in as userID=" + a.id);
+            return true;
+        }
+    }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         launch(args);
     }

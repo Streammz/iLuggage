@@ -56,8 +56,57 @@ public class DatabaseConnection {
         return result;
     }
     
+    public ResultSet executeQuery(String sql, Object... params) {
+        Connection conn = null;
+        ResultSet result = null;
+        try {
+            conn = getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            
+            for (int i=0; i<params.length; i++) {
+                if (params[i] == null) continue;
+                else if (params[i].getClass().equals(Integer.class)) statement.setInt(i+1, (int)params[i]);
+                else if (params[i].getClass().equals(Double.class)) statement.setDouble(i+1, (double)params[i]);
+                else if (params[i].getClass().equals(Long.class)) statement.setLong(i+1, (long)params[i]);
+                else if (params[i].getClass().equals(Boolean.class)) statement.setBoolean(i+1, (boolean)params[i]);
+                else statement.setString(i+1, params[i].toString());
+            }
+            
+            result = statement.executeQuery();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            try {
+                if (conn != null) conn.close();
+            } catch (SQLException ignored) {
+            }
+        }
+        
+        return result;
+    }
+    
+    public <T> T executeAndReadSingle(Class<T> c, String sql) {
+        return executeAndReadSingle(c, executeQuery(sql));
+    }
+    
+    public <T> T executeAndReadSingle(Class<T> c, String sql, Object... params) {
+        return executeAndReadSingle(c, executeQuery(sql, params));
+    }
+    
+    private <T> T executeAndReadSingle(Class<T> c, ResultSet rs) {
+        List<T> list = executeAndReadList(c, rs);
+        if (list.isEmpty()) return null;
+        return list.get(0);
+    }
+    
     public <T> List<T> executeAndReadList(Class<T> c, String sql) {
-        ResultSet rs = executeQuery(sql);
+        return executeAndReadList(c, executeQuery(sql));
+    }
+    
+    public <T> List<T> executeAndReadList(Class<T> c, String sql, Object... params) {
+        return executeAndReadList(c, executeQuery(sql, params));
+    }
+    
+    private <T> List<T> executeAndReadList(Class<T> c, ResultSet rs) {
         List<T> result = new ArrayList<>();
         
         try {
