@@ -4,6 +4,7 @@ import com.ithee.iluggage.core.database.DatabaseConnection;
 import com.ithee.iluggage.core.database.classes.Account;
 import com.ithee.iluggage.core.scene.PopupSceneController;
 import com.ithee.iluggage.core.scene.SceneController;
+import com.ithee.iluggage.screens.Login;
 import com.ithee.iluggage.screens.MainMenu;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
@@ -21,9 +22,11 @@ import javafx.stage.Stage;
 public class ILuggageApplication extends Application {
     private DatabaseConnection db;
     
-    
     private Stage primaryStage;
     private SceneController currentScene;
+    
+    private Account user;
+    
     
     @Override
     public void start(Stage primaryStage) {
@@ -35,23 +38,37 @@ public class ILuggageApplication extends Application {
         
         this.db = new DatabaseConnection(this);
         
-        this.switchMainScene(MainMenu.class);
+        this.switchMainScene(Login.class);
     }
     
-    public <T extends SceneController> void switchMainScene(Class<T> sceneClass) {
-        SceneController scene = initScene(sceneClass);
+    public <T extends SceneController> T switchMainScene(Class<T> sceneClass) {
+        T controller = initScene(sceneClass);
         
         if (this.currentScene != null) {
             this.currentScene.onDestroy();
         }
         
-        scene.onCreate();
-        this.primaryStage.setScene(scene.scene);
-        this.currentScene = scene;
+        controller.onCreate();
+        this.primaryStage.setScene(controller.scene);
+        this.currentScene = controller;
         
         if (!this.primaryStage.isShowing()) {
             this.primaryStage.show();
         }
+        
+        return controller;
+    }
+    
+    public <T extends PopupSceneController> T openScene(Class<T> sceneClass) {
+        T controller = initScene(sceneClass);
+        
+        controller.stage = new Stage();
+        controller.onCreate();
+        
+        controller.stage.setScene(controller.scene);
+        controller.stage.show();
+        
+        return controller;
     }
     
     private <T extends SceneController> T initScene(Class<T> sceneClass) {
@@ -60,7 +77,8 @@ public class ILuggageApplication extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource(fxmlName));
             Parent root = fxmlLoader.load();
-            SceneController controller = fxmlLoader.getController();
+            T controller = fxmlLoader.getController();
+            
             controller.app = this;
             controller.scene = new Scene(root);
             
@@ -68,15 +86,6 @@ public class ILuggageApplication extends Application {
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
-    }
-    
-    public <T extends PopupSceneController> void openScene(Class<T> sceneClass) {
-        PopupSceneController scene = initScene(sceneClass);
-        
-        scene.myStage = new Stage();
-        //scene.myStage.setScene(scene.onCreate());
-        scene.myStage.setTitle("????????");
-        scene.myStage.show();
     }
     
     public boolean tryLogin(String username, String password) {
@@ -91,7 +100,29 @@ public class ILuggageApplication extends Application {
             return true;
         }
     }
+    
+    public void logOut() {
+        if (isUserLoggedIn()) {
+            this.user = null;
+        }
+    }
+    
+    public boolean isUserLoggedIn() {
+        return (this.user != null);
+    }
+    
+    public boolean isUserManager() {
+        return isUserLoggedIn() && this.user.permissionLevel >= 1;
+    }
+    
+    public boolean isUserAdmin() {
+        return isUserLoggedIn() && this.user.permissionLevel >= 2;
+    }
 
+    
+    
+    
+    
     public static void main(String[] args) {
         launch(args);
     }

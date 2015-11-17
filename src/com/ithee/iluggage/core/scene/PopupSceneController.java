@@ -11,5 +11,5 @@ public abstract class PopupSceneController extends SceneController {
     /**
      * In case of a pop-up screen, this is the stage of this scene.
      */
-    public Stage myStage;
+    public Stage stage;
 }

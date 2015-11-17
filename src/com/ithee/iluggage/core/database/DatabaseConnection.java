@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author robby
  */
 public class DatabaseConnection {
@@ -107,6 +106,8 @@ public class DatabaseConnection {
     }
     
     private <T> List<T> executeAndReadList(Class<T> c, ResultSet rs) {
+        if (rs == null) return null;
+        
         List<T> result = new ArrayList<>();
         
         try {
