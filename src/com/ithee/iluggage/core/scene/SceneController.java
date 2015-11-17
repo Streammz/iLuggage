@@ -1,27 +1,38 @@
-
 package com.ithee.iluggage.core.scene;
 
 import com.ithee.iluggage.ILuggageApplication;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 /**
  * @author robby
  */
 public abstract class SceneController {
+
     /**
      * The application.
      */
     public ILuggageApplication app;
-    
+
     /**
-     * The scene
+     * The scene that is used to contain the layout and information about it.
      */
     public Scene scene;
-    
-    
+
+    /**
+     * Override this in the superclass to have it execute a piece of code as
+     * soon as the layout is shown
+     */
+    public void onCreate() {
+    }
+
+    /**
+     * Helper function to remove a node from their parents. You can supply
+     * multiple nodes at once.
+     *
+     * @param nodes
+     */
     public void removeNode(Node... nodes) {
         for (Node node : nodes) {
             if (node.getParent() instanceof Pane) {

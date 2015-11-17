@@ -1,14 +1,13 @@
 package com.ithee.iluggage;
 
+import com.ithee.iluggage.core.database.DatabaseCache;
 import com.ithee.iluggage.core.database.DatabaseConnection;
 import com.ithee.iluggage.core.database.classes.Account;
+import com.ithee.iluggage.core.database.classes.LuggageBrand;
+import com.ithee.iluggage.core.database.classes.LuggageKind;
 import com.ithee.iluggage.core.scene.PopupSceneController;
 import com.ithee.iluggage.core.scene.SceneController;
 import com.ithee.iluggage.screens.Login;
-import com.ithee.iluggage.screens.MainMenu;
-import java.lang.reflect.InvocationTargetException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,12 +19,16 @@ import javafx.stage.Stage;
  * @author robby
  */
 public class ILuggageApplication extends Application {
-    private DatabaseConnection db;
+    public DatabaseConnection db;
     
     private Stage primaryStage;
     private SceneController currentScene;
     
     private Account user;
+    
+    public DatabaseCache<LuggageBrand> dbBrands;
+    public DatabaseCache<LuggageKind> dbKinds;
+            
     
     
     @Override
@@ -33,10 +36,11 @@ public class ILuggageApplication extends Application {
         this.primaryStage = primaryStage;
         this.primaryStage.setMinWidth(640);
         this.primaryStage.setMinHeight(480);
-        //this.primaryStage.setMaximized(true);
         primaryStage.setTitle("Bagage (Corendon)");
         
         this.db = new DatabaseConnection(this);
+        this.dbBrands = new DatabaseCache(this, "SELECT * FROM `LuggageBrands`", LuggageBrand.class);
+        this.dbKinds = new DatabaseCache(this, "SELECT * FROM `LuggageKinds`", LuggageKind.class);
         
         this.switchMainScene(Login.class);
     }
@@ -44,11 +48,8 @@ public class ILuggageApplication extends Application {
     public <T extends SceneController> T switchMainScene(Class<T> sceneClass) {
         T controller = initScene(sceneClass);
         
-        if (this.currentScene != null) {
-            this.currentScene.onDestroy();
-        }
-        
         controller.onCreate();
+        
         this.primaryStage.setScene(controller.scene);
         this.currentScene = controller;
         
@@ -62,10 +63,11 @@ public class ILuggageApplication extends Application {
     public <T extends PopupSceneController> T openScene(Class<T> sceneClass) {
         T controller = initScene(sceneClass);
         
-        controller.stage = new Stage();
         controller.onCreate();
         
+        controller.stage = new Stage();
         controller.stage.setScene(controller.scene);
+        controller.stage.setTitle("Bagage (Corendon)");
         controller.stage.show();
         
         return controller;
@@ -97,6 +99,7 @@ public class ILuggageApplication extends Application {
             return false;
         } else {
             System.out.println("Logged in as userID=" + a.id);
+            this.user = a;
             return true;
         }
     }
@@ -109,6 +112,10 @@ public class ILuggageApplication extends Application {
     
     public boolean isUserLoggedIn() {
         return (this.user != null);
+    }
+    
+    public Account getUser() {
+        return this.user;
     }
     
     public boolean isUserManager() {
