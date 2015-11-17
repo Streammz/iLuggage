@@ -21,18 +21,6 @@ public abstract class SceneController {
      */
     public Scene scene;
     
-    /**
-     * Empty function to be optionally implemented by subclasses
-     * Gets called when this scene gets changed/destroyed
-     */
-    public void onDestroy() {}
-    
-    /**
-     * Empty function to be implemented by subclasses
-     * Gets called when this scene gets initialised
-     */
-    public void onCreate() {}
-    
     
     public void removeNode(Node... nodes) {
         for (Node node : nodes) {

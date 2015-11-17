@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.Login">
+<BorderPane prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.FoundLuggage">
     <stylesheets>
         <URL value="@../../../../main.css" />
     </stylesheets>
@@ -37,23 +37,23 @@
             <Text text="Stickers" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="4" />
             <Text text="Overige Kenmerken" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="5" />
             
-            <ChoiceBox maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="0" fx:id="cbKind" />
+            <ChoiceBox maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="0" fx:id="chKind" />
             <TextField maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="tfBrand" />
             <TextField maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="tfColor" />
             <HBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3">
                 <children>
-                    <TextField HBox.hgrow="ALWAYS" />
-                    <TextField HBox.hgrow="ALWAYS" />
-                    <TextField HBox.hgrow="ALWAYS" />
+                    <TextField HBox.hgrow="ALWAYS" fx:id="tfSize1" />
+                    <TextField HBox.hgrow="ALWAYS" fx:id="tfSize2" />
+                    <TextField HBox.hgrow="ALWAYS" fx:id="tfSize3" />
                 </children>
             </HBox>
-            <CheckBox maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextArea maxWidth="Infinity" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <CheckBox maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="4" fx:id="cbStickers" />
+            <TextArea maxWidth="Infinity" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" fx:id="tfMisc" />
             
             <HBox alignment="CENTER_RIGHT" spacing="5" GridPane.columnSpan="2" GridPane.rowIndex="6">
                 <children>
-                    <Button text="Annuleer" />
-                    <Button text="Toevoegen" />
+                    <Button text="Annuleer" onAction="#onCancel" />
+                    <Button text="Toevoegen" onAction="#onAdd" />
                 </children>
             </HBox> 
          </children>
