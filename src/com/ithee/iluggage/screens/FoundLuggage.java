@@ -1,8 +1,10 @@
 
 package com.ithee.iluggage.screens;
 
+import com.ithee.iluggage.core.controls.AutocompleteTextField;
 import com.ithee.iluggage.core.database.classes.LuggageKind;
 import com.ithee.iluggage.core.scene.PopupSceneController;
+import java.util.stream.Stream;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -13,7 +15,7 @@ import javafx.scene.control.*;
 public class FoundLuggage extends PopupSceneController {
     
     @FXML private ChoiceBox<LuggageKind> chKind;
-    @FXML private TextField tfBrand;
+    @FXML private AutocompleteTextField tfBrand;
     @FXML private TextField tfColor;
     @FXML private TextField tfSize1;
     @FXML private TextField tfSize2;
@@ -25,6 +27,10 @@ public class FoundLuggage extends PopupSceneController {
     public void onCreate() {
         app.dbKinds.getValues().forEach((kind) -> {
             chKind.getItems().add(kind);
+        });
+        
+        app.dbBrands.getValues().forEach((brand) -> {
+            tfBrand.getEntries().add(brand.name);
         });
     }
     

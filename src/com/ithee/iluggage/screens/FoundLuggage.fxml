@@ -8,6 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import com.ithee.iluggage.core.controls.*?>
 
 <BorderPane prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.FoundLuggage">
     <stylesheets>
@@ -38,7 +39,7 @@
             <Text text="Overige Kenmerken" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="5" />
             
             <ChoiceBox maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="0" fx:id="chKind" />
-            <TextField maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="tfBrand" />
+            <AutocompleteTextField maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="tfBrand" />
             <TextField maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="tfColor" />
             <HBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3">
                 <children>
