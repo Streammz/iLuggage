@@ -3,6 +3,8 @@ package com.ithee.iluggage.core.scene;
 import com.ithee.iluggage.ILuggageApplication;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 
 /**
@@ -40,5 +42,14 @@ public abstract class SceneController {
                 pane.getChildren().remove(node);
             }
         }
+    }
+    
+    public void showSimpleMessage(AlertType type, String title, String content) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(title);
+        alert.setContentText(content);
+
+        alert.showAndWait();
     }
 }

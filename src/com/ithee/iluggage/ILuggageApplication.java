@@ -1,9 +1,11 @@
 package com.ithee.iluggage;
 
+import com.ithee.iluggage.core.database.AddableDatabaseCache;
 import com.ithee.iluggage.core.database.DatabaseCache;
 import com.ithee.iluggage.core.database.DatabaseConnection;
 import com.ithee.iluggage.core.database.classes.Account;
 import com.ithee.iluggage.core.database.classes.LuggageBrand;
+import com.ithee.iluggage.core.database.classes.LuggageColor;
 import com.ithee.iluggage.core.database.classes.LuggageKind;
 import com.ithee.iluggage.core.scene.PopupSceneController;
 import com.ithee.iluggage.core.scene.SceneController;
@@ -26,8 +28,9 @@ public class ILuggageApplication extends Application {
     
     private Account user;
     
-    public DatabaseCache<LuggageBrand> dbBrands;
     public DatabaseCache<LuggageKind> dbKinds;
+    public AddableDatabaseCache<LuggageBrand> dbBrands;
+    public AddableDatabaseCache<LuggageColor> dbColors;
             
     
     
@@ -39,8 +42,22 @@ public class ILuggageApplication extends Application {
         primaryStage.setTitle("Bagage (Corendon)");
         
         this.db = new DatabaseConnection(this);
-        this.dbBrands = new DatabaseCache(this, "SELECT * FROM `LuggageBrands`", LuggageBrand.class);
         this.dbKinds = new DatabaseCache(this, "SELECT * FROM `LuggageKinds`", LuggageKind.class);
+        this.dbBrands = new AddableDatabaseCache<LuggageBrand>(this, "SELECT * FROM `LuggageBrands`",
+                "INSERT ITNO `LuggageBrands` VALUES (?)", LuggageBrand.class) {
+                    
+            @Override public Object[] getDbParams(LuggageBrand brand) {
+                return new Object[] { brand.name };
+            }
+        };
+        this.dbColors = new AddableDatabaseCache<LuggageColor>(this, "SELECT * FROM `LuggageColors`",
+                "INSERT ITNO `LuggageColors` VALUES (?)", LuggageColor.class) {
+                    
+            @Override public Object[] getDbParams(LuggageColor color) {
+                return new Object[] { color.name };
+            }
+        };
+        
         
         this.switchMainScene(Login.class);
     }

@@ -2,9 +2,10 @@
 package com.ithee.iluggage.screens;
 
 import com.ithee.iluggage.core.controls.AutocompleteTextField;
+import com.ithee.iluggage.core.database.classes.Luggage;
 import com.ithee.iluggage.core.database.classes.LuggageKind;
 import com.ithee.iluggage.core.scene.PopupSceneController;
-import java.util.stream.Stream;
+import java.util.Date;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -14,9 +15,12 @@ import javafx.scene.control.*;
  */
 public class FoundLuggage extends PopupSceneController {
     
+    private static String SQL_INSERT = "INSERT INTO `Luggage` VALUES ("
+            + "NULL, 0, NULL, ?, ?, ?, ?, ?, ?, ?, 1)";
+    
     @FXML private ChoiceBox<LuggageKind> chKind;
     @FXML private AutocompleteTextField tfBrand;
-    @FXML private TextField tfColor;
+    @FXML private AutocompleteTextField tfColor;
     @FXML private TextField tfSize1;
     @FXML private TextField tfSize2;
     @FXML private TextField tfSize3;
@@ -32,6 +36,10 @@ public class FoundLuggage extends PopupSceneController {
         app.dbBrands.getValues().forEach((brand) -> {
             tfBrand.getEntries().add(brand.name);
         });
+        
+        app.dbColors.getValues().forEach((color) -> {
+            tfColor.getEntries().add(color.name);
+        });
     }
     
     public void onCancel(ActionEvent event) {
@@ -39,6 +47,44 @@ public class FoundLuggage extends PopupSceneController {
     }
 
     public void onAdd(ActionEvent event) {
+        
+        double[] sizes;
+        try {
+            sizes = getSizes();
+        } catch (NumberFormatException ex) {
+            showSimpleMessage(Alert.AlertType.ERROR, "Grootte", 
+                    "De ingevulde waarden voor \"Grootte\" zijn geen nummers");
+            return;
+        }
+        
+        
+        Luggage lugg = new Luggage();
+        lugg.setKind(chKind.getValue());
+        lugg.setBrand(app, tfBrand.getText());
+        lugg.setColor(app, tfColor.getText());
+        lugg.setSize(sizes[0], sizes[1], sizes[2]);
+        lugg.stickers = cbStickers.isSelected();
+        lugg.miscellaneous = tfMisc.getText();
+        lugg.date = new Date().toString();
+        
+        app.db.executeStatement(SQL_INSERT, 
+                lugg.kind, lugg.brand, lugg.color,
+                lugg.size, lugg.stickers, lugg.miscellaneous,
+                lugg.date);
+        
         this.stage.close();
+    }
+    
+    
+    private double[] getSizes() throws NumberFormatException {
+        try {
+            return new double[] {
+                Double.parseDouble(tfSize1.getText()),
+                Double.parseDouble(tfSize2.getText()),
+                Double.parseDouble(tfSize3.getText())
+            };
+        } catch (NullPointerException ex) {
+            return null;
+        }
     }
 }

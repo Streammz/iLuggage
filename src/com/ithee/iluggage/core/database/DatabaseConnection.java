@@ -62,14 +62,7 @@ public class DatabaseConnection {
             conn = getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             
-            for (int i=0; i<params.length; i++) {
-                if (params[i] == null) continue;
-                else if (params[i].getClass().equals(Integer.class)) statement.setInt(i+1, (int)params[i]);
-                else if (params[i].getClass().equals(Double.class)) statement.setDouble(i+1, (double)params[i]);
-                else if (params[i].getClass().equals(Long.class)) statement.setLong(i+1, (long)params[i]);
-                else if (params[i].getClass().equals(Boolean.class)) statement.setBoolean(i+1, (boolean)params[i]);
-                else statement.setString(i+1, params[i].toString());
-            }
+            addParams(statement, params);
             
             result = statement.executeQuery();
         } catch (SQLException ex) {
@@ -81,6 +74,37 @@ public class DatabaseConnection {
         }
         
         return result;
+    }
+    
+    public boolean executeStatement(String sql, Object... params) {
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            
+            addParams(statement, params);
+            
+            return statement.execute();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            try {
+                if (conn != null) conn.close();
+            } catch (SQLException ignored) {
+            }
+        }
+        
+        return false;
+    }
+    
+    private void addParams(PreparedStatement statement, Object[] params) throws SQLException {
+        for (int i=0; i<params.length; i++) {
+            if (params[i] == null) continue;
+            else if (params[i].getClass().equals(Integer.class)) statement.setInt(i+1, (int)params[i]);
+            else if (params[i].getClass().equals(Double.class)) statement.setDouble(i+1, (double)params[i]);
+            else if (params[i].getClass().equals(Long.class)) statement.setLong(i+1, (long)params[i]);
+            else if (params[i].getClass().equals(Boolean.class)) statement.setBoolean(i+1, (boolean)params[i]);
+            else statement.setString(i+1, params[i].toString());
+        }
     }
     
     public <T> T executeAndReadSingle(Class<T> c, String sql) {

@@ -40,7 +40,7 @@
             
             <ChoiceBox maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="0" fx:id="chKind" />
             <AutocompleteTextField maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="tfBrand" />
-            <TextField maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="tfColor" />
+            <AutocompleteTextField maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="tfColor" />
             <HBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3">
                 <children>
                     <TextField HBox.hgrow="ALWAYS" fx:id="tfSize1" />
