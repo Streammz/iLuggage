@@ -12,3 +12,11 @@
 .buttonContainer .button {
     -fx-pref-width: 165;
 }
+
+.buttonContainer{
+    -fx-background-color: #E0E0E0;
+}
+
+.mainheader{
+    -fx-background-color: #00BCE2;
+}
