@@ -6,6 +6,8 @@ import com.ithee.iluggage.core.database.classes.Customer;
 import com.ithee.iluggage.core.database.classes.Luggage;
 import com.ithee.iluggage.core.database.classes.LuggageKind;
 import com.ithee.iluggage.core.scene.PopupSceneController;
+import java.sql.SQLException;
+import java.sql.Types;
 import java.util.Date;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +22,7 @@ public class LostLuggage extends PopupSceneController {
             + "NULL,  ?, ?, ?)";
     
     private static final String SQL_INSERT_LUGGAGE = "INSERT INTO `luggage` VALUES ("
-            + "NULL, NULL, ?, ?, ?, ?, ?, ?, ?, ?, 2)";
+            + "NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, 2)";
     
     @FXML private ChoiceBox<LuggageKind> chKind;
     @FXML private AutocompleteTextField tfBrand;
@@ -71,26 +73,68 @@ public class LostLuggage extends PopupSceneController {
         
         app.db.executeStatement(SQL_INSERT_CUSTOMER, 
                 cus.name, cus.email, cus.phone);
+        cus.id = app.db.executeStatement(SQL_INSERT_CUSTOMER, (statement) -> {
+            try {
+                if (cus.name.length() == 0) statement.setNull(1, Types.VARCHAR);
+                else statement.setString(1, cus.name);
+
+                if (cus.email.length() == 0) statement.setNull(2, Types.VARCHAR);
+                else statement.setString(2, cus.email);
+
+                if (cus.phone.length() == 0) statement.setNull(3, Types.VARCHAR);
+                else statement.setString(3, cus.phone);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        });
         
         Luggage lugg = new Luggage();
+        lugg.customerId = cus.id;
         lugg.flightCode = tfFlightnr.getText();
         lugg.setKind(chKind.getValue());
         lugg.setBrand(app, tfBrand.getText());
         lugg.setColor(app, tfColor.getText());
-        lugg.setSize(sizes[0], sizes[1], sizes[2]);
+        lugg.setSize(sizes);
         lugg.stickers = cbStickers.isSelected();
         lugg.miscellaneous = tfMisc.getText();
         lugg.date = new Date();
         
-        app.db.executeStatement(SQL_INSERT_LUGGAGE, 
-                lugg.flightCode, lugg.kind, lugg.brand, lugg.color,
-                lugg.size, lugg.stickers, lugg.miscellaneous, lugg.date);
+        lugg.id = app.db.executeStatement(SQL_INSERT_LUGGAGE, (statement) -> {
+            try {
+                statement.setInt(1, lugg.customerId);
+                
+                if (lugg.flightCode.length() == 0) statement.setNull(2, Types.VARCHAR);
+                else statement.setString(2, lugg.flightCode);
+                
+                if (lugg.kind == null) statement.setNull(3, Types.INTEGER);
+                else statement.setInt(3, lugg.kind);
+                
+                if (lugg.brand == null) statement.setNull(4, Types.INTEGER);
+                else statement.setInt(4, lugg.brand);
+                
+                if (lugg.color == null) statement.setNull(5, Types.INTEGER);
+                else statement.setInt(5, lugg.color);
+                
+                if (lugg.size == null) statement.setNull(6, Types.VARCHAR);
+                else statement.setString(6, lugg.size);
+                
+                statement.setBoolean(7, lugg.stickers);
+                
+                if (lugg.miscellaneous.length() == 0) statement.setNull(8, Types.VARCHAR);
+                else statement.setString(8, lugg.miscellaneous);
+                
+                statement.setDate(9, new java.sql.Date(lugg.date.getTime()));
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        });
         
         this.stage.close();
     }
     
     
     private double[] getSizes() throws NumberFormatException {
+        if (tfSize1.getText().length() == 0 || tfSize2.getText().length() == 0 || tfSize3.getText().length() == 0) return null;
         return new double[] {
             Double.parseDouble(tfSize1.getText()),
             Double.parseDouble(tfSize2.getText()),

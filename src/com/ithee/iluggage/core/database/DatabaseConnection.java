@@ -10,15 +10,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 /**
  * @author iThee
  */
 public class DatabaseConnection {
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-    private static final String DB_URL = "jdbc:mysql://oege.ie.hva.nl/zvisserr026";
-    private static final String DB_USER = "visserr026";
-    private static final String DB_PASS = "/Q1a5le$8agKUw";
+    private static final String DB_URL = "jdbc:mysql://localhost/iluggage"; //"jdbc:mysql://oege.ie.hva.nl/zvisserr026";
+    private static final String DB_USER = "root"; //"visserr026";
+    private static final String DB_PASS = null; //"/Q1a5le$8agKUw";
     
     private ILuggageApplication app;
     
@@ -77,7 +79,7 @@ public class DatabaseConnection {
         return result;
     }
     
-    public boolean executeStatement(String sql, Object... params) {
+    public int executeStatement(String sql, Object... params) {
         Connection conn = null;
         try {
             conn = getConnection();
@@ -85,7 +87,7 @@ public class DatabaseConnection {
             
             addParams(statement, params);
             
-            return statement.execute();
+            return statement.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             try {
@@ -94,7 +96,26 @@ public class DatabaseConnection {
             }
         }
         
-        return false;
+        return -1;
+    }
+    public int executeStatement(String sql, Consumer<PreparedStatement> params) {
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            
+            params.accept(statement);
+            
+            return statement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            try {
+                if (conn != null) conn.close();
+            } catch (SQLException ignored) {
+            }
+        }
+        
+        return -1;
     }
     
     private void addParams(PreparedStatement statement, Object[] params) throws SQLException {

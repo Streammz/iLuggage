@@ -5,6 +5,8 @@ import com.ithee.iluggage.core.controls.AutocompleteTextField;
 import com.ithee.iluggage.core.database.classes.Luggage;
 import com.ithee.iluggage.core.database.classes.LuggageKind;
 import com.ithee.iluggage.core.scene.PopupSceneController;
+import java.sql.SQLException;
+import java.sql.Types;
 import java.util.Date;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,6 +32,7 @@ public class FoundLuggage extends PopupSceneController {
 
     @Override
     public void onCreate() {
+        chKind.getItems().add(null);
         app.dbKinds.getValues().forEach((kind) -> {
             chKind.getItems().add(kind);
         });
@@ -59,25 +62,50 @@ public class FoundLuggage extends PopupSceneController {
         }
         
         
+        
         Luggage lugg = new Luggage();
         lugg.flightCode = tfFlightnr.getText();
         lugg.setKind(chKind.getValue());
         lugg.setBrand(app, tfBrand.getText());
         lugg.setColor(app, tfColor.getText());
-        lugg.setSize(sizes[0], sizes[1], sizes[2]);
+        lugg.setSize(sizes);
         lugg.stickers = cbStickers.isSelected();
         lugg.miscellaneous = tfMisc.getText();
         lugg.date = new Date();
         
-        app.db.executeStatement(SQL_INSERT, 
-                lugg.flightCode, lugg.kind, lugg.brand, lugg.color,
-                lugg.size, lugg.stickers, lugg.miscellaneous, lugg.date);
+        app.db.executeStatement(SQL_INSERT, (statement) -> {
+            try {
+                if (lugg.flightCode.length() == 0) statement.setNull(1, Types.VARCHAR);
+                else statement.setString(1, lugg.flightCode);
+                
+                if (lugg.kind == null) statement.setNull(2, Types.INTEGER);
+                else statement.setInt(2, lugg.kind);
+                
+                if (lugg.brand == null) statement.setNull(3, Types.INTEGER);
+                else statement.setInt(3, lugg.brand);
+                
+                if (lugg.color == null) statement.setNull(4, Types.INTEGER);
+                else statement.setInt(4, lugg.color);
+                
+                if (lugg.size == null) statement.setNull(5, Types.VARCHAR);
+                else statement.setString(5, lugg.size);
+                
+                statement.setBoolean(6, lugg.stickers);
+                if (lugg.miscellaneous.length() == 0) statement.setNull(7, Types.VARCHAR);
+                else statement.setString(7, lugg.miscellaneous);
+                
+                statement.setDate(8, new java.sql.Date(lugg.date.getTime()));
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        });
         
         this.stage.close();
     }
     
     
     private double[] getSizes() throws NumberFormatException {
+        if (tfSize1.getText().length() == 0 || tfSize2.getText().length() == 0 || tfSize3.getText().length() == 0) return null;
         return new double[] {
             Double.parseDouble(tfSize1.getText()),
             Double.parseDouble(tfSize2.getText()),
