@@ -7,4 +7,11 @@ package com.ithee.iluggage.core.database.classes;
 public class LuggageColor {
     public int id;
     public String name;
+
+    @Override
+    public String toString() {
+        return name;
+    }
+    
+    
 }

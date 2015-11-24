@@ -39,6 +39,7 @@ public class MainMenu extends SceneController {
     }
 
     public void onPressSearchLuggage(ActionEvent event) {
+        app.openScene(SearchLuggage.class);
     }
 
     public void onPressAddCustomer(ActionEvent event) {
