@@ -19,13 +19,13 @@
             <children>
                 <HBox alignment="CENTER" spacing="5.0">
                     <children>
-                        <Text text="Gebruikersnaam" textAlignment="RIGHT" wrappingWidth="100.0" />
+                        <Text text="Gebruikersnaam" textAlignment="RIGHT" wrappingWidth="120.0" />
                         <TextField fx:id="tfUsername" />
                     </children>
                 </HBox>
                 <HBox alignment="CENTER" spacing="5.0">
                     <children>
-                        <Text text="Wachtwoord" textAlignment="RIGHT" wrappingWidth="100.0" />
+                        <Text text="Wachtwoord" textAlignment="RIGHT" wrappingWidth="120.0" />
                         <PasswordField fx:id="tfPassword" onAction="#onLoginPressed" />
                     </children>
                 </HBox>
