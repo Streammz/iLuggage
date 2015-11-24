@@ -80,7 +80,7 @@ public class LostLuggage extends PopupSceneController {
         lugg.setSize(sizes[0], sizes[1], sizes[2]);
         lugg.stickers = cbStickers.isSelected();
         lugg.miscellaneous = tfMisc.getText();
-        lugg.date = new Date().toString();
+        lugg.date = new Date();
         
         app.db.executeStatement(SQL_INSERT_LUGGAGE, 
                 lugg.flightCode, lugg.kind, lugg.brand, lugg.color,

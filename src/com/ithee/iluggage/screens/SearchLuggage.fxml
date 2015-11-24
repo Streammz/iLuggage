@@ -16,17 +16,19 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" />
          </rowConstraints>
          <columnConstraints>
-            <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints prefWidth="100.0" />
+            <ColumnConstraints maxWidth="123.0" />
+            <ColumnConstraints maxWidth="272.0" />
+            <ColumnConstraints maxWidth="272.0" />
+            <ColumnConstraints maxWidth="272.0" />
+            <ColumnConstraints minWidth="10.0" />
          </columnConstraints>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Naam" GridPane.halignment="RIGHT" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Klantnummer" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" prefWidth="100.0" text="Zoek" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Soort" GridPane.halignment="RIGHT" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kleur" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" prefWidth="100.0" text="Zoek" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" />
+            <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
          <BorderPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

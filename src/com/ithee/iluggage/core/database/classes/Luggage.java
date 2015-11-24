@@ -2,6 +2,7 @@
 package com.ithee.iluggage.core.database.classes;
 
 import com.ithee.iluggage.ILuggageApplication;
+import java.util.Date;
 
 /**
  * @author iThee
@@ -16,7 +17,7 @@ public class Luggage {
     public String size;
     public boolean stickers;
     public String miscellaneous;
-    public String date;
+    public Date date;
     public int status;
     
     
