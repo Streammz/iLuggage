@@ -2,6 +2,7 @@
 package com.ithee.iluggage.screens;
 
 import com.ithee.iluggage.core.controls.AutocompleteTextField;
+import com.ithee.iluggage.core.database.classes.Customer;
 import com.ithee.iluggage.core.database.classes.Luggage;
 import com.ithee.iluggage.core.database.classes.LuggageKind;
 import com.ithee.iluggage.core.scene.PopupSceneController;
@@ -15,8 +16,11 @@ import javafx.scene.control.*;
  */
 public class LostLuggage extends PopupSceneController {
     
-    private static final String SQL_INSERT = "INSERT INTO `Luggage` VALUES ("
-            + "NULL, NULL, ?, ?, ?, ?, ?, ?, ?, ?, 1)";
+    private static final String SQL_INSERT_CUSTOMER = "INSERT INTO `customers` VALUES ("
+            + "NULL,  ?, ?, ?)";
+    
+    private static final String SQL_INSERT_LUGGAGE = "INSERT INTO `luggage` VALUES ("
+            + "NULL, NULL, ?, ?, ?, ?, ?, ?, ?, ?, 2)";
     
     @FXML private ChoiceBox<LuggageKind> chKind;
     @FXML private AutocompleteTextField tfBrand;
@@ -27,6 +31,9 @@ public class LostLuggage extends PopupSceneController {
     @FXML private CheckBox cbStickers;
     @FXML private TextField tfFlightnr;
     @FXML private TextArea tfMisc;
+    @FXML private TextField tfCustomername;
+    @FXML private TextField tfEmail;
+    @FXML private TextField tfPhone;
 
     @Override
     public void onCreate() {
@@ -57,7 +64,13 @@ public class LostLuggage extends PopupSceneController {
                     "De ingevulde waarden voor \"Grootte\" zijn geen nummers");
             return;
         }
+        Customer cus = new Customer();
+        cus.name = tfCustomername.getText();
+        cus.email = tfEmail.getText();
+        cus.phone = tfPhone.getText();
         
+        app.db.executeStatement(SQL_INSERT_CUSTOMER, 
+                cus.name, cus.email, cus.phone);
         
         Luggage lugg = new Luggage();
         lugg.flightCode = tfFlightnr.getText();
@@ -69,7 +82,7 @@ public class LostLuggage extends PopupSceneController {
         lugg.miscellaneous = tfMisc.getText();
         lugg.date = new Date().toString();
         
-        app.db.executeStatement(SQL_INSERT, 
+        app.db.executeStatement(SQL_INSERT_LUGGAGE, 
                 lugg.flightCode, lugg.kind, lugg.brand, lugg.color,
                 lugg.size, lugg.stickers, lugg.miscellaneous, lugg.date);
         

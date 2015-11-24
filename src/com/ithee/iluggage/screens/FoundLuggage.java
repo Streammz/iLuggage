@@ -15,7 +15,7 @@ import javafx.scene.control.*;
  */
 public class FoundLuggage extends PopupSceneController {
     
-    private static final String SQL_INSERT = "INSERT INTO `Luggage` VALUES ("
+    private static final String SQL_INSERT = "INSERT INTO `luggage` VALUES ("
             + "NULL, NULL, ?, ?, ?, ?, ?, ?, ?, ?, 1)";
     
     @FXML private ChoiceBox<LuggageKind> chKind;

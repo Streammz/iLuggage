@@ -39,7 +39,7 @@ public class ILuggageApplication extends Application {
         this.primaryStage = primaryStage;
         this.primaryStage.setMinWidth(640);
         this.primaryStage.setMinHeight(480);
-        primaryStage.setTitle("Bagage (Corendon)");
+        primaryStage.setTitle("iLuggage | Corendon");
         
         this.db = new DatabaseConnection(this);
         this.dbKinds = new DatabaseCache(this, "SELECT * FROM `luggagekinds`", LuggageKind.class);
