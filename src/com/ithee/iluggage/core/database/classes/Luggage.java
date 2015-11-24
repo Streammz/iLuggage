@@ -22,7 +22,9 @@ public class Luggage {
     
     
     public void setSize(double length, double width, double height) {
-        this.size = length + "x" + width + "x" + height;
+        this.size = (length == (int)length ? String.valueOf((int)length) : String.valueOf(length)) + "x" + 
+                    (width == (int)width ? String.valueOf((int)width) : String.valueOf(width)) + "x" + 
+                    (height == (int)height ? String.valueOf((int)height) : String.valueOf(height));
     }
     
     public double[] getSize() {
