@@ -42,16 +42,16 @@ public class ILuggageApplication extends Application {
         primaryStage.setTitle("Bagage (Corendon)");
         
         this.db = new DatabaseConnection(this);
-        this.dbKinds = new DatabaseCache(this, "SELECT * FROM `LuggageKinds`", LuggageKind.class);
-        this.dbBrands = new AddableDatabaseCache<LuggageBrand>(this, "SELECT * FROM `LuggageBrands`",
-                "INSERT ITNO `LuggageBrands` VALUES (?)", LuggageBrand.class) {
+        this.dbKinds = new DatabaseCache(this, "SELECT * FROM `luggagekinds`", LuggageKind.class);
+        this.dbBrands = new AddableDatabaseCache<LuggageBrand>(this, "SELECT * FROM `luggagebrands`",
+                "INSERT ITNO `luggagebrands` VALUES (?)", LuggageBrand.class) {
                     
             @Override public Object[] getDbParams(LuggageBrand brand) {
                 return new Object[] { brand.name };
             }
         };
-        this.dbColors = new AddableDatabaseCache<LuggageColor>(this, "SELECT * FROM `LuggageColors`",
-                "INSERT ITNO `LuggageColors` VALUES (?)", LuggageColor.class) {
+        this.dbColors = new AddableDatabaseCache<LuggageColor>(this, "SELECT * FROM `luggagecolors`",
+                "INSERT ITNO `luggagecolors` VALUES (?)", LuggageColor.class) {
                     
             @Override public Object[] getDbParams(LuggageColor color) {
                 return new Object[] { color.name };
@@ -111,7 +111,7 @@ public class ILuggageApplication extends Application {
         if (username == null || password == null) return false;
         long hash = password.hashCode();
         
-        Account a = db.executeAndReadSingle(Account.class, "SELECT * FROM accounts WHERE `Username` = ? AND `Password` = ?", username, hash);
+        Account a = db.executeAndReadSingle(Account.class, "SELECT * FROM `accounts` WHERE `Username` = ? AND `Password` = ?", username, hash);
         if (a == null) {
             return false;
         } else {

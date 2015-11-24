@@ -46,6 +46,7 @@ public class DatabaseConnection {
             
             result = statement.executeQuery();
         } catch (SQLException ex) {
+            ex.printStackTrace();
             try {
                 if (conn != null) conn.close();
             } catch (SQLException ignored) {
@@ -130,9 +131,13 @@ public class DatabaseConnection {
     }
     
     private <T> List<T> executeAndReadList(Class<T> c, ResultSet rs) {
-        if (rs == null) return null;
+        if (rs == null) {
+            System.out.println("Trying to read from null (DatabaseConnection)");
+            return null;
+        }
         
         List<T> result = new ArrayList<>();
+        
         
         try {
             while (rs.next()) {
