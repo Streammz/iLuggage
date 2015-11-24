@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
@@ -10,13 +11,14 @@
 <?import javafx.scene.text.*?>
 <?import com.ithee.iluggage.core.controls.*?>
 
-<BorderPane prefHeight="320.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.FoundLuggage">
+<BorderPane prefHeight="560.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.FoundLuggage">
     <stylesheets>
         <URL value="@../../../../main.css" />
     </stylesheets>
    <center>
+       
       <GridPane hgap="5" vgap="5" BorderPane.alignment="CENTER">
-          <BorderPane.margin><Insets bottom="5" left="5" right="5" top="5" /></BorderPane.margin>
+          <BorderPane.margin><Insets bottom="10.0" left="10.0" right="10.0" top="10.0" /></BorderPane.margin>
         <columnConstraints>
           <ColumnConstraints hgrow="NEVER" prefWidth="100.0" />
           <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" />
@@ -40,27 +42,53 @@
             <Text text="Vluchtnummer" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="5" />
             <Text text="Overige Kenmerken" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="6" />
             
-            <ChoiceBox maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="0" fx:id="chKind" />
-            <AutocompleteTextField maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="tfBrand" />
-            <AutocompleteTextField maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="tfColor" />
+            <ChoiceBox fx:id="chKind" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <AutocompleteTextField fx:id="tfBrand" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <AutocompleteTextField fx:id="tfColor" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <HBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3">
                 <children>
-                    <TextField HBox.hgrow="ALWAYS" fx:id="tfSize1" />
-                    <TextField HBox.hgrow="ALWAYS" fx:id="tfSize2" />
-                    <TextField HBox.hgrow="ALWAYS" fx:id="tfSize3" />
+                    <TextField fx:id="tfSize1" HBox.hgrow="ALWAYS" />
+                    <TextField fx:id="tfSize3" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="tfSize111" layoutX="204.0" layoutY="10.0" />
                 </children>
             </HBox>
-            <CheckBox maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="4" fx:id="cbStickers" />
-            <TextField maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="5" fx:id="tfFlightnr" />   
-            <TextArea maxWidth="Infinity" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6" fx:id="tfMisc" />
+            <CheckBox fx:id="cbStickers" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="tfFlightnr" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="5" />   
+            <TextArea fx:id="tfMisc" maxWidth="Infinity" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             
             <HBox alignment="CENTER_RIGHT" spacing="5" GridPane.columnSpan="2" GridPane.rowIndex="7">
                 <children>
-                    <Button text="Annuleer" onAction="#onCancel" />
-                    <Button text="Toevoegen" onAction="#onAdd" />
+                    <Button onAction="#onCancel" text="Annuleer" />
+                    <Button onAction="#onAdd" text="Toevoegen" />
                 </children>
             </HBox> 
          </children>
       </GridPane>
    </center>
+   <top>
+      <GridPane hgap="10.0" prefHeight="191.0" prefWidth="497.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0" prefWidth="183.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="317.0" minWidth="10.0" prefWidth="317.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Text text="Telefoonnummer:" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+            <Text text="E-mail:" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Text text="Naam klant:" textAlignment="RIGHT" GridPane.halignment="RIGHT" />
+            <Separator prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+              <TextField fx:id="tfKlantnaam" GridPane.columnIndex="1" />
+            <TextField fx:id="tfEmail" prefHeight="31.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="tfTelefoon" prefHeight="31.0" prefWidth="303.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </GridPane>
+   </top>
 </BorderPane>

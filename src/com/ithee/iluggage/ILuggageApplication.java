@@ -84,7 +84,7 @@ public class ILuggageApplication extends Application {
         
         controller.stage = new Stage();
         controller.stage.setScene(controller.scene);
-        controller.stage.setTitle("Bagage (Corendon)");
+        controller.stage.setTitle("iLuggage | Corendon");
         controller.stage.show();
         
         return controller;

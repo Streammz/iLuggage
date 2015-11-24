@@ -35,6 +35,7 @@ public class MainMenu extends SceneController {
     }
 
     public void onPressLostLuggage(ActionEvent event) {
+        app.openScene(LostLuggage.class);
     }
 
     public void onPressSearchLuggage(ActionEvent event) {
