@@ -43,6 +43,7 @@ public class MainMenu extends SceneController {
     }
 
     public void onPressAddCustomer(ActionEvent event) {
+        app.openScene(CustomerAdd.class);
     }
 
     public void onPressSearchCustomer(ActionEvent event) {
