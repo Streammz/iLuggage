@@ -5,7 +5,7 @@ import com.ithee.iluggage.ILuggageApplication;
 
 /**
  *
- * @author robby
+ * @author iThee
  */
 public abstract class AddableDatabaseCache<T> extends DatabaseCache<T>{
 

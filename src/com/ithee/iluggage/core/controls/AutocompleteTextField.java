@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
  * based on a supplied list of entries.
  *
  * @author Caleb Brinkman
- * @author Robby
+ * @author iThee
  */
 public class AutocompleteTextField extends TextField {
 

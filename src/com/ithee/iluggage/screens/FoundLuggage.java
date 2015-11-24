@@ -11,12 +11,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 /**
- * @author robby
+ * @author iThee
  */
 public class FoundLuggage extends PopupSceneController {
     
-    private static String SQL_INSERT = "INSERT INTO `Luggage` VALUES ("
-            + "NULL, 0, NULL, ?, ?, ?, ?, ?, ?, ?, 1)";
+    private static final String SQL_INSERT = "INSERT INTO `Luggage` VALUES ("
+            + "NULL, NULL, ?, ?, ?, ?, ?, ?, ?, ?, 1)";
     
     @FXML private ChoiceBox<LuggageKind> chKind;
     @FXML private AutocompleteTextField tfBrand;
@@ -25,6 +25,7 @@ public class FoundLuggage extends PopupSceneController {
     @FXML private TextField tfSize2;
     @FXML private TextField tfSize3;
     @FXML private CheckBox cbStickers;
+    @FXML private TextField tfFlightnr;
     @FXML private TextArea tfMisc;
 
     @Override
@@ -59,6 +60,7 @@ public class FoundLuggage extends PopupSceneController {
         
         
         Luggage lugg = new Luggage();
+        lugg.flightCode = tfFlightnr.getText();
         lugg.setKind(chKind.getValue());
         lugg.setBrand(app, tfBrand.getText());
         lugg.setColor(app, tfColor.getText());
@@ -68,23 +70,18 @@ public class FoundLuggage extends PopupSceneController {
         lugg.date = new Date().toString();
         
         app.db.executeStatement(SQL_INSERT, 
-                lugg.kind, lugg.brand, lugg.color,
-                lugg.size, lugg.stickers, lugg.miscellaneous,
-                lugg.date);
+                lugg.flightCode, lugg.kind, lugg.brand, lugg.color,
+                lugg.size, lugg.stickers, lugg.miscellaneous, lugg.date);
         
         this.stage.close();
     }
     
     
     private double[] getSizes() throws NumberFormatException {
-        try {
-            return new double[] {
-                Double.parseDouble(tfSize1.getText()),
-                Double.parseDouble(tfSize2.getText()),
-                Double.parseDouble(tfSize3.getText())
-            };
-        } catch (NullPointerException ex) {
-            return null;
-        }
+        return new double[] {
+            Double.parseDouble(tfSize1.getText()),
+            Double.parseDouble(tfSize2.getText()),
+            Double.parseDouble(tfSize3.getText())
+        };
     }
 }

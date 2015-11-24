@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author robby
+ * @author iThee
  */
 public class DatabaseConnection {
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  

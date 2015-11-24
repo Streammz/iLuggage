@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author robby
+ * @author iThee
  */
 public class ILuggageApplication extends Application {
     public DatabaseConnection db;

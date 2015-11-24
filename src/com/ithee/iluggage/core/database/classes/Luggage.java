@@ -4,7 +4,7 @@ package com.ithee.iluggage.core.database.classes;
 import com.ithee.iluggage.ILuggageApplication;
 
 /**
- * @author robby
+ * @author iThee
  */
 public class Luggage {
     public int id;

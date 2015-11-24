@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * @author robby
+ * @author iThee
  */
 public class DatabaseCache<T> {
     protected final ILuggageApplication app;

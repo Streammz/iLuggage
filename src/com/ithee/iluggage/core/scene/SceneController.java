@@ -8,7 +8,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 
 /**
- * @author robby
+ * @author iThee
  */
 public abstract class SceneController {
 

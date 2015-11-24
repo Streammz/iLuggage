@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 
 /**
  *
- * @author robby
+ * @author iThee
  */
 public class Login extends SceneController {
     @FXML private TextField tfUsername;

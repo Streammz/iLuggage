@@ -9,7 +9,7 @@ import javafx.scene.text.Text;
 
 /**
  *
- * @author Robby
+ * @author iThee
  */
 public class MainMenu extends SceneController {
     

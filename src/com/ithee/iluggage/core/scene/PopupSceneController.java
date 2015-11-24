@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author robby
+ * @author iThee
  */
 public abstract class PopupSceneController extends SceneController {
     /**

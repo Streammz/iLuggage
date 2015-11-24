@@ -2,7 +2,7 @@
 package com.ithee.iluggage.core.database.classes;
 
 /**
- * @author robby
+ * @author iThee
  */
 public class LuggageColor {
     public int id;
