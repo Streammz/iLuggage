@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
@@ -31,10 +32,30 @@
                 </HBox>
                 <HBox alignment="CENTER_RIGHT" spacing="5.0">
                     <children>
-                        <Button text="Inloggen" onAction="#onLoginPressed"  />
+                        <Button onAction="#onLoginPressed" text="Inloggen" />
                     </children>
                 </HBox>
             </children>
         </VBox>
     </center>
+   <top>
+      <ImageView pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@../../../../corendon.png" />
+         </image>
+         <BorderPane.margin>
+            <Insets bottom="-30.0" top="30.0" />
+         </BorderPane.margin>
+      </ImageView>
+   </top>
+   <bottom>
+      <TextFlow BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gemaakt door iThee - Rechten voorbehouden" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+      </TextFlow>
+   </bottom>
 </BorderPane>

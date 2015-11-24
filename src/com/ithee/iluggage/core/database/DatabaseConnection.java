@@ -8,20 +8,26 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.function.Function;
+import javafx.scene.control.Alert;
 
 /**
  * @author iThee
  */
 public class DatabaseConnection {
-    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-    private static final String DB_URL = "jdbc:mysql://localhost/iluggage"; //"jdbc:mysql://oege.ie.hva.nl/zvisserr026";
-    private static final String DB_USER = "root"; //"visserr026";
-    private static final String DB_PASS = null; //"/Q1a5le$8agKUw";
-    
+    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    /*
+    private static final String DB_URL = "jdbc:mysql://192.168.178.26:3306/iluggage";
+    private static final String DB_USER = "root";
+    private static final String DB_PASS = null;
+    /**/
+    private static final String DB_URL = "jdbc:mysql://oege.ie.hva.nl/zvisserr026";
+    private static final String DB_USER = "visserr026";
+    private static final String DB_PASS = "/Q1a5le$8agKUw";
+    /**/
     private ILuggageApplication app;
     
     public DatabaseConnection(ILuggageApplication app) {
@@ -69,6 +75,12 @@ public class DatabaseConnection {
             
             result = statement.executeQuery();
         } catch (SQLException ex) {
+            if (ex.getMessage().contains("Access denied for user")) {
+                ILuggageApplication.showSimpleMessage(Alert.AlertType.ERROR, 
+                        "Geen verbinding met de database", 
+                        "Geen verbinding kunnen maken met de database van het HvA.\n"
+                                + "Deze applicatie is op dit moment niet buiten het HvA te gebruiken.");
+            }
             System.out.println(ex.getMessage());
             try {
                 if (conn != null) conn.close();
@@ -81,17 +93,25 @@ public class DatabaseConnection {
     
     public int executeStatement(String sql, Object... params) {
         Connection conn = null;
+        ResultSet rs = null;
         try {
             conn = getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
+            PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             
             addParams(statement, params);
             
-            return statement.executeUpdate();
+            if (statement.executeUpdate() > 0) {
+                rs = statement.getGeneratedKeys();
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } finally {
             try {
                 if (conn != null) conn.close();
+                if (rs != null) rs.close();
             } catch (SQLException ignored) {
             }
         }
@@ -100,17 +120,25 @@ public class DatabaseConnection {
     }
     public int executeStatement(String sql, Consumer<PreparedStatement> params) {
         Connection conn = null;
+        ResultSet rs = null;
         try {
             conn = getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
+            PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             
             params.accept(statement);
             
-            return statement.executeUpdate();
+            if (statement.executeUpdate() > 0) {
+                rs = statement.getGeneratedKeys();
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } finally {
             try {
                 if (conn != null) conn.close();
+                if (rs != null) rs.close();
             } catch (SQLException ignored) {
             }
         }
@@ -172,10 +200,16 @@ public class DatabaseConnection {
                             f.set(obj, rs.getString(fieldName));
                         } else if (f.getType().equals(int.class)) {
                             f.setInt(obj, rs.getInt(fieldName));
+                        } else if (f.getType().equals(Integer.class)) {
+                            f.set(obj, rs.getInt(fieldName) == 0 ? null : rs.getInt(fieldName));
                         } else if (f.getType().equals(double.class)) {
                             f.setDouble(obj, rs.getDouble(fieldName));
+                        } else if (f.getType().equals(Double.class)) {
+                            f.set(obj, rs.getDouble(fieldName) == 0 ? null : rs.getDouble(fieldName));
                         } else if (f.getType().equals(boolean.class)) {
                             f.setBoolean(obj, rs.getBoolean(fieldName));
+                        } else if (f.getType().equals(java.util.Date.class)) {
+                            f.set(obj, new java.util.Date(rs.getDate(fieldName).getTime()));
                         }
                     }
 

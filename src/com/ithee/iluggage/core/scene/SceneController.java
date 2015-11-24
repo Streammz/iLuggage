@@ -45,11 +45,6 @@ public abstract class SceneController {
     }
     
     public void showSimpleMessage(AlertType type, String title, String content) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(title);
-        alert.setContentText(content);
-
-        alert.showAndWait();
+        ILuggageApplication.showSimpleMessage(type, title, content);
     }
 }

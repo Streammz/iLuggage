@@ -47,6 +47,7 @@ public class Luggage {
     }
     
     public LuggageKind getKind(ILuggageApplication app) {
+        if (kind == null) return null;
         return app.dbKinds.getValue((o) -> { return o.id == kind; });
     }
     
@@ -60,6 +61,7 @@ public class Luggage {
     }
     
     public LuggageBrand getBrand(ILuggageApplication app) {
+        if (brand == null) return null;
         return app.dbBrands.getValue((o) -> { return o.id == brand; });
     }
     
@@ -79,6 +81,7 @@ public class Luggage {
     }
     
     public LuggageColor getColor(ILuggageApplication app) {
+        if (color == null) return null;
         return app.dbColors.getValue((o) -> { return o.id == color; });
     }
     
