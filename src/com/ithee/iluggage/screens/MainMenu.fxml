@@ -15,7 +15,7 @@
     </stylesheets>
     
     <top>
-        <VBox alignment="CENTER_RIGHT" prefHeight="60" spacing="5" styleClass="mainheader">
+        <VBox alignment="CENTER_RIGHT" prefHeight="60" spacing="5" styleClass="mainHeader">
             <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
             <children>
                 <TextFlow textAlignment="RIGHT">
