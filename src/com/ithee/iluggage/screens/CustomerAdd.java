@@ -17,15 +17,16 @@ import javafx.scene.control.*;
 public class CustomerAdd extends SubSceneController {
     
     private static final String SQL_INSERT_CUSTOMER = "INSERT INTO `customers` VALUES ("
-            + "NULL,  ?, ?, ?)";
+            + "NULL,  ?, ?, ?, ?, ?, ?, ?)";
     
 
     @FXML private TextField tfCustomername;
     @FXML private TextField tfEmail;
     @FXML private TextField tfPhone;
-    private String name;
-    private String phone;
-    private String email;
+    @FXML private TextField tfAddress;
+    @FXML private TextField tfPostalcode;
+    @FXML private TextField tfHousenumber;
+    @FXML private TextField tfAddition;
 
    
     public void onCancel(ActionEvent event) {
@@ -35,13 +36,17 @@ public class CustomerAdd extends SubSceneController {
     public void onAdd(ActionEvent event) {
         
   
-        CustomerAdd cus = new CustomerAdd();
+        Customer cus = new Customer();
         cus.name = tfCustomername.getText();
         cus.email = tfEmail.getText();
         cus.phone = tfPhone.getText();
+        cus.housenumber = tfHousenumber.getText();
+        cus.postalcode = tfPostalcode.getText();
+        cus.address = tfAddress.getText();
+        cus.addition = tfAddition.getText();
         
         app.db.executeStatement(SQL_INSERT_CUSTOMER, 
-                cus.name, cus.email, cus.phone);
+                cus.name, cus.email, cus.phone, cus.address, cus.postalcode, cus.housenumber, cus.addition);
         
 
        

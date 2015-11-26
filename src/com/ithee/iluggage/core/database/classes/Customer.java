@@ -9,5 +9,9 @@ public class Customer {
     public String name;
     public String email;
     public String phone;
+    public String address;
+    public String housenumber;
+    public String postalcode;
+    public String addition;
     
 }

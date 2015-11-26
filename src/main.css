@@ -13,10 +13,8 @@
     -fx-pref-width: 165;
 }
 
-.buttonContainer{
-    -fx-background-color: #E0E0E0;
-}
+
 
 .mainHeader{
-    -fx-background-color: #00BCE2;
+    -fx-background-color: white;
 }

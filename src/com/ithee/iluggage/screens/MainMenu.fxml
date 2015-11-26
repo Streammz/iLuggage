@@ -11,18 +11,18 @@
 
 <BorderPane minHeight="650.0" minWidth="800.0" stylesheets="@../../../../main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.MainMenu">
    <top>
-      <GridPane style="-fx-border-color: transparent transparent darkgray transparent;" styleClass="mainHeader" BorderPane.alignment="CENTER">
+      <GridPane style="-fx-border-color: lightgray transparent darkgray transparent;" styleClass="mainHeader" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="NEVER" />
-          <ColumnConstraints hgrow="ALWAYS" maxWidth="803.0" minWidth="100.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="200.0" />
+          <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" />
+            <ColumnConstraints hgrow="NEVER" maxWidth="195.0" minWidth="129.0" prefWidth="129.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="109.0" minHeight="10.0" prefHeight="109.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.rowSpan="2">
+            <ImageView pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT">
                <image>
                   <Image url="@../../../../corendon.png" />
                </image>
@@ -30,53 +30,54 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
             </ImageView>
-            <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: DDD; -fx-font-weight: bold;" text="Uitloggen" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <Pane style="-fx-background-color: #00BCE2;" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+            <TextFlow textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <GridPane.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+                  <Insets bottom="13.0" left="13.0" right="13.0" top="13.0" />
                </GridPane.margin>
-            </Button>
-            <TextFlow textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="U bent ingelogd als:" />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="U bent ingelogd als: " />
                   <Text fx:id="loggedinUser" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Admin" />
                </children>
-               <GridPane.margin>
-                  <Insets left="20.0" right="20.0" top="20.0" />
-               </GridPane.margin>
             </TextFlow>
+            <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: DDD; -fx-font-weight: bold;" text="Uitloggen" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </Button>
          </children>
       </GridPane>
    </top>
    <left>
-      <VBox minHeight="520.0" spacing="10.0" style="-fx-background-color: E0E0E0; -fx-border-color: transparent darkgray transparent transparent;" BorderPane.alignment="CENTER">
+      <VBox minHeight="520.0" spacing="10.0" style="-fx-background-color: #FAFAFA; -fx-border-color: transparent darkgray transparent transparent;" BorderPane.alignment="CENTER">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bagage">
                <font>
                   <Font name="System Bold Italic" size="30.0" />
                </font>
             </Text>
-            <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #00BCE2; -fx-font-weight: bold;" text="Verloren bagage" textFill="WHITE" onAction="#onPressFoundLuggage" />
-            <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #00BCE2; -fx-font-weight: bold;" text="Gevonden bagage" textFill="WHITE" onAction="#onPressLostLuggage" />
-            <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #00BCE2; -fx-font-weight: bold;" text="Bagage doorzoeken" textFill="WHITE" onAction="#onPressSearchLuggage" />
+            <Button mnemonicParsing="false" onAction="#onPressFoundLuggage" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #00BCE2; -fx-font-weight: bold;" text="Verloren bagage" textFill="WHITE" />
+            <Button mnemonicParsing="false" onAction="#onPressLostLuggage" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #00BCE2; -fx-font-weight: bold;" text="Gevonden bagage" textFill="WHITE" />
+            <Button mnemonicParsing="false" onAction="#onPressSearchLuggage" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #00BCE2; -fx-font-weight: bold;" text="Bagage doorzoeken" textFill="WHITE" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Klanten">
                <font>
                   <Font name="System Bold Italic" size="30.0" />
                </font>
             </Text>
-            <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #00BCE2; -fx-font-weight: bold;" text="Klant invoeren" textFill="WHITE" onAction="#onPressAddCustomer" />
-            <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #00BCE2; -fx-font-weight: bold;" text="Klanten doorzoeken" textFill="WHITE" onAction="#onPressSearchCustomer" />
+            <Button mnemonicParsing="false" onAction="#onPressAddCustomer" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #00BCE2; -fx-font-weight: bold;" text="Klant invoeren" textFill="WHITE" />
+            <Button mnemonicParsing="false" onAction="#onPressSearchCustomer" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #00BCE2; -fx-font-weight: bold;" text="Klanten doorzoeken" textFill="WHITE" />
             <Text fx:id="mngrTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Management">
                <font>
                   <Font name="System Bold Italic" size="30.0" />
                </font>
             </Text>
-            <Button fx:id="mngrButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #00BCE2; -fx-font-weight: bold;" text="Rapportage" textFill="WHITE" onAction="#onPressReport" />
+            <Button fx:id="mngrButton" mnemonicParsing="false" onAction="#onPressReport" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #00BCE2; -fx-font-weight: bold;" text="Rapportage" textFill="WHITE" />
             <Text fx:id="adminTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Administratie">
                <font>
                   <Font name="System Bold Italic" size="30.0" />
                </font>
             </Text>
-            <Button fx:id="adminButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #00BCE2; -fx-font-weight: bold;" text="Gebruikers beheren" textFill="WHITE" onAction="#onPressManageUsers" />
+            <Button fx:id="adminButton" mnemonicParsing="false" onAction="#onPressManageUsers" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #00BCE2; -fx-font-weight: bold;" text="Gebruikers beheren" textFill="WHITE" />
          </children>
          <padding>
             <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
