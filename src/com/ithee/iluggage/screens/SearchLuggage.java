@@ -3,7 +3,7 @@ package com.ithee.iluggage.screens;
 
 import com.ithee.iluggage.core.controls.AutocompleteTextField;
 import com.ithee.iluggage.core.database.classes.*;
-import com.ithee.iluggage.core.scene.PopupSceneController;
+import com.ithee.iluggage.core.scene.SubSceneController;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +21,7 @@ import javafx.scene.layout.VBox;
 /**
  * @author iThee
  */
-public class SearchLuggage extends PopupSceneController {
+public class SearchLuggage extends SubSceneController {
     private static final int MAX_DISPLAY_SIZE = 25;
 
     @FXML private ChoiceBox<LuggageKind> cbKind;

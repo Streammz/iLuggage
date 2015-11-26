@@ -4,7 +4,7 @@ package com.ithee.iluggage.screens;
 import com.ithee.iluggage.core.controls.AutocompleteTextField;
 import com.ithee.iluggage.core.database.classes.Luggage;
 import com.ithee.iluggage.core.database.classes.LuggageKind;
-import com.ithee.iluggage.core.scene.PopupSceneController;
+import com.ithee.iluggage.core.scene.SubSceneController;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Date;
@@ -15,7 +15,7 @@ import javafx.scene.control.*;
 /**
  * @author iThee
  */
-public class FoundLuggage extends PopupSceneController {
+public class FoundLuggage extends SubSceneController {
     
     private static final String SQL_INSERT = "INSERT INTO `luggage` VALUES ("
             + "NULL, NULL, ?, ?, ?, ?, ?, ?, ?, ?, 1)";
@@ -47,7 +47,7 @@ public class FoundLuggage extends PopupSceneController {
     }
     
     public void onCancel(ActionEvent event) {
-        this.stage.close();
+        app.switchSubScene(null);
     }
 
     public void onAdd(ActionEvent event) {
@@ -100,7 +100,7 @@ public class FoundLuggage extends PopupSceneController {
             }
         });
         
-        this.stage.close();
+        app.switchSubScene(null);
     }
     
     

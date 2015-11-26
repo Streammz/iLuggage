@@ -7,7 +7,7 @@ import com.ithee.iluggage.core.database.classes.Account;
 import com.ithee.iluggage.core.database.classes.LuggageBrand;
 import com.ithee.iluggage.core.database.classes.LuggageColor;
 import com.ithee.iluggage.core.database.classes.LuggageKind;
-import com.ithee.iluggage.core.scene.PopupSceneController;
+import com.ithee.iluggage.core.scene.SubSceneController;
 import com.ithee.iluggage.core.scene.SceneController;
 import com.ithee.iluggage.screens.Login;
 import com.ithee.iluggage.screens.MainMenu;
@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -60,11 +61,11 @@ public class ILuggageApplication extends Application {
             }
         };
         
-//        if (tryLogin("admin", "admin")) {
-//            this.switchMainScene(MainMenu.class);
-//        } else {
+        if (tryLogin("admin", "admin")) {
+            this.switchMainScene(MainMenu.class);
+        } else {
             this.switchMainScene(Login.class);
-//        }
+        }
     }
     
     public <T extends SceneController> T switchMainScene(Class<T> sceneClass) {
@@ -72,7 +73,7 @@ public class ILuggageApplication extends Application {
         
         controller.onCreate();
         
-        this.primaryStage.setScene(controller.scene);
+        this.primaryStage.setScene(new Scene(controller.root));
         this.currentScene = controller;
         
         if (!this.primaryStage.isShowing()) {
@@ -82,22 +83,27 @@ public class ILuggageApplication extends Application {
         return controller;
     }
     
-    public <T extends PopupSceneController> T openScene(Class<T> sceneClass) {
-        T controller = initScene(sceneClass);
-        
-        controller.onCreate();
-        
-        controller.stage = new Stage();
-        controller.stage.setScene(controller.scene);
-        controller.stage.setTitle("iLuggage | Corendon");
-        controller.stage.show();
-        
-        return controller;
+    public <T extends SubSceneController> T switchSubScene(Class<T> sceneClass) {
+        if (this.currentScene.root instanceof BorderPane) {
+            BorderPane currentPane = (BorderPane)this.currentScene.root;
+            
+            if (sceneClass == null) {
+                currentPane.setCenter(null);
+                return null;
+            } else {
+                T controller = initScene(sceneClass);
+                controller.onCreate();
+
+                currentPane.setCenter(controller.root);
+                return controller;
+            }
+        } else {
+            return null;
+        }
     }
     
     private <T extends SceneController> T initScene(Class<T> sceneClass) {
         String fxmlName = "/" + sceneClass.getPackage().getName().replace('.', '/') + "/" + sceneClass.getSimpleName() + ".fxml";
-        System.out.println(fxmlName);
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource(fxmlName));
@@ -105,7 +111,7 @@ public class ILuggageApplication extends Application {
             T controller = fxmlLoader.getController();
             
             controller.app = this;
-            controller.scene = new Scene(root);
+            controller.root = root;
             
             return (T) controller;
         } catch (Exception ex) {

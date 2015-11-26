@@ -14,9 +14,8 @@ import javafx.scene.text.Text;
  */
 public class MainMenu extends SceneController {
     
-    @FXML private Text adminText;
-    @FXML private VBox rightSideBox;
-    @FXML private Button adminButton;
+    @FXML private Text adminText, mngrText;
+    @FXML private Button adminButton, mngrButton;
     @FXML private Text loggedinUser;
     
     @Override
@@ -24,7 +23,7 @@ public class MainMenu extends SceneController {
         loggedinUser.setText(app.getUser().name);
         
         if (!app.isUserManager()) {
-            removeNode(rightSideBox);
+            removeNode(mngrButton, mngrText, adminButton, adminText);
         } else if (!app.isUserAdmin()) {
             removeNode(adminButton, adminText);
         }
@@ -32,19 +31,19 @@ public class MainMenu extends SceneController {
     
 
     public void onPressFoundLuggage(ActionEvent event) {
-        app.openScene(FoundLuggage.class);
+        app.switchSubScene(FoundLuggage.class);
     }
 
     public void onPressLostLuggage(ActionEvent event) {
-        app.openScene(LostLuggage.class);
+        app.switchSubScene(LostLuggage.class);
     }
 
     public void onPressSearchLuggage(ActionEvent event) {
-        app.openScene(SearchLuggage.class);
+        app.switchSubScene(SearchLuggage.class);
     }
 
     public void onPressAddCustomer(ActionEvent event) {
-        app.openScene(CustomerAdd.class);
+        app.switchSubScene(CustomerAdd.class);
     }
 
     public void onPressSearchCustomer(ActionEvent event) {

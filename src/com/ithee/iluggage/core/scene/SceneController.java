@@ -2,8 +2,8 @@ package com.ithee.iluggage.core.scene;
 
 import com.ithee.iluggage.ILuggageApplication;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 
@@ -18,9 +18,9 @@ public abstract class SceneController {
     public ILuggageApplication app;
 
     /**
-     * The scene that is used to contain the layout and information about it.
+     * The root node.
      */
-    public Scene scene;
+    public Parent root;
 
     /**
      * Override this in the superclass to have it execute a piece of code as
@@ -33,7 +33,7 @@ public abstract class SceneController {
      * Helper function to remove a node from their parents. You can supply
      * multiple nodes at once.
      *
-     * @param nodes
+     * @param nodes The nodes to remove
      */
     public void removeNode(Node... nodes) {
         for (Node node : nodes) {
@@ -43,7 +43,15 @@ public abstract class SceneController {
             }
         }
     }
-    
+
+    /**
+     * Shows an alert and waits for it to dissapear before returning.
+     *
+     * @param type The type of alert to display, like an error or information
+     * dialog.
+     * @param title The title of the alert.
+     * @param content The message of the alert.
+     */
     public void showSimpleMessage(AlertType type, String title, String content) {
         ILuggageApplication.showSimpleMessage(type, title, content);
     }
