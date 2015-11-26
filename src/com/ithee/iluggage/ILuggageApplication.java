@@ -40,7 +40,7 @@ public class ILuggageApplication extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setMinWidth(1100);
+        this.primaryStage.setMinWidth(800);
         this.primaryStage.setMinHeight(600);
         primaryStage.setTitle("iLuggage | Corendon");
         
