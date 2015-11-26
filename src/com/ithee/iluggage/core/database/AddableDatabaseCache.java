@@ -23,6 +23,8 @@ public abstract class AddableDatabaseCache<T> extends DatabaseCache<T>{
             value.getClass().getField("id").set(value, result);
         } catch (NoSuchFieldException | SecurityException | IllegalAccessException ignored) {
         }
+        
+        this.cache.add(value);
     }
     
     public abstract Object[] getDbParams(T obj);

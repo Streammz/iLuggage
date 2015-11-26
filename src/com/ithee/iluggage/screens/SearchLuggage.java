@@ -76,7 +76,7 @@ public class SearchLuggage extends SubSceneController {
             });
         }
         
-        String query = "SELECT * FROM `Luggage`";
+        String query = "SELECT * FROM `luggage`";
         if (wheres.size() > 0) {
             query += " WHERE ";
             for (int i=0; i<wheres.size(); i++) {
