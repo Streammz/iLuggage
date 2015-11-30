@@ -19,11 +19,6 @@ public class CustomerDetails extends SceneController {
     @FXML private Text txtHousenumber;
     @FXML private Text txtAddition;
     
-    @Override
-    public void onCreate() {
-        
-    }
-    
     public void loadCustomer(Customer customer) {
         txtName.setText(customer.name);
         txtEmail.setText(dashOrVal(customer.email));

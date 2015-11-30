@@ -35,10 +35,13 @@ public class LuggageDetails extends SceneController {
         txtType.setText(luggage.status == 1 ? "Gevonden bagage" : luggage.status == 2  ? "Verloren bagage" : "Onbekend");
         txtDate.setText(dateFormat.format(luggage.date));
         if (luggage.customerId != 0) {
-            Customer c = app.db.executeAndReadSingle(Customer.class, "SELECT * FROM `customer` WHERE `Id` = ?", luggage.customerId);
+            Customer c = app.db.executeAndReadSingle(Customer.class, "SELECT * FROM `customers` WHERE `Id` = ?", luggage.customerId);
             txtCustomer.setText(c.name);
             txtCustomer.setCursor(Cursor.HAND);
-            // TODO make clickable
+            txtCustomer.setUnderline(true);
+            txtCustomer.setOnMouseClicked((event) -> {
+                app.showPopupScene(CustomerDetails.class).loadCustomer(c);
+            });
         } else {
             txtCustomer.setText("-");
         }
