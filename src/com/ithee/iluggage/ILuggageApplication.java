@@ -9,8 +9,10 @@ import com.ithee.iluggage.core.database.classes.LuggageColor;
 import com.ithee.iluggage.core.database.classes.LuggageKind;
 import com.ithee.iluggage.core.scene.SubSceneController;
 import com.ithee.iluggage.core.scene.SceneController;
+import com.ithee.iluggage.core.security.PasswordHasher;
 import com.ithee.iluggage.screens.Login;
 import com.ithee.iluggage.screens.MainMenu;
+import java.security.MessageDigest;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -127,7 +129,9 @@ public class ILuggageApplication extends Application {
     
     public boolean tryLogin(String username, String password) {
         if (username == null || password == null) return false;
-        long hash = password.hashCode();
+        String hash = PasswordHasher.generateHash(password);
+        
+        System.out.println("Log in with username " + username + " & pass " + hash);
         
         Account a = db.executeAndReadSingle(Account.class, "SELECT * FROM `accounts` WHERE `Username` = ? AND `Password` = ?", username, hash);
         if (a == null) {
