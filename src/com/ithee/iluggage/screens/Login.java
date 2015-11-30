@@ -18,8 +18,6 @@ public class Login extends SceneController {
 
     @FXML
     public void onLoginPressed(ActionEvent event) {
-        System.out.println("Log in with username " + tfUsername.getText() + " & pass " + tfPassword.getText().hashCode());
-        
         if (app.tryLogin(tfUsername.getText(), tfPassword.getText())) {
             app.switchMainScene(MainMenu.class);
         } else {

@@ -34,6 +34,8 @@ public class DatabaseConnection {
     /**/
     private ILuggageApplication app;
     
+    public String lastError = "";
+    
     public DatabaseConnection(ILuggageApplication app) {
         this.app = app;
         
@@ -58,7 +60,7 @@ public class DatabaseConnection {
             
             result = statement.executeQuery();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.out.println(lastError = ex.getMessage());
             try {
                 if (conn != null) conn.close();
             } catch (SQLException ignored) {
@@ -85,7 +87,7 @@ public class DatabaseConnection {
                         "Geen verbinding kunnen maken met de database van het HvA.\n"
                                 + "Deze applicatie is op dit moment niet buiten het HvA te gebruiken.");
             }
-            System.out.println(ex.getMessage());
+            System.out.println(lastError = ex.getMessage());
             try {
                 if (conn != null) conn.close();
             } catch (SQLException ignored) {
@@ -111,7 +113,7 @@ public class DatabaseConnection {
                 }
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.out.println(lastError = ex.getMessage());
         } finally {
             try {
                 if (conn != null) conn.close();
@@ -138,7 +140,7 @@ public class DatabaseConnection {
                 }
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.out.println(lastError = ex.getMessage());
         } finally {
             try {
                 if (conn != null) conn.close();
@@ -223,7 +225,7 @@ public class DatabaseConnection {
                 }
             }
         } catch (SQLException ex) {
-            throw new RuntimeException(ex);
+            System.out.println(lastError = ex.getMessage());
         }
         
         return result;

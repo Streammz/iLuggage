@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 /**
  * @author iThee
@@ -23,9 +24,9 @@ public abstract class SceneController {
     public Parent root;
     
     /**
-     * The scene this controller is displayed in
+     * The stage this controller is displayed in
      */
-    public Scene scene;
+    public Stage stage;
 
     /**
      * Override this in the superclass to have it execute a piece of code as

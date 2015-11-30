@@ -13,6 +13,7 @@ import com.ithee.iluggage.core.security.PasswordHasher;
 import com.ithee.iluggage.screens.Login;
 import com.ithee.iluggage.screens.MainMenu;
 import java.security.MessageDigest;
+import java.util.Random;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -81,7 +82,8 @@ public class ILuggageApplication extends Application {
         
         controller.onCreate();
         
-        this.primaryStage.setScene(controller.scene = new Scene(controller.root, MAX_WIDTH, MAX_HEIGHT));
+        controller.stage = this.primaryStage;
+        this.primaryStage.setScene(new Scene(controller.root, MAX_WIDTH, MAX_HEIGHT));
         this.currentScene = controller;
         
         if (!this.primaryStage.isShowing()) {
@@ -96,8 +98,9 @@ public class ILuggageApplication extends Application {
         controller.onCreate();
         
         Stage stage = new Stage();
+        controller.stage = stage;
         stage.setTitle("iLuggage | Corendon");
-        stage.setScene(controller.scene = new Scene(controller.root));
+        stage.setScene(new Scene(controller.root));
         stage.show();
         
         return controller;
@@ -113,7 +116,7 @@ public class ILuggageApplication extends Application {
             } else {
                 T controller = initScene(sceneClass);
                 controller.onCreate();
-                controller.scene = currentScene.scene;
+                controller.stage = this.currentScene.stage;
 
                 currentPane.setCenter(controller.root);
                 return controller;
@@ -142,11 +145,19 @@ public class ILuggageApplication extends Application {
     
     public boolean tryLogin(String username, String password) {
         if (username == null || password == null) return false;
-        String hash = PasswordHasher.generateHash(password);
         
+        Account a = db.executeAndReadSingle(Account.class, "SELECT * FROM `accounts` WHERE `Username` = ?", username);
+        if (a == null) {
+            return false;
+        }
+        if (a.salt == null || a.salt.length() < 8) {
+            a.salt = PasswordHasher.generateSalt();
+            db.executeStatement("UPDATE `accounts` SET `Salt` = ? WHERE `Id` = ?", a.salt, a.id);
+        }
+        
+        String hash = PasswordHasher.generateHash(a.salt + password);
         System.out.println("Log in with username " + username + " & pass " + hash);
-        
-        Account a = db.executeAndReadSingle(Account.class, "SELECT * FROM `accounts` WHERE `Username` = ? AND `Password` = ?", username, hash);
+        a = db.executeAndReadSingle(Account.class, "SELECT * FROM `accounts` WHERE `Username` = ? AND `Password` = ?", username, hash);
         if (a == null) {
             return false;
         } else {

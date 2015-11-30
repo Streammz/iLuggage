@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Random;
 
 /**
  *
@@ -31,6 +32,15 @@ public class PasswordHasher {
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
             throw new RuntimeException(ex);
         }
+    }
+    
+    public static String generateSalt() {
+        String salt = Integer.toHexString((new Random()).nextInt());
+        while (salt.length() < 0) {
+            salt = "0" + salt;
+        }
+        
+        return salt;
     }
     
 }
