@@ -159,7 +159,7 @@ public class DatabaseConnection {
             else if (params[i].getClass().equals(Double.class)) statement.setDouble(i+1, (double)params[i]);
             else if (params[i].getClass().equals(Long.class)) statement.setLong(i+1, (long)params[i]);
             else if (params[i].getClass().equals(Boolean.class)) statement.setBoolean(i+1, (boolean)params[i]);
-            else if (params[i].getClass().equals(java.util.Date.class)) statement.setDate(i+1, new java.sql.Date(((java.util.Date)params[i]).getTime()));
+            else if (params[i].getClass().equals(java.util.Date.class)) statement.setTimestamp(i+1, new java.sql.Timestamp(((java.util.Date)params[i]).getTime()));
             else statement.setString(i+1, params[i].toString());
         }
     }
@@ -215,7 +215,7 @@ public class DatabaseConnection {
                         } else if (f.getType().equals(boolean.class)) {
                             f.setBoolean(obj, rs.getBoolean(fieldName));
                         } else if (f.getType().equals(java.util.Date.class)) {
-                            f.set(obj, new java.util.Date(rs.getDate(fieldName).getTime()));
+                            f.set(obj, new java.util.Date(rs.getTimestamp(fieldName).getTime()));
                         }
                     }
 

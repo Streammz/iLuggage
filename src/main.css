@@ -1,7 +1,6 @@
 
 .title {
     -fx-font-size: 24;
-    /*-fx-font-family: "Courier new";*/
     -fx-font-weight: bold;
 }
 
@@ -13,26 +12,8 @@
     -fx-pref-width: 165;
 }
 
-
-
 .mainHeader{
     -fx-background-color: white;
-}
-
-.coloredButton {
-    -fx-background-color: #00BCE2;
-    -fx-font-weight: bold;
-    -fx-text-fill: #ffffff;
-}
-.menuButton {
-    -fx-background-color: #00BCE2;
-    -fx-font-weight: bold;
-    -fx-text-fill: #ffffff;
-}
-
-.menuButton.selected {
-    -fx-background-color: #00809A;
-    -fx-underline: true;
 }
 
 .menuTitle {
@@ -44,4 +25,51 @@
 
 .root {
     -fx-background-color: white;
+}
+
+/* Colors */
+.coloredButton {
+    -fx-background-color: #00BCE2;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+.bgTheme {
+    -fx-background-color: #00BCE2;
+}
+.menuButton {
+    -fx-background-color: #00BCE2;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+.menuButton.selected {
+    -fx-background-color: #00809A;
+    -fx-underline: true;
+}
+
+/* Color 2 */
+.colored2 .coloredButton {
+    -fx-background-color: #D81E05;
+}
+.colored2 .menuButton {
+    -fx-background-color: #D81E05;
+}
+.colored2 .bgTheme {
+    -fx-background-color: #D81E05;
+}
+.colored2 .menuButton.selected {
+    -fx-background-color: #9A1604;
+}
+
+/* Color 3 */
+.colored1 .coloredButton {
+    -fx-background-color: #FFC61E;
+}
+.colored1 .menuButton {
+    -fx-background-color: #FFC61E;
+}
+.colored1 .bgTheme {
+    -fx-background-color: #FFC61E;
+}
+.colored1 .menuButton.selected {
+    -fx-background-color: #CB9E18;
 }

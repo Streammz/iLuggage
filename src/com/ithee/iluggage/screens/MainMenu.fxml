@@ -30,7 +30,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
             </ImageView>
-            <Pane style="-fx-background-color: #00BCE2;" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+            <Pane styleClass="bgTheme" GridPane.columnSpan="3" GridPane.rowIndex="1" />
             <TextFlow textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="13.0" left="13.0" right="13.0" top="13.0" />

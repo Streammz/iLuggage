@@ -15,7 +15,7 @@ import javafx.scene.text.Text;
  */
 public class MainMenu extends SceneController {
     
-    @FXML private Text adminText, mngrText;
+    @FXML private Text adminTitle, mngrTitle;
     @FXML private Text loggedinUser;
     
     @FXML private Button btnFoundLuggage, btnLostLuggage, btnSearchLuggage;
@@ -30,9 +30,9 @@ public class MainMenu extends SceneController {
         loggedinUser.setText(app.getUser().name);
         
         if (!app.isUserManager()) {
-            removeNode(btnReport, mngrText, btnManageUsers, adminText);
+            removeNode(btnReport, mngrTitle, btnManageUsers, adminTitle);
         } else if (!app.isUserAdmin()) {
-            removeNode(btnManageUsers, adminText);
+            removeNode(btnManageUsers, adminTitle);
         }
     }
     
@@ -79,7 +79,6 @@ public class MainMenu extends SceneController {
 
     public void onPressManageUsers(ActionEvent event) {
         clickButton(ManageAccounts.class, btnManageUsers);
-        //showSimpleMessage(Alert.AlertType.INFORMATION, "Ontbrekende functionaliteit", "Deze functionaliteit ontbreekt nog.");
     }
 
     public void onPressLogout(ActionEvent event) {

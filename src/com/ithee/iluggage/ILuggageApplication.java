@@ -13,12 +13,14 @@ import com.ithee.iluggage.core.security.PasswordHasher;
 import com.ithee.iluggage.screens.Login;
 import com.ithee.iluggage.screens.MainMenu;
 import java.security.MessageDigest;
+import java.util.Date;
 import java.util.Random;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -49,6 +51,7 @@ public class ILuggageApplication extends Application {
         Font.loadFont(ILuggageApplication.class.getResource("/Uni-Sans-Bold.otf").toExternalForm(), 10);
         
         this.primaryStage = primaryStage;
+        this.primaryStage.getIcons().add(new Image("/Appicon.png"));
         this.primaryStage.setMinWidth(MAX_WIDTH);
         this.primaryStage.setMinHeight(MAX_HEIGHT);
         primaryStage.setTitle("iLuggage | Corendon");
@@ -86,6 +89,7 @@ public class ILuggageApplication extends Application {
         this.primaryStage.setScene(new Scene(controller.root, MAX_WIDTH, MAX_HEIGHT));
         this.currentScene = controller;
         
+        updateColors();
         if (!this.primaryStage.isShowing()) {
             this.primaryStage.show();
         }
@@ -98,6 +102,7 @@ public class ILuggageApplication extends Application {
         controller.onCreate();
         
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("/Appicon.png"));
         controller.stage = stage;
         stage.setTitle("iLuggage | Corendon");
         stage.setScene(new Scene(controller.root));
@@ -156,13 +161,17 @@ public class ILuggageApplication extends Application {
         }
         
         String hash = PasswordHasher.generateHash(a.salt + password);
-        System.out.println("Log in with username " + username + " & pass " + hash);
+        System.out.println("Logging in with username " + username + " & pass " + hash);
+        
         a = db.executeAndReadSingle(Account.class, "SELECT * FROM `accounts` WHERE `Username` = ? AND `Password` = ?", username, hash);
         if (a == null) {
             return false;
         } else {
-            System.out.println("Logged in as userID=" + a.id);
+            a.lastLogin = new Date();
+            db.executeStatement("UPDATE `accounts` SET `LastLogin` = ? WHERE `Id` = ?", a.lastLogin, a.id);
+            
             this.user = a;
+            updateColors();
             return true;
         }
     }
@@ -187,6 +196,18 @@ public class ILuggageApplication extends Application {
     
     public boolean isUserAdmin() {
         return isUserLoggedIn() && this.user.permissionLevel >= 2;
+    }
+    
+    public void updateColors() {
+        if (this.currentScene == null) return;
+        
+        this.currentScene.root.getStyleClass().removeAll("colored1", "colored2");
+        
+        if (isUserAdmin()) {
+            this.currentScene.root.getStyleClass().add("colored2");
+        } else if (isUserManager()) {
+            this.currentScene.root.getStyleClass().add("colored1");
+        }
     }
 
     

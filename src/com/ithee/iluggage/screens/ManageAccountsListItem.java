@@ -34,7 +34,7 @@ public class ManageAccountsListItem {
     }
     
     public void onClick() {
-        //app.showPopupScene(CustomerDetails.class).loadCustomer(myCustomer);
+        app.showPopupScene(AccountEdit.class).loadAccount(myAccount);
     }
     
     public void onClickDelete() {
