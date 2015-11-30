@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  *
- * @author robby
+ * @author iThee
  */
 public class PasswordHasher {
     private static final int REHASH_COUNT = 1000;

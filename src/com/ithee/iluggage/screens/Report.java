@@ -25,7 +25,7 @@ import javafx.scene.text.Text;
 
 /**
  *
- * @author robby
+ * @author iThee
  */
 public class Report extends SubSceneController {
     

@@ -5,12 +5,11 @@ import com.ithee.iluggage.ILuggageApplication;
 import com.ithee.iluggage.core.database.classes.Customer;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 
 /**
  *
- * @author robby
+ * @author iThee
  */
 public class SearchCustomerListItem {
         

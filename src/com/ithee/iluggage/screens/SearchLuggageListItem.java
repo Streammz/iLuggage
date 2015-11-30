@@ -5,11 +5,10 @@ import com.ithee.iluggage.ILuggageApplication;
 import com.ithee.iluggage.core.database.classes.*;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 
 /**
- * @author robby
+ * @author iThee
  */
 public class SearchLuggageListItem {
         
