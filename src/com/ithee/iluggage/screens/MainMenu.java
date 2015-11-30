@@ -47,7 +47,7 @@ public class MainMenu extends SceneController {
     }
 
     public void onPressSearchCustomer(ActionEvent event) {
-        showSimpleMessage(Alert.AlertType.INFORMATION, "Ontbrekende functionaliteit", "Deze functionaliteit ontbreekt nog.");
+        app.switchSubScene(SearchCustomer.class);
     }
 
     public void onPressReport(ActionEvent event) {

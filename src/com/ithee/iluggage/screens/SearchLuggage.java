@@ -1,7 +1,6 @@
 
 package com.ithee.iluggage.screens;
 
-import com.ithee.iluggage.core.controls.AutocompleteTextField;
 import com.ithee.iluggage.core.database.classes.*;
 import com.ithee.iluggage.core.scene.SubSceneController;
 import java.util.ArrayList;
@@ -14,8 +13,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 /**
