@@ -11,7 +11,7 @@
 
 <VBox prefHeight="180" prefWidth="400" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.LuggageDetails">
     <stylesheets>
-        <URL value="@main.css" />
+        <URL value="@../../../../main.css" />
     </stylesheets>
     
     <children>

@@ -37,7 +37,6 @@ public class SearchCustomerListItem {
     }
     
     public void onClick() {
-        ILuggageApplication.showSimpleMessage(AlertType.INFORMATION, 
-                "Missende functionaliteit", "Deze functionaliteit ontbreekt nog.");
+        app.showPopupScene(CustomerDetails.class).loadCustomer(myCustomer);
     }
 }

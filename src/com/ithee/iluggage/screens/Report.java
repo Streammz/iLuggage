@@ -157,7 +157,7 @@ public class Report extends SubSceneController {
                 if (weekStart == weekEnd) chartTitle.setText("Rapportage van week " + weekStart.weekNum);
                 else chartTitle.setText("Rapportage van week " + weekStart.weekNum + " tot en met " + weekEnd.weekNum);
                 
-                series.setName("Hoeveelheid");
+                series.setName("Hoeveelheid aangemaakte bagage");
                 
                 // days[0] = maximum amount, days[1-7] = Calendar.MONDAY - Calendar.SUNDAY
                 int[] days = new int[8];
@@ -188,7 +188,7 @@ public class Report extends SubSceneController {
                 if (maandStart == maandEnd) chartTitle.setText("Rapportage van " + maandStart.monthName + " " + maandStart.jaarNum);
                 else chartTitle.setText("Rapportage van " + maandStart.monthName + " " + maandStart.jaarNum + " tot en met " + maandEnd.monthName + " " + maandEnd.jaarNum);
                 
-                series.setName("Hoeveelheid");
+                series.setName("Hoeveelheid aangemaakte bagage");
                 
                 int[] dates = new int[32];
                 resultStream.forEach((item) -> {
@@ -214,7 +214,7 @@ public class Report extends SubSceneController {
                 if (jaarStart == jaarEnd) chartTitle.setText("Rapportage van " + jaarStart.jaarNum);
                 else chartTitle.setText("Rapportage van " + jaarStart.jaarNum + " tot en met " + jaarEnd.jaarNum);
                 
-                series.setName("Hoeveelheid");
+                series.setName("Hoeveelheid aangemaakte bagage");
                 // days[0] = maximum amount, days[1-7] = Calendar.MONDAY - Calendar.SUNDAY
                 int[] months = new int[13];
                 resultStream.forEach((item) -> {

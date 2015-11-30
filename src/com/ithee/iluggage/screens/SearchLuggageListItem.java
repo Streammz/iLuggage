@@ -39,13 +39,6 @@ public class SearchLuggageListItem {
     }
     
     public void onClick() {
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("Missende functionaliteit");
-//        alert.setHeaderText("Missende functionaliteit");
-//        alert.setContentText("Deze functionaliteit ontbreekt nog.");
-//
-//        alert.showAndWait();
-
         app.showPopupScene(LuggageDetails.class).loadLuggage(myLuggage);
     }
 
