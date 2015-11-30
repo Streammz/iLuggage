@@ -11,7 +11,7 @@
 <?import javafx.scene.text.*?>
 <?import com.ithee.iluggage.core.controls.*?>
 
-<BorderPane prefHeight="560.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.LostLuggage">
+<BorderPane prefHeight="560.0" styleClass="root" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.LostLuggage">
     <stylesheets>
         <URL value="@../../../../main.css" />
     </stylesheets>

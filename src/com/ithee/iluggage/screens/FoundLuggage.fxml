@@ -10,7 +10,7 @@
 <?import javafx.scene.text.*?>
 <?import com.ithee.iluggage.core.controls.*?>
 
-<BorderPane prefHeight="320.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.FoundLuggage">
+<BorderPane prefHeight="320.0" styleClass="root" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.FoundLuggage">
     <stylesheets>
         <URL value="@../../../../main.css" />
     </stylesheets>

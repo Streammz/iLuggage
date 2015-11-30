@@ -16,6 +16,8 @@ import java.util.Map;
 import java.util.stream.Stream;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
@@ -31,6 +33,7 @@ public class Report extends SubSceneController {
     
     private static final String[] MONTH_NAMES = { "Januari", "Februari", "Maart", "April", 
         "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December" };
+    private static final int[] CHART_STEPS = { 5, 10, 25, 50, 100, 250, 500, 1000, 10000 };
     
     @FXML private ChoiceBox<LuggageBrand> cbBrand;
     @FXML private TextField tfKeywords;
@@ -41,16 +44,20 @@ public class Report extends SubSceneController {
     @FXML private ChoiceBox<ReportEntry> cbGraphStart;
     @FXML private ChoiceBox<ReportEntry> cbGraphEnd;
     
-    @FXML private BarChart chartWeek;
-    @FXML private NumberAxis chartWeekY;
-    @FXML private BarChart chartJaar;
-    @FXML private NumberAxis chartJaarY;
+    @FXML private BarChart chartBar;
+    @FXML private NumberAxis chartBarY;
+    @FXML private AreaChart chartArea;
+    @FXML private NumberAxis chartAreaY;
     @FXML private Text chartTitle;
 
     private List<Luggage> results;
     
     @Override
     public void onCreate() {
+        // Hide charts so they can be shown individually later on
+        chartBar.setVisible(false);
+        chartArea.setVisible(false);
+        
         // Reguliere filters
         cbKind.getItems().add(null);
         app.dbKinds.getValues().forEach((o) -> {
@@ -160,7 +167,7 @@ public class Report extends SubSceneController {
                     days[0] = Math.max(days[0], ++days[cal.get(Calendar.DAY_OF_WEEK)]);
                 });
                 
-                chartWeekY.setUpperBound(days[0]<5 ? 5 : days[0]<10 ? 10 : days[0]<50 ? 50 : days[0]<100 ? 100 : days[0]<500 ? 500 : 1000);
+                chartBarY.setUpperBound(boundSize(days[0]));
                 series.getData().add(new XYChart.Data("Maandag", days[2]));
                 series.getData().add(new XYChart.Data("Dinsdag", days[3]));
                 series.getData().add(new XYChart.Data("Woensdag", days[4]));
@@ -169,8 +176,35 @@ public class Report extends SubSceneController {
                 series.getData().add(new XYChart.Data("Zaterdag", days[7]));
                 series.getData().add(new XYChart.Data("Zondag", days[1]));
                 
-                chartWeek.getData().clear();
-                chartWeek.getData().add(series);
+                chartBar.getData().clear();
+                showChart(chartBar);
+                chartBar.getData().add(series);
+                
+                break;
+            case "Maand":
+                ReportMaand maandStart = (ReportMaand)cbGraphStart.getValue(),
+                        maandEnd = (ReportMaand)cbGraphEnd.getValue();
+                
+                if (maandStart == maandEnd) chartTitle.setText("Rapportage van " + maandStart.monthName + " " + maandStart.jaarNum);
+                else chartTitle.setText("Rapportage van " + maandStart.monthName + " " + maandStart.jaarNum + " tot en met " + maandEnd.monthName + " " + maandEnd.jaarNum);
+                
+                series.setName("Hoeveelheid");
+                
+                int[] dates = new int[32];
+                resultStream.forEach((item) -> {
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(item.date);
+                    dates[0] = Math.max(dates[0], ++dates[cal.get(Calendar.DAY_OF_MONTH)+1]);
+                });
+                
+                chartAreaY.setUpperBound(boundSize(dates[0]));
+                for (int i=0; i<31; i++) {
+                    series.getData().add(new XYChart.Data(i+1, dates[i+1]));
+                }
+            
+                chartArea.getData().clear();
+                showChart(chartArea);
+                chartArea.getData().add(series);
                 
                 break;
             case "Jaar":
@@ -190,11 +224,13 @@ public class Report extends SubSceneController {
                 });
                 
                 
+                chartBarY.setUpperBound(boundSize(months[0]));
                 for (int i=0; i<12; i++) {
                     series.getData().add(new XYChart.Data(MONTH_NAMES[i], months[i+1]));
                 }
-                chartWeek.getData().clear();
-                chartWeek.getData().add(series);
+                chartBar.getData().clear();
+                showChart(chartBar);
+                chartBar.getData().add(series);
                 
                 break;
         }
@@ -238,6 +274,17 @@ public class Report extends SubSceneController {
         return app.db.executeAndReadList(Luggage.class, query, params.toArray());
     }
     
+    public void showChart(Node node) {
+        this.chartBar.setVisible(node == chartBar);
+        this.chartArea.setVisible(node == chartArea);
+    }
+    
+    public int boundSize(int size) {
+        for (int i=0; i<CHART_STEPS.length; i++) {
+            if (size < CHART_STEPS[i]) return CHART_STEPS[i];
+        }
+        return CHART_STEPS[CHART_STEPS.length-1];
+    }
     
     private static interface ReportEntry {
         public Calendar getStartDate();

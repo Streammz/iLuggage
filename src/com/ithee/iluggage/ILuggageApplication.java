@@ -25,6 +25,9 @@ import javafx.stage.Stage;
  * @author iThee
  */
 public class ILuggageApplication extends Application {
+    
+    private static final int MAX_WIDTH = 1100, MAX_HEIGHT = 800;
+    
     public DatabaseConnection db;
     
     private Stage primaryStage;
@@ -40,11 +43,11 @@ public class ILuggageApplication extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Font.loadFont(ILuggageApplication.class.getResource("/Uni-Sans-HeavyItalic.otf").toExternalForm(), 10);
+        Font.loadFont(ILuggageApplication.class.getResource("/Uni-Sans-Bold.otf").toExternalForm(), 10);
         
         this.primaryStage = primaryStage;
-        this.primaryStage.setMinWidth(1100);
-        this.primaryStage.setMinHeight(800);
+        this.primaryStage.setMinWidth(MAX_WIDTH);
+        this.primaryStage.setMinHeight(MAX_HEIGHT);
         primaryStage.setTitle("iLuggage | Corendon");
         
         this.db = new DatabaseConnection(this);
@@ -76,7 +79,7 @@ public class ILuggageApplication extends Application {
         
         controller.onCreate();
         
-        this.primaryStage.setScene(new Scene(controller.root));
+        this.primaryStage.setScene(new Scene(controller.root, MAX_WIDTH, MAX_HEIGHT));
         this.currentScene = controller;
         
         if (!this.primaryStage.isShowing()) {

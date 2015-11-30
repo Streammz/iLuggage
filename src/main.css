@@ -38,3 +38,10 @@
 .menuTitle {
     -fx-font: 30 Uni-Sans-Bold;
 }
+.smallTitle {
+    -fx-font: 24 Uni-Sans-Bold;
+}
+
+.root {
+    -fx-background-color: white;
+}

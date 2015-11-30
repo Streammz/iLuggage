@@ -11,7 +11,7 @@
 <?import javafx.scene.text.*?>
 <?import com.ithee.iluggage.core.controls.*?>
 
-<BorderPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.CustomerAdd">
+<BorderPane styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.CustomerAdd">
     <stylesheets>
         <URL value="@../../../../main.css" />
     </stylesheets>

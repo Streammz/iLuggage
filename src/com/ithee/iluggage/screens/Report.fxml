@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import com.ithee.iluggage.core.controls.*?>
 
-<BorderPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" stylesheets="@../../../../main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.Report">
+<BorderPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" stylesheets="@../../../../main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="root" fx:controller="com.ithee.iluggage.screens.Report">
     <top>
         <GridPane style="-fx-border-color: darkgray;">
          <rowConstraints>
@@ -91,14 +91,22 @@
          <center>
             <StackPane>
                <children>
-                  <BarChart fx:id="chartWeek" animated="false" verticalGridLinesVisible="false">
+                  <BarChart fx:id="chartBar" animated="false" verticalGridLinesVisible="false">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
                     <yAxis>
-                      <NumberAxis fx:id="chartWeekY" autoRanging="false" forceZeroInRange="false" minorTickVisible="false" side="LEFT" tickMarkVisible="false" tickUnit="1.0" upperBound="10.0" />
+                      <NumberAxis fx:id="chartBarY" autoRanging="false" forceZeroInRange="false" minorTickVisible="false" side="LEFT" tickMarkVisible="false" tickUnit="1.0" upperBound="10.0" />
                     </yAxis>
                   </BarChart>
+                  <AreaChart fx:id="chartArea" animated="false">
+                      <xAxis>
+                          <NumberAxis autoRanging="false" lowerBound="1.0" minorTickVisible="false" side="BOTTOM" tickUnit="1.0" upperBound="31.0" />
+                      </xAxis>
+                      <yAxis>
+                          <NumberAxis fx:id="chartAreaY" autoRanging="false" forceZeroInRange="false" minorTickVisible="false" side="LEFT" tickMarkVisible="false" tickUnit="1.0" upperBound="10.0" /> 
+                      </yAxis>
+                  </AreaChart>
                </children>
             </StackPane>
          </center>
@@ -106,7 +114,11 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </BorderPane.margin>
          <top>
-            <Text fx:id="chartTitle" styleClass="menuTitle" text="Rapportage" BorderPane.alignment="CENTER" />
+            <Text fx:id="chartTitle" styleClass="smallTitle" text="Rapportage" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets top="10.0" />
+               </BorderPane.margin>
+            </Text>
          </top>
       </BorderPane>
    </center>
