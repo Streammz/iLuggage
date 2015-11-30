@@ -1,6 +1,7 @@
 package com.ithee.iluggage.screens;
 
 import com.ithee.iluggage.core.scene.SceneController;
+import com.ithee.iluggage.core.scene.SubSceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -15,39 +16,61 @@ import javafx.scene.text.Text;
 public class MainMenu extends SceneController {
     
     @FXML private Text adminText, mngrText;
-    @FXML private Button adminButton, mngrButton;
     @FXML private Text loggedinUser;
+    
+    @FXML private Button btnFoundLuggage, btnLostLuggage, btnSearchLuggage;
+    @FXML private Button btnAddCustomer, btnSearchCustomer;
+    @FXML private Button btnReport;
+    @FXML private Button btnManageUsers;
+    
+    private Button currentSelected;
     
     @Override
     public void onCreate() {
         loggedinUser.setText(app.getUser().name);
         
         if (!app.isUserManager()) {
-            removeNode(mngrButton, mngrText, adminButton, adminText);
+            removeNode(btnReport, mngrText, btnManageUsers, adminText);
         } else if (!app.isUserAdmin()) {
-            removeNode(adminButton, adminText);
+            removeNode(btnManageUsers, adminText);
         }
+    }
+    
+    private <T extends SubSceneController> void clickButton(Class<T> theClass, Button btn) {
+        if (this.currentSelected != null) {
+            this.currentSelected.getStyleClass().remove("selected");
+            
+            if (this.currentSelected == btn) {
+                this.currentSelected = null;
+                app.switchSubScene(null);
+                return;
+            }
+        }
+        this.currentSelected = btn;
+        btn.getStyleClass().add("selected");
+        
+        app.switchSubScene(theClass);
     }
     
 
     public void onPressFoundLuggage(ActionEvent event) {
-        app.switchSubScene(FoundLuggage.class);
+        clickButton(FoundLuggage.class, btnFoundLuggage);
     }
 
     public void onPressLostLuggage(ActionEvent event) {
-        app.switchSubScene(LostLuggage.class);
+        clickButton(LostLuggage.class, btnLostLuggage);
     }
 
     public void onPressSearchLuggage(ActionEvent event) {
-        app.switchSubScene(SearchLuggage.class);
+        clickButton(SearchLuggage.class, btnSearchLuggage);
     }
 
     public void onPressAddCustomer(ActionEvent event) {
-        app.switchSubScene(CustomerAdd.class);
+        clickButton(CustomerAdd.class, btnAddCustomer);
     }
 
     public void onPressSearchCustomer(ActionEvent event) {
-        app.switchSubScene(SearchCustomer.class);
+        clickButton(SearchCustomer.class, btnSearchCustomer);
     }
 
     public void onPressReport(ActionEvent event) {

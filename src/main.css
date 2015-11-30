@@ -18,3 +18,14 @@
 .mainHeader{
     -fx-background-color: white;
 }
+
+.menuButton {
+    -fx-background-color: #00BCE2;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+.menuButton.selected {
+    -fx-background-color: #00809A;
+    -fx-underline: true;
+}
