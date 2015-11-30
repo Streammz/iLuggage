@@ -19,11 +19,11 @@ import javafx.scene.control.Alert;
  */
 public class DatabaseConnection {
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    /*
+    /**/
     private static final String DB_URL = "jdbc:mysql://192.168.178.26:3306/iluggage";
     private static final String DB_USER = "root";
     private static final String DB_PASS = null;
-    */
+    /*
     private static final String DB_URL = "jdbc:mysql://localhost:3306/iluggage";
     private static final String DB_USER = "root";
     private static final String DB_PASS = null;

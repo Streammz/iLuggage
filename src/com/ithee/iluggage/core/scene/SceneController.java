@@ -21,6 +21,11 @@ public abstract class SceneController {
      * The root node.
      */
     public Parent root;
+    
+    /**
+     * The scene this controller is displayed in
+     */
+    public Scene scene;
 
     /**
      * Override this in the superclass to have it execute a piece of code as

@@ -81,12 +81,24 @@ public class ILuggageApplication extends Application {
         
         controller.onCreate();
         
-        this.primaryStage.setScene(new Scene(controller.root, MAX_WIDTH, MAX_HEIGHT));
+        this.primaryStage.setScene(controller.scene = new Scene(controller.root, MAX_WIDTH, MAX_HEIGHT));
         this.currentScene = controller;
         
         if (!this.primaryStage.isShowing()) {
             this.primaryStage.show();
         }
+        
+        return controller;
+    }
+    
+    public <T extends SceneController> T showPopupScene(Class<T> sceneClass) {
+        T controller = initScene(sceneClass);
+        controller.onCreate();
+        
+        Stage stage = new Stage();
+        stage.setTitle("iLuggage | Corendon");
+        stage.setScene(controller.scene = new Scene(controller.root));
+        stage.show();
         
         return controller;
     }
@@ -101,6 +113,7 @@ public class ILuggageApplication extends Application {
             } else {
                 T controller = initScene(sceneClass);
                 controller.onCreate();
+                controller.scene = currentScene.scene;
 
                 currentPane.setCenter(controller.root);
                 return controller;
