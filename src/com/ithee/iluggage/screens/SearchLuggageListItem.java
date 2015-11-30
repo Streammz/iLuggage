@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
 /**
  * @author robby
  */
-public class LuggageListItem {
+public class SearchLuggageListItem {
         
     public ILuggageApplication app;
     public Luggage myLuggage;

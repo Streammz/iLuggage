@@ -94,11 +94,11 @@ public class SearchLuggage extends SubSceneController {
         for (int i=0; i<size; i++) {
             Luggage luggage = list.get(i);
             try {
-                //Load a new item (LuggageListItem.java) so that it can be displayed in the list
+                //Load a new item (SearchLuggageListItem.java) so that it can be displayed in the list
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/com/ithee/iluggage/screens/LuggageListItem.fxml"));
+                loader.setLocation(getClass().getResource("/com/ithee/iluggage/screens/SearchLuggageListItem.fxml"));
                 Parent parent = loader.load();
-                LuggageListItem controller = loader.getController();
+                SearchLuggageListItem controller = loader.getController();
                 controller.myLuggage = luggage;
                 controller.root = parent;
                 controller.app = this.app;
