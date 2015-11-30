@@ -74,7 +74,7 @@ public class MainMenu extends SceneController {
     }
 
     public void onPressReport(ActionEvent event) {
-        showSimpleMessage(Alert.AlertType.INFORMATION, "Ontbrekende functionaliteit", "Deze functionaliteit ontbreekt nog.");
+        clickButton(Report.class, btnReport);
     }
 
     public void onPressManageUsers(ActionEvent event) {

@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -39,6 +40,8 @@ public class ILuggageApplication extends Application {
     
     @Override
     public void start(Stage primaryStage) {
+        Font.loadFont(ILuggageApplication.class.getResource("/Uni-Sans-HeavyItalic.otf").toExternalForm(), 10);
+        
         this.primaryStage = primaryStage;
         this.primaryStage.setMinWidth(1100);
         this.primaryStage.setMinHeight(800);

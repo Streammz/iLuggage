@@ -19,6 +19,11 @@
     -fx-background-color: white;
 }
 
+.coloredButton {
+    -fx-background-color: #00BCE2;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
 .menuButton {
     -fx-background-color: #00BCE2;
     -fx-font-weight: bold;
@@ -28,4 +33,8 @@
 .menuButton.selected {
     -fx-background-color: #00809A;
     -fx-underline: true;
+}
+
+.menuTitle {
+    -fx-font: 30 Uni-Sans-Bold;
 }

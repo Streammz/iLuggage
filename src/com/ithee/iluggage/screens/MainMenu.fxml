@@ -36,11 +36,11 @@
                   <Insets bottom="13.0" left="13.0" right="13.0" top="13.0" />
                </GridPane.margin>
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="U bent ingelogd als: " />
-                  <Text fx:id="loggedinUser" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Admin" />
+                  <Text fill="WHITE" style="-fx-font-weight: bold;" text="U bent ingelogd als: " />
+                  <Text fx:id="loggedinUser" fill="WHITE" style="-fx-font-weight: bold;" text="Admin" />
                </children>
             </TextFlow>
-            <Button prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: DDD; -fx-font-weight: bold;" text="Uitloggen" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" onAction="#onPressLogout">
+            <Button onAction="#onPressLogout" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: DDD; -fx-font-weight: bold;" text="Uitloggen" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin>
@@ -51,32 +51,27 @@
    <left>
       <VBox minHeight="520.0" minWidth="320.0" spacing="10.0" style="-fx-background-color: #FAFAFA; -fx-border-color: transparent darkgray transparent transparent;" BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bagage">
-               <font>
-                  <Font name="System Bold Italic" size="30.0" />
-               </font>
-            </Text>
+            <Text styleClass="menuTitle" text="Bagage" />
             <Button fx:id="btnFoundLuggage" onAction="#onPressFoundLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Gevonden bagage" />
             <Button fx:id="btnLostLuggage" onAction="#onPressLostLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Verloren bagage" />
             <Button fx:id="btnSearchLuggage" onAction="#onPressSearchLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Bagage doorzoeken" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Klanten">
-               <font>
-                  <Font name="System Bold Italic" size="30.0" />
-               </font>
-            </Text>
+            
+            <Text styleClass="menuTitle" text="Klanten">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin></Text>
             <Button fx:id="btnAddCustomer" onAction="#onPressAddCustomer" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Klant invoeren" />
             <Button fx:id="btnSearchCustomer" onAction="#onPressSearchCustomer" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Klanten doorzoeken" />
-            <Text fx:id="mngrTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Management">
-               <font>
-                  <Font name="System Bold Italic" size="30.0" />
-               </font>
-            </Text>
+            
+            <Text fx:id="mngrTitle" styleClass="menuTitle" text="Management">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin></Text>
             <Button fx:id="btnReport" onAction="#onPressReport" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Rapportage" />
-            <Text fx:id="adminTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Administratie">
-               <font>
-                  <Font name="System Bold Italic" size="30.0" />
-               </font>
-            </Text>
+            <Text fx:id="adminTitle" styleClass="menuTitle" text="Administratie">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin></Text>
             <Button fx:id="btnManageUsers" onAction="#onPressManageUsers" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Gebruikers beheren" />
          </children>
          <padding>
@@ -87,7 +82,7 @@
    <bottom>
       <TextFlow style="-fx-background-color: E0E0E0; -fx-border-color: darkgray transparent transparent transparent;" BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Copyright © 2015 iThee, All rights reserved." />
+            <Text text="Copyright © 2015 iThee, All rights reserved." />
          </children>
          <BorderPane.margin>
             <Insets />
