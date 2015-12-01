@@ -1,4 +1,3 @@
-
 package com.ithee.iluggage.screens;
 
 import com.ithee.iluggage.core.controls.AutocompleteTextField;
@@ -15,27 +14,31 @@ import javafx.scene.control.*;
  * @author iThee
  */
 public class CustomerAdd extends SubSceneController {
-    
+
     private static final String SQL_INSERT_CUSTOMER = "INSERT INTO `customers` VALUES ("
             + "NULL,  ?, ?, ?, ?, ?, ?, ?)";
-    
 
-    @FXML private TextField tfCustomername;
-    @FXML private TextField tfEmail;
-    @FXML private TextField tfPhone;
-    @FXML private TextField tfAddress;
-    @FXML private TextField tfPostalcode;
-    @FXML private TextField tfHousenumber;
-    @FXML private TextField tfAddition;
+    @FXML
+    private TextField tfCustomername;
+    @FXML
+    private TextField tfEmail;
+    @FXML
+    private TextField tfPhone;
+    @FXML
+    private TextField tfAddress;
+    @FXML
+    private TextField tfPostalcode;
+    @FXML
+    private TextField tfHousenumber;
+    @FXML
+    private TextField tfAddition;
 
-   
     public void onCancel(ActionEvent event) {
         app.switchSubScene(null);
     }
 
     public void onAdd(ActionEvent event) {
-        
-  
+
         Customer cus = new Customer();
         cus.name = tfCustomername.getText();
         cus.email = tfEmail.getText();
@@ -44,16 +47,11 @@ public class CustomerAdd extends SubSceneController {
         cus.postalcode = tfPostalcode.getText();
         cus.address = tfAddress.getText();
         cus.addition = tfAddition.getText();
-        
-        app.db.executeStatement(SQL_INSERT_CUSTOMER, 
-                cus.name, cus.email, cus.phone, cus.address, cus.postalcode, cus.housenumber, cus.addition);
-        
 
-       
+        app.db.executeStatement(SQL_INSERT_CUSTOMER,
+                cus.name, cus.email, cus.phone, cus.address, cus.postalcode, cus.housenumber, cus.addition);
+
         app.switchSubScene(null);
     }
-    
 
-        
-    
 }

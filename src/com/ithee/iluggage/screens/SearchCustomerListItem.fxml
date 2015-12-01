@@ -12,83 +12,83 @@
 <VBox xmlns:fx="http://javafx.com/fxml/1" onMouseClicked="#onClick" xmlns="http://javafx.com/javafx/8" fx:controller="com.ithee.iluggage.screens.SearchCustomerListItem">
     <children>
         <GridPane>
-        <columnConstraints>
-            <ColumnConstraints />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0" />
-            <ColumnConstraints />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0" />
-            <ColumnConstraints />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0" />
-            <ColumnConstraints />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints vgrow="NEVER" minHeight="20" />
-          <RowConstraints vgrow="NEVER" minHeight="20" />
-        </rowConstraints>
-         <children>
-            <Text text="Naam:" GridPane.columnIndex="0" GridPane.halignment="RIGHT" >
-               <GridPane.margin>
-                  <Insets right="5" />
-               </GridPane.margin>
-            </Text>
-            <Text text="E-mail:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" >
-               <GridPane.margin>
-                  <Insets left="10" right="5" />
-               </GridPane.margin>
-            </Text>
-            <Text text="Telefoon:" GridPane.columnIndex="4" GridPane.halignment="RIGHT" >
-               <GridPane.margin>
-                  <Insets left="10" right="5" />
-               </GridPane.margin>
-            </Text>
+            <columnConstraints>
+                <ColumnConstraints />
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0" />
+                <ColumnConstraints />
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0" />
+                <ColumnConstraints />
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0" />
+                <ColumnConstraints />
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints vgrow="NEVER" minHeight="20" />
+                <RowConstraints vgrow="NEVER" minHeight="20" />
+            </rowConstraints>
+            <children>
+                <Text text="Naam:" GridPane.columnIndex="0" GridPane.halignment="RIGHT" >
+                    <GridPane.margin>
+                        <Insets right="5" />
+                    </GridPane.margin>
+                </Text>
+                <Text text="E-mail:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" >
+                    <GridPane.margin>
+                        <Insets left="10" right="5" />
+                    </GridPane.margin>
+                </Text>
+                <Text text="Telefoon:" GridPane.columnIndex="4" GridPane.halignment="RIGHT" >
+                    <GridPane.margin>
+                        <Insets left="10" right="5" />
+                    </GridPane.margin>
+                </Text>
             
-            <Text fx:id="txtName" text="&lt;name&gt;" underline="true" GridPane.columnIndex="1" />
-            <Text fx:id="txtEmail" text="&lt;email&gt;" underline="true" GridPane.columnIndex="3" />
-            <Text fx:id="txtPhone" text="&lt;phone&gt;" underline="true" GridPane.columnIndex="5" />
+                <Text fx:id="txtName" text="&lt;name&gt;" underline="true" GridPane.columnIndex="1" />
+                <Text fx:id="txtEmail" text="&lt;email&gt;" underline="true" GridPane.columnIndex="3" />
+                <Text fx:id="txtPhone" text="&lt;phone&gt;" underline="true" GridPane.columnIndex="5" />
             
-            <Text text="Woonplaats:" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="RIGHT" >
-               <GridPane.margin>
-                  <Insets right="5.0" />
-               </GridPane.margin>
-            </Text>
-            <Text text="Postcode:" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.halignment="RIGHT" >
-               <GridPane.margin>
-                  <Insets left="10.0" right="5.0" />
-               </GridPane.margin>
-            </Text>
-            <Text text="Huisnummer:" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.halignment="RIGHT" >
-               <GridPane.margin>
-                  <Insets left="10.0" right="5.0" />
-               </GridPane.margin>
-            </Text>
-            <Text text="Toevoeging:" GridPane.columnIndex="6" GridPane.rowIndex="1" GridPane.halignment="RIGHT" >
-               <GridPane.margin>
-                  <Insets left="10.0" right="5.0" />
-               </GridPane.margin>
-            </Text>
+                <Text text="Woonplaats:" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="RIGHT" >
+                    <GridPane.margin>
+                        <Insets right="5.0" />
+                    </GridPane.margin>
+                </Text>
+                <Text text="Postcode:" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.halignment="RIGHT" >
+                    <GridPane.margin>
+                        <Insets left="10.0" right="5.0" />
+                    </GridPane.margin>
+                </Text>
+                <Text text="Huisnummer:" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.halignment="RIGHT" >
+                    <GridPane.margin>
+                        <Insets left="10.0" right="5.0" />
+                    </GridPane.margin>
+                </Text>
+                <Text text="Toevoeging:" GridPane.columnIndex="6" GridPane.rowIndex="1" GridPane.halignment="RIGHT" >
+                    <GridPane.margin>
+                        <Insets left="10.0" right="5.0" />
+                    </GridPane.margin>
+                </Text>
             
-            <Text fx:id="txtAddress" text="&lt;address&gt;" underline="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Text fx:id="txtPostalCode" text="&lt;postalcode&gt;" underline="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Text fx:id="txtHouseNumber" text="&lt;housenumber&gt;" underline="true" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <Text fx:id="txtAddition" text="&lt;addition&gt;" underline="true" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                <Text fx:id="txtAddress" text="&lt;address&gt;" underline="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Text fx:id="txtPostalCode" text="&lt;postalcode&gt;" underline="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <Text fx:id="txtHouseNumber" text="&lt;housenumber&gt;" underline="true" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                <Text fx:id="txtAddition" text="&lt;addition&gt;" underline="true" GridPane.columnIndex="7" GridPane.rowIndex="1" />
             
-            <Button onAction="#onClickDelete" GridPane.columnIndex="10">
-               <graphic>
-                  <ImageView fitHeight="20" fitWidth="20">
-                     <image>
-                        <Image url="@../../../../trash.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </children>
-      </GridPane>
-   </children>
-   <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-   </padding>
-   <cursor>
-      <Cursor fx:constant="HAND" />
-   </cursor>
+                <Button onAction="#onClickDelete" GridPane.columnIndex="10">
+                    <graphic>
+                        <ImageView fitHeight="20" fitWidth="20">
+                            <image>
+                                <Image url="@../../../../trash.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+        </GridPane>
+    </children>
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+    </padding>
+    <cursor>
+        <Cursor fx:constant="HAND" />
+    </cursor>
 </VBox>

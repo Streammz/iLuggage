@@ -15,38 +15,38 @@
     <stylesheets>
         <URL value="@../../../../main.css" />
     </stylesheets>
-   <top>
-      <GridPane hgap="10.0" BorderPane.alignment="CENTER">
-        <columnConstraints>
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints hgrow="ALWAYS" />
-            <ColumnConstraints prefWidth="150" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints minHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Text text="Naam" GridPane.halignment="RIGHT" GridPane.rowIndex="0" />
-            <Text text="Gebruikersnaam:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <Text text="Wachtwoord:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-            <TextField fx:id="tfName" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-            <TextField fx:id="tfUsername" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <PasswordField fx:id="tfPassword" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <top>
+        <GridPane hgap="10.0" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints hgrow="ALWAYS" />
+                <ColumnConstraints prefWidth="150" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Text text="Naam" GridPane.halignment="RIGHT" GridPane.rowIndex="0" />
+                <Text text="Gebruikersnaam:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                <Text text="Wachtwoord:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                <TextField fx:id="tfName" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <TextField fx:id="tfUsername" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <PasswordField fx:id="tfPassword" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             
-            <Text text="Telefoonnummer:" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="0" />
-            <Text text="Rol:" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />        
-            <TextField fx:id="tfPhone" GridPane.columnIndex="3" GridPane.rowIndex="0" />
-            <ChoiceBox fx:id="cbRole" prefWidth="150" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <Text text="Telefoonnummer:" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="0" />
+                <Text text="Rol:" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />        
+                <TextField fx:id="tfPhone" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                <ChoiceBox fx:id="cbRole" prefWidth="150" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             
-            <Button onAction="#onAdd" prefWidth="100" text="Toevoegen" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </BorderPane.margin>
-      </GridPane>
-   </top>
+                <Button onAction="#onAdd" prefWidth="100" text="Toevoegen" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </BorderPane.margin>
+        </GridPane>
+    </top>
 </BorderPane>

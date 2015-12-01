@@ -16,46 +16,46 @@
     
     <top>
         <GridPane style="-fx-border-color: darkgray;">
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" />
-         </rowConstraints>
-         <columnConstraints>
-            <ColumnConstraints />
-            <ColumnConstraints hgrow="ALWAYS" />
-            <ColumnConstraints />
-            <ColumnConstraints />
-         </columnConstraints>
-         <children>
-            <Button text="Account toevoegen" prefWidth="130" onAction="#onClickAdd" />
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" />
+            </rowConstraints>
+            <columnConstraints>
+                <ColumnConstraints />
+                <ColumnConstraints hgrow="ALWAYS" />
+                <ColumnConstraints />
+                <ColumnConstraints />
+            </columnConstraints>
+            <children>
+                <Button text="Account toevoegen" prefWidth="130" onAction="#onClickAdd" />
              
-            <Separator orientation="VERTICAL" GridPane.columnIndex="2" GridPane.rowSpan="2"  /> 
+                <Separator orientation="VERTICAL" GridPane.columnIndex="2" GridPane.rowSpan="2"  /> 
             
-            <Text text="Naam" GridPane.halignment="RIGHT" GridPane.columnIndex="3">
-               <GridPane.margin>
-                  <Insets left="20.0" right="5.0" />
-               </GridPane.margin>
-            </Text>
-            <TextField fx:id="tfName" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+                <Text text="Naam" GridPane.halignment="RIGHT" GridPane.columnIndex="3">
+                    <GridPane.margin>
+                        <Insets left="20.0" right="5.0" />
+                    </GridPane.margin>
+                </Text>
+                <TextField fx:id="tfName" GridPane.columnIndex="4" GridPane.rowIndex="0" />
             
-            <Button prefWidth="100.0" text="Zoek" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1" onAction="#onSearch" />
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </BorderPane.margin>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
+                <Button prefWidth="100.0" text="Zoek" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1" onAction="#onSearch" />
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </BorderPane.margin>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
         </GridPane>
     </top>
     <center>
         
     </center>
-   <center>
-      <VBox style="-fx-border-color: darkgray;" BorderPane.alignment="CENTER" fx:id="results" fillWidth="true" >
-         <BorderPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </BorderPane.margin>
-      </VBox>
-   </center>
+    <center>
+        <VBox style="-fx-border-color: darkgray;" BorderPane.alignment="CENTER" fx:id="results" fillWidth="true" >
+            <BorderPane.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </BorderPane.margin>
+        </VBox>
+    </center>
 </BorderPane>

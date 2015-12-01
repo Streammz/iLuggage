@@ -13,126 +13,129 @@
 <BorderPane id="AnchorPane" prefHeight="600.0" prefWidth="700.0" styleClass="root" stylesheets="@../../../../main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.Report">
     <top>
         <GridPane style="-fx-border-color: darkgray;">
-         <rowConstraints>
-            <RowConstraints minHeight="30.0" prefHeight="30.0" />
-            <RowConstraints minHeight="30.0" prefHeight="30.0" />
-            <RowConstraints minHeight="10.0" prefHeight="20.0" valignment="BOTTOM" />
-            <RowConstraints minHeight="30.0" prefHeight="30.0" valignment="BOTTOM" />
-            <RowConstraints minHeight="40.0" prefHeight="40.0" valignment="BOTTOM" />
-         </rowConstraints>
-         <columnConstraints>
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints hgrow="ALWAYS" />
-            <ColumnConstraints />
-         </columnConstraints>
-         <children>
-            <Text text="Soort" GridPane.halignment="RIGHT">
-               <GridPane.margin>
-                  <Insets left="20.0" right="5.0" />
-               </GridPane.margin>
-            </Text>
-            <Text text="Kleur" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="20.0" right="5.0" />
-               </GridPane.margin>
-            </Text>
-            <Text text="Merk" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
-               <GridPane.margin>
-                  <Insets left="20.0" right="5.0" />
-               </GridPane.margin>
-            </Text>
-            <Text text="Keywords" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="20.0" right="5.0" />
-               </GridPane.margin>
-            </Text>
-            <Text text="Datumbereik" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
-               <GridPane.margin>
-                  <Insets left="20.0" right="5.0" />
-               </GridPane.margin>
-            </Text>
-            <Text text="Begin" GridPane.columnIndex="3" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets bottom="-2.0" />
-               </GridPane.margin></Text>
-            <Text text="Eind" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets bottom="-2.0" />
-               </GridPane.margin></Text>
+            <rowConstraints>
+                <RowConstraints minHeight="30.0" prefHeight="30.0" />
+                <RowConstraints minHeight="30.0" prefHeight="30.0" />
+                <RowConstraints minHeight="10.0" prefHeight="20.0" valignment="BOTTOM" />
+                <RowConstraints minHeight="30.0" prefHeight="30.0" valignment="BOTTOM" />
+                <RowConstraints minHeight="40.0" prefHeight="40.0" valignment="BOTTOM" />
+            </rowConstraints>
+            <columnConstraints>
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints hgrow="ALWAYS" />
+                <ColumnConstraints />
+            </columnConstraints>
+            <children>
+                <Text text="Soort" GridPane.halignment="RIGHT">
+                    <GridPane.margin>
+                        <Insets left="20.0" right="5.0" />
+                    </GridPane.margin>
+                </Text>
+                <Text text="Kleur" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets left="20.0" right="5.0" />
+                    </GridPane.margin>
+                </Text>
+                <Text text="Merk" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+                    <GridPane.margin>
+                        <Insets left="20.0" right="5.0" />
+                    </GridPane.margin>
+                </Text>
+                <Text text="Keywords" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets left="20.0" right="5.0" />
+                    </GridPane.margin>
+                </Text>
+                <Text text="Datumbereik" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                    <GridPane.margin>
+                        <Insets left="20.0" right="5.0" />
+                    </GridPane.margin>
+                </Text>
+                <Text text="Begin" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                    <GridPane.margin>
+                        <Insets bottom="-2.0" />
+                    </GridPane.margin>
+                </Text>
+                <Text text="Eind" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                    <GridPane.margin>
+                        <Insets bottom="-2.0" />
+                    </GridPane.margin>
+                </Text>
             
-            <ChoiceBox fx:id="cbKind" prefWidth="150" GridPane.columnIndex="1" />
-            <ChoiceBox fx:id="cbColor" prefWidth="150" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ChoiceBox fx:id="cbBrand" prefWidth="150" GridPane.columnIndex="3" />
-            <TextField fx:id="tfKeywords" prefWidth="150" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <ChoiceBox fx:id="cbKind" prefWidth="150" GridPane.columnIndex="1" />
+                <ChoiceBox fx:id="cbColor" prefWidth="150" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <ChoiceBox fx:id="cbBrand" prefWidth="150" GridPane.columnIndex="3" />
+                <TextField fx:id="tfKeywords" prefWidth="150" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             
-            <ChoiceBox fx:id="cbGraphType" prefWidth="150" GridPane.columnIndex="1" GridPane.rowIndex="3" />  
-            <ChoiceBox fx:id="cbGraphStart" prefWidth="150" GridPane.columnIndex="3" GridPane.rowIndex="3" />  
-            <ChoiceBox fx:id="cbGraphEnd" prefWidth="150" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="3" />  
+                <ChoiceBox fx:id="cbGraphType" prefWidth="150" GridPane.columnIndex="1" GridPane.rowIndex="3" />  
+                <ChoiceBox fx:id="cbGraphStart" prefWidth="150" GridPane.columnIndex="3" GridPane.rowIndex="3" />  
+                <ChoiceBox fx:id="cbGraphEnd" prefWidth="150" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="3" />  
             
-            <Button onAction="#onSearch" prefWidth="100.0" text="Zoek" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+                <Button onAction="#onSearch" prefWidth="100.0" text="Zoek" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
             
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </BorderPane.margin>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </BorderPane.margin>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
         </GridPane>
     </top>
     <center>
         
     </center>
-   <center>
-      <BorderPane fx:id="printView" style="-fx-border-color: darkgray;" BorderPane.alignment="TOP_LEFT">
-         <center>
-            <StackPane>
-               <children>
-                  <BarChart fx:id="chartBar" animated="false" verticalGridLinesVisible="false">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis fx:id="chartBarY" autoRanging="false" forceZeroInRange="false" minorTickVisible="false" side="LEFT" tickMarkVisible="false" tickUnit="1.0" upperBound="10.0" />
-                    </yAxis>
-                  </BarChart>
-                  <AreaChart fx:id="chartArea" animated="false">
-                      <xAxis>
-                          <NumberAxis autoRanging="false" lowerBound="1.0" minorTickVisible="false" side="BOTTOM" tickUnit="1.0" upperBound="31.0" />
-                      </xAxis>
-                      <yAxis>
-                          <NumberAxis fx:id="chartAreaY" autoRanging="false" forceZeroInRange="false" minorTickVisible="false" side="LEFT" tickMarkVisible="false" tickUnit="1.0" upperBound="10.0" /> 
-                      </yAxis>
-                  </AreaChart>
-               </children>
-            </StackPane>
-         </center>
-         <BorderPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </BorderPane.margin>
-         <top>
-            <Text fx:id="chartTitle" styleClass="smallTitle" text="Rapportage" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets top="10.0" />
-               </BorderPane.margin>
-            </Text>
-         </top>
-      </BorderPane>
-   </center>
-   <bottom>
-       <HBox alignment="CENTER_RIGHT">
-           <children>
-               <Button onAction="#onPressPrint" text="Printen">
-               <padding>
-                  <Insets bottom="3.0" left="10.0" right="10.0" top="3.0" />
-               </padding></Button>
-           </children>
-         <BorderPane.margin>
-            <Insets bottom="5.0" left="10.0" right="10.0" />
-         </BorderPane.margin>
-       </HBox> 
-   </bottom>
+    <center>
+        <BorderPane fx:id="printView" style="-fx-border-color: darkgray;" BorderPane.alignment="TOP_LEFT">
+            <center>
+                <StackPane>
+                    <children>
+                        <BarChart fx:id="chartBar" animated="false" verticalGridLinesVisible="false">
+                            <xAxis>
+                                <CategoryAxis side="BOTTOM" />
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis fx:id="chartBarY" autoRanging="false" forceZeroInRange="false" minorTickVisible="false" side="LEFT" tickMarkVisible="false" tickUnit="1.0" upperBound="10.0" />
+                            </yAxis>
+                        </BarChart>
+                        <AreaChart fx:id="chartArea" animated="false">
+                            <xAxis>
+                                <NumberAxis autoRanging="false" lowerBound="1.0" minorTickVisible="false" side="BOTTOM" tickUnit="1.0" upperBound="31.0" />
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis fx:id="chartAreaY" autoRanging="false" forceZeroInRange="false" minorTickVisible="false" side="LEFT" tickMarkVisible="false" tickUnit="1.0" upperBound="10.0" /> 
+                            </yAxis>
+                        </AreaChart>
+                    </children>
+                </StackPane>
+            </center>
+            <BorderPane.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </BorderPane.margin>
+            <top>
+                <Text fx:id="chartTitle" styleClass="smallTitle" text="Rapportage" BorderPane.alignment="CENTER">
+                    <BorderPane.margin>
+                        <Insets top="10.0" />
+                    </BorderPane.margin>
+                </Text>
+            </top>
+        </BorderPane>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER_RIGHT">
+            <children>
+                <Button onAction="#onPressPrint" text="Printen">
+                    <padding>
+                        <Insets bottom="3.0" left="10.0" right="10.0" top="3.0" />
+                    </padding>
+                </Button>
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="5.0" left="10.0" right="10.0" />
+            </BorderPane.margin>
+        </HBox> 
+    </bottom>
 </BorderPane>

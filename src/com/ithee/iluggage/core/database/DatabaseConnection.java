@@ -105,7 +105,7 @@ public class DatabaseConnection {
             // Indien er een error ontstaat, geef deze weer in de console en sla
             // deze foutmelding op.
             System.out.println(lastError = ex.getMessage());
-        } finally {
+            
             // Sluit de verbinding indien deze nog open staat.
             try {
                 if (conn != null) {
@@ -144,7 +144,7 @@ public class DatabaseConnection {
             // Indien er een error ontstaat, geef deze weer in de console en sla
             // deze foutmelding op.
             System.out.println(lastError = ex.getMessage());
-        } finally {
+            
             // Sluit de verbinding indien deze nog open staat.
             try {
                 if (conn != null) {
@@ -400,10 +400,6 @@ public class DatabaseConnection {
                     // loopt over alle fields heen in de class dmv. reflectie.
                     T obj = c.newInstance();
                     for (Field f : c.getFields()) {
-                        // Indien het veld niet toegankelijk (private e.d.) is,
-                        // sla deze dan over.
-                        if (!f.isAccessible()) continue;
-                        
                         // Pakt de naam van een veld, en maakt de eerste letter 
                         // een hoofdletter om aan standaarden te houden.
                         String fieldName = f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1);

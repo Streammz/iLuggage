@@ -17,12 +17,12 @@
     <children>
         <GridPane alignment="CENTER_LEFT" VBox.vgrow="NEVER">
             <rowConstraints>
-               <RowConstraints minHeight="40" />
-               <RowConstraints minHeight="40" />
-               <RowConstraints minHeight="10" />
-               <RowConstraints minHeight="40" />
-               <RowConstraints minHeight="40" />
-               <RowConstraints minHeight="40" />
+                <RowConstraints minHeight="40" />
+                <RowConstraints minHeight="40" />
+                <RowConstraints minHeight="10" />
+                <RowConstraints minHeight="40" />
+                <RowConstraints minHeight="40" />
+                <RowConstraints minHeight="40" />
             </rowConstraints>
             <columnConstraints>
                 <ColumnConstraints hgrow="NEVER" minWidth="100.0" />
@@ -34,17 +34,17 @@
                 
                 <Text text="Naam:" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
                     <GridPane.margin>
-                       <Insets left="10.0" right="5.0" />
+                        <Insets left="10.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
                 <Text text="E-mailadres:" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                     <GridPane.margin>
-                       <Insets left="10.0" right="5.0" />
+                        <Insets left="10.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
                 <Text text="Telefoonnummer:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
                     <GridPane.margin>
-                       <Insets left="10.0" right="5.0" />
+                        <Insets left="10.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
                 
@@ -57,22 +57,22 @@
                 
                 <Text text="Woonplaats:" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                     <GridPane.margin>
-                       <Insets left="10.0" right="5.0" />
+                        <Insets left="10.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
                 <Text text="Postcode:" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                     <GridPane.margin>
-                       <Insets left="10.0" right="5.0" />
+                        <Insets left="10.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
                 <Text text="Huisnummer:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                     <GridPane.margin>
-                       <Insets left="10.0" right="5.0" />
+                        <Insets left="10.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
                 <Text text="Toevoeging:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                     <GridPane.margin>
-                       <Insets left="10.0" right="5.0" />
+                        <Insets left="10.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
                 
@@ -85,7 +85,7 @@
             </children>
         </GridPane>
     </children>
-   <padding>
-      <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
-   </padding>
+    <padding>
+        <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+    </padding>
 </VBox>

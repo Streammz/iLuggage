@@ -12,64 +12,64 @@
 <VBox xmlns="http://javafx.com/javafx/8" onMouseClicked="#onClick"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.ManageAccountsListItem">
     <children>
         <GridPane>
-        <columnConstraints>
-            <ColumnConstraints />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0" />
-            <ColumnConstraints />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0" />
-            <ColumnConstraints />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0" />
-            <ColumnConstraints />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0" />
-            <ColumnConstraints />
-            <ColumnConstraints />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="20" vgrow="NEVER" />
-        </rowConstraints>
-         <children>
-            <Text text="Naam:" GridPane.columnIndex="0" GridPane.halignment="RIGHT">
-               <GridPane.margin>
-                  <Insets right="5" />
-               </GridPane.margin>
-            </Text>
-            <Text text="Gebruikersnaam:" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
-               <GridPane.margin>
-                  <Insets left="10" right="5" />
-               </GridPane.margin>
-            </Text>
-            <Text text="Rol:" GridPane.columnIndex="4" GridPane.halignment="RIGHT">
-               <GridPane.margin>
-                  <Insets left="10" right="5" />
-               </GridPane.margin>
-            </Text>
-            <Text text="Laatste log-in:" GridPane.columnIndex="6" GridPane.halignment="RIGHT">
-               <GridPane.margin>
-                  <Insets left="10" right="5" />
-               </GridPane.margin>
-            </Text>
+            <columnConstraints>
+                <ColumnConstraints />
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0" />
+                <ColumnConstraints />
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0" />
+                <ColumnConstraints />
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0" />
+                <ColumnConstraints />
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0" />
+                <ColumnConstraints />
+                <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="20" vgrow="NEVER" />
+            </rowConstraints>
+            <children>
+                <Text text="Naam:" GridPane.columnIndex="0" GridPane.halignment="RIGHT">
+                    <GridPane.margin>
+                        <Insets right="5" />
+                    </GridPane.margin>
+                </Text>
+                <Text text="Gebruikersnaam:" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+                    <GridPane.margin>
+                        <Insets left="10" right="5" />
+                    </GridPane.margin>
+                </Text>
+                <Text text="Rol:" GridPane.columnIndex="4" GridPane.halignment="RIGHT">
+                    <GridPane.margin>
+                        <Insets left="10" right="5" />
+                    </GridPane.margin>
+                </Text>
+                <Text text="Laatste log-in:" GridPane.columnIndex="6" GridPane.halignment="RIGHT">
+                    <GridPane.margin>
+                        <Insets left="10" right="5" />
+                    </GridPane.margin>
+                </Text>
             
-            <Text fx:id="txtName" text="&lt;name&gt;" underline="true" GridPane.columnIndex="1" />
-            <Text fx:id="txtUsername" text="&lt;username&gt;" underline="true" GridPane.columnIndex="3" />
-            <Text fx:id="txtRole" text="&lt;role&gt;" underline="true" GridPane.columnIndex="5" />
-            <Text fx:id="txtLastLogin" text="&lt;lastLogin&gt;" underline="true" GridPane.columnIndex="7" />
+                <Text fx:id="txtName" text="&lt;name&gt;" underline="true" GridPane.columnIndex="1" />
+                <Text fx:id="txtUsername" text="&lt;username&gt;" underline="true" GridPane.columnIndex="3" />
+                <Text fx:id="txtRole" text="&lt;role&gt;" underline="true" GridPane.columnIndex="5" />
+                <Text fx:id="txtLastLogin" text="&lt;lastLogin&gt;" underline="true" GridPane.columnIndex="7" />
             
-            <Button onAction="#onClickDelete" GridPane.columnIndex="8" >
-               <graphic>
-                  <ImageView fitWidth="20" fitHeight="20" >
-                     <image>
-                        <Image url="@../../../../trash.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </children>
-      </GridPane>
-   </children>
-   <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-   </padding>
-   <cursor>
-      <Cursor fx:constant="HAND" />
-   </cursor>
+                <Button onAction="#onClickDelete" GridPane.columnIndex="8" >
+                    <graphic>
+                        <ImageView fitWidth="20" fitHeight="20" >
+                            <image>
+                                <Image url="@../../../../trash.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+        </GridPane>
+    </children>
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+    </padding>
+    <cursor>
+        <Cursor fx:constant="HAND" />
+    </cursor>
 </VBox>

@@ -1,4 +1,3 @@
-
 package com.ithee.iluggage.screens;
 
 import com.ithee.iluggage.core.database.classes.*;
@@ -19,18 +18,24 @@ import javafx.scene.layout.VBox;
  * @author iThee
  */
 public class SearchLuggage extends SubSceneController {
+
     private static final int MAX_DISPLAY_SIZE = 25;
 
-    @FXML private ChoiceBox<LuggageKind> cbKind;
-    @FXML private ChoiceBox<LuggageColor> cbColor;
-    @FXML private ChoiceBox<LuggageBrand> cbBrand;
-    @FXML private TextField tfKeywords;
-    
-    @FXML private VBox results;
-    
+    @FXML
+    private ChoiceBox<LuggageKind> cbKind;
+    @FXML
+    private ChoiceBox<LuggageColor> cbColor;
+    @FXML
+    private ChoiceBox<LuggageBrand> cbBrand;
+    @FXML
+    private TextField tfKeywords;
+
+    @FXML
+    private VBox results;
+
     @Override
     public void onCreate() {
-        
+
         cbKind.getItems().add(null);
         app.dbKinds.getValues().forEach((o) -> {
             cbKind.getItems().add(o);
@@ -43,15 +48,16 @@ public class SearchLuggage extends SubSceneController {
         app.dbBrands.getValues().forEach((o) -> {
             cbBrand.getItems().add(o);
         });
-        
+
         List<Luggage> list = app.db.executeAndReadList(Luggage.class, "SELECT * FROM `luggage`");
         showResults(list);
     }
-    
-    @FXML public void onSearch() {
+
+    @FXML
+    public void onSearch() {
         List<String> wheres = new ArrayList<>();
         List<Object> params = new ArrayList<>();
-        
+
         if (cbKind.getValue() != null) {
             wheres.add("`Kind` = ?");
             params.add(cbKind.getValue().id);
@@ -69,29 +75,31 @@ public class SearchLuggage extends SubSceneController {
             Arrays.stream(keywords).forEach((keyword) -> {
                 keyword = keyword.trim();
                 wheres.add("`Miscellaneous` LIKE ? OR `FlightCode` LIKE ?");
-                for (int i=0; i<2; i++) params.add("%" + keyword + "%");
+                for (int i = 0; i < 2; i++) {
+                    params.add("%" + keyword + "%");
+                }
             });
         }
-        
+
         String query = "SELECT * FROM `luggage`";
         if (wheres.size() > 0) {
             query += " WHERE ";
-            for (int i=0; i<wheres.size(); i++) {
+            for (int i = 0; i < wheres.size(); i++) {
                 query = query + wheres.get(i) + " AND ";
             }
-            query = query.substring(0, query.length()-5);
+            query = query.substring(0, query.length() - 5);
         }
-        
+
         List<Luggage> list = app.db.executeAndReadList(Luggage.class, query, params.toArray());
         showResults(list);
     }
-    
+
     public void showResults(List<Luggage> list) {
         // Clear old list (if there is anything in it)
         this.results.getChildren().clear();
-        
+
         int size = Math.min(list.size(), MAX_DISPLAY_SIZE);
-        for (int i=0; i<size; i++) {
+        for (int i = 0; i < size; i++) {
             Luggage luggage = list.get(i);
             try {
                 //Load a new item (SearchLuggageListItem.java) so that it can be displayed in the list
@@ -104,13 +112,13 @@ public class SearchLuggage extends SubSceneController {
                 controller.app = this.app;
                 controller.parent = this;
                 controller.onCreate();
-                
+
                 // Add to the list and style
                 this.results.getChildren().add(controller.root);
-                
+
                 // Add a seperator between items
                 //if (i < list.size()-1) {
-                    this.results.getChildren().add(new Separator(Orientation.HORIZONTAL));
+                this.results.getChildren().add(new Separator(Orientation.HORIZONTAL));
                 //}
             } catch (Exception ex) {
                 // This should not happen in regular usage.
@@ -119,6 +127,4 @@ public class SearchLuggage extends SubSceneController {
         }
     }
 
-    
-    
 }

@@ -1,4 +1,3 @@
-
 package com.ithee.iluggage.screens;
 
 import com.ithee.iluggage.core.database.classes.Luggage;
@@ -30,36 +29,49 @@ import javafx.scene.text.Text;
  * @author iThee
  */
 public class Report extends SubSceneController {
-    
-    private static final String[] MONTH_NAMES = { "Januari", "Februari", "Maart", "April", 
-        "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December" };
-    private static final int[] CHART_STEPS = { 5, 10, 25, 50, 100, 250, 500, 1000, 10000 };
-    
-    @FXML private ChoiceBox<LuggageBrand> cbBrand;
-    @FXML private TextField tfKeywords;
-    @FXML private ChoiceBox<LuggageKind> cbKind;
-    @FXML private ChoiceBox<LuggageColor> cbColor;
-    
-    @FXML private ChoiceBox<String> cbGraphType;
-    @FXML private ChoiceBox<ReportEntry> cbGraphStart;
-    @FXML private ChoiceBox<ReportEntry> cbGraphEnd;
-    
-    @FXML private BarChart chartBar;
-    @FXML private NumberAxis chartBarY;
-    @FXML private AreaChart chartArea;
-    @FXML private NumberAxis chartAreaY;
-    @FXML private Text chartTitle;
-    
-    @FXML private BorderPane printView;
+
+    private static final String[] MONTH_NAMES = {"Januari", "Februari", "Maart", "April",
+        "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"};
+    private static final int[] CHART_STEPS = {5, 10, 25, 50, 100, 250, 500, 1000, 10000};
+
+    @FXML
+    private ChoiceBox<LuggageBrand> cbBrand;
+    @FXML
+    private TextField tfKeywords;
+    @FXML
+    private ChoiceBox<LuggageKind> cbKind;
+    @FXML
+    private ChoiceBox<LuggageColor> cbColor;
+
+    @FXML
+    private ChoiceBox<String> cbGraphType;
+    @FXML
+    private ChoiceBox<ReportEntry> cbGraphStart;
+    @FXML
+    private ChoiceBox<ReportEntry> cbGraphEnd;
+
+    @FXML
+    private BarChart chartBar;
+    @FXML
+    private NumberAxis chartBarY;
+    @FXML
+    private AreaChart chartArea;
+    @FXML
+    private NumberAxis chartAreaY;
+    @FXML
+    private Text chartTitle;
+
+    @FXML
+    private BorderPane printView;
 
     private List<Luggage> results;
-    
+
     @Override
     public void onCreate() {
         // Hide charts so they can be shown individually later on
         chartBar.setVisible(false);
         chartArea.setVisible(false);
-        
+
         // Reguliere filters
         cbKind.getItems().add(null);
         app.dbKinds.getValues().forEach((o) -> {
@@ -73,47 +85,47 @@ public class Report extends SubSceneController {
         app.dbBrands.getValues().forEach((o) -> {
             cbBrand.getItems().add(o);
         });
-        
+
         // Datum filters
         cbGraphType.getItems().add("Week");
         cbGraphType.getItems().add("Maand");
         cbGraphType.getItems().add("Jaar");
-        
+
         cbGraphType.getSelectionModel().selectedItemProperty().addListener((ov, oldVal, newVal) -> {
             // Clear existing items
             cbGraphStart.getItems().clear();
             cbGraphEnd.getItems().clear();
             // Get a calendar instance
             Calendar cal = Calendar.getInstance();
-            
+
             switch (newVal) {
                 case "Week":
                     cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-                    for (int i=0; i<53; i++) {
+                    for (int i = 0; i < 53; i++) {
                         ReportWeek week = new ReportWeek(cal.get(Calendar.WEEK_OF_YEAR), cal.get(Calendar.YEAR));
                         cbGraphStart.getItems().add(week);
                         cbGraphEnd.getItems().add(week);
-                                
+
                         cal.add(Calendar.WEEK_OF_YEAR, -1);
                     }
                     break;
-                    
+
                 case "Maand":
-                    for (int i=0; i<24; i++) {
+                    for (int i = 0; i < 24; i++) {
                         ReportMaand maand = new ReportMaand(cal.get(Calendar.MONTH), cal.get(Calendar.YEAR));
                         cbGraphStart.getItems().add(maand);
                         cbGraphEnd.getItems().add(maand);
-                                
+
                         cal.add(Calendar.MONTH, -1);
                     }
                     break;
-                    
+
                 case "Jaar":
-                    for (int i=0; i<5; i++) {
+                    for (int i = 0; i < 5; i++) {
                         ReportJaar jaar = new ReportJaar(cal.get(Calendar.YEAR));
                         cbGraphStart.getItems().add(jaar);
                         cbGraphEnd.getItems().add(jaar);
-                                
+
                         cal.add(Calendar.YEAR, -1);
                     }
                     break;
@@ -121,7 +133,7 @@ public class Report extends SubSceneController {
             // Set default values on the current week/month/year
             cbGraphStart.setValue(cbGraphStart.getItems().get(0));
             cbGraphEnd.setValue(cbGraphStart.getItems().get(0));
-            
+
             // Add a listener that checks if the selected end is before the selected start.
             // If this is the case, it sets the end date to the same as the start date
             cbGraphEnd.getSelectionModel().selectedItemProperty().addListener((ov2, oldVal2, newVal2) -> {
@@ -130,14 +142,14 @@ public class Report extends SubSceneController {
                 }
             });
         });
-        
+
         cbGraphType.setValue("Week");
     }
-    
+
     public void onSearch(ActionEvent event) {
         loadResults(cbGraphType.getValue(), cbGraphStart.getValue().getStartDate(), cbGraphEnd.getValue().getEndDate());
     }
-    
+
     public void onPressPrint() {
         PrinterJob pj = PrinterJob.createPrinterJob();
         if (pj.showPrintDialog(stage.getOwner())) {
@@ -161,27 +173,34 @@ public class Report extends SubSceneController {
 
     private void loadResults(String type, Calendar start, Calendar end) {
         this.results = loadFilteredResults();
-        
+
         Stream<Luggage> resultStream = results.stream().filter((Luggage lugg) -> {
             Calendar luggCal = Calendar.getInstance();
             luggCal.setTime(lugg.date);
-            
-            if (start != null && !start.before(luggCal)) return false;
-            if (end != null && !end.after(luggCal)) return false;
+
+            if (start != null && !start.before(luggCal)) {
+                return false;
+            }
+            if (end != null && !end.after(luggCal)) {
+                return false;
+            }
             return true;
         });
-        
+
         XYChart.Series series = new XYChart.Series();
         switch (type) {
             case "Week":
-                ReportWeek weekStart = (ReportWeek)cbGraphStart.getValue(),
-                        weekEnd = (ReportWeek)cbGraphEnd.getValue();
-                
-                if (weekStart == weekEnd) chartTitle.setText("Rapportage van week " + weekStart.weekNum);
-                else chartTitle.setText("Rapportage van week " + weekStart.weekNum + " tot en met " + weekEnd.weekNum);
-                
+                ReportWeek weekStart = (ReportWeek) cbGraphStart.getValue(),
+                 weekEnd = (ReportWeek) cbGraphEnd.getValue();
+
+                if (weekStart == weekEnd) {
+                    chartTitle.setText("Rapportage van week " + weekStart.weekNum);
+                } else {
+                    chartTitle.setText("Rapportage van week " + weekStart.weekNum + " tot en met " + weekEnd.weekNum);
+                }
+
                 series.setName("Hoeveelheid aangemaakte bagage");
-                
+
                 // days[0] = maximum amount, days[1-7] = Calendar.MONDAY - Calendar.SUNDAY
                 int[] days = new int[8];
                 resultStream.forEach((item) -> {
@@ -189,7 +208,7 @@ public class Report extends SubSceneController {
                     cal.setTime(item.date);
                     days[0] = Math.max(days[0], ++days[cal.get(Calendar.DAY_OF_WEEK)]);
                 });
-                
+
                 chartBarY.setUpperBound(boundSize(days[0]));
                 series.getData().add(new XYChart.Data("Maandag", days[2]));
                 series.getData().add(new XYChart.Data("Dinsdag", days[3]));
@@ -198,72 +217,77 @@ public class Report extends SubSceneController {
                 series.getData().add(new XYChart.Data("Vrijdag", days[6]));
                 series.getData().add(new XYChart.Data("Zaterdag", days[7]));
                 series.getData().add(new XYChart.Data("Zondag", days[1]));
-                
+
                 chartBar.getData().clear();
                 showChart(chartBar);
                 chartBar.getData().add(series);
-                
+
                 break;
             case "Maand":
-                ReportMaand maandStart = (ReportMaand)cbGraphStart.getValue(),
-                        maandEnd = (ReportMaand)cbGraphEnd.getValue();
-                
-                if (maandStart == maandEnd) chartTitle.setText("Rapportage van " + maandStart.monthName + " " + maandStart.jaarNum);
-                else chartTitle.setText("Rapportage van " + maandStart.monthName + " " + maandStart.jaarNum + " tot en met " + maandEnd.monthName + " " + maandEnd.jaarNum);
-                
+                ReportMaand maandStart = (ReportMaand) cbGraphStart.getValue(),
+                 maandEnd = (ReportMaand) cbGraphEnd.getValue();
+
+                if (maandStart == maandEnd) {
+                    chartTitle.setText("Rapportage van " + maandStart.monthName + " " + maandStart.jaarNum);
+                } else {
+                    chartTitle.setText("Rapportage van " + maandStart.monthName + " " + maandStart.jaarNum + " tot en met " + maandEnd.monthName + " " + maandEnd.jaarNum);
+                }
+
                 series.setName("Hoeveelheid aangemaakte bagage");
-                
+
                 int[] dates = new int[32];
                 resultStream.forEach((item) -> {
                     Calendar cal = Calendar.getInstance();
                     cal.setTime(item.date);
-                    dates[0] = Math.max(dates[0], ++dates[cal.get(Calendar.DAY_OF_MONTH)+1]);
+                    dates[0] = Math.max(dates[0], ++dates[cal.get(Calendar.DAY_OF_MONTH) + 1]);
                 });
-                
+
                 chartAreaY.setUpperBound(boundSize(dates[0]));
-                for (int i=0; i<31; i++) {
-                    series.getData().add(new XYChart.Data(i+1, dates[i+1]));
+                for (int i = 0; i < 31; i++) {
+                    series.getData().add(new XYChart.Data(i + 1, dates[i + 1]));
                 }
-            
+
                 chartArea.getData().clear();
                 showChart(chartArea);
                 chartArea.getData().add(series);
-                
+
                 break;
             case "Jaar":
-                ReportJaar jaarStart = (ReportJaar)cbGraphStart.getValue(),
-                        jaarEnd = (ReportJaar)cbGraphEnd.getValue();
-                
-                if (jaarStart == jaarEnd) chartTitle.setText("Rapportage van " + jaarStart.jaarNum);
-                else chartTitle.setText("Rapportage van " + jaarStart.jaarNum + " tot en met " + jaarEnd.jaarNum);
-                
+                ReportJaar jaarStart = (ReportJaar) cbGraphStart.getValue(),
+                 jaarEnd = (ReportJaar) cbGraphEnd.getValue();
+
+                if (jaarStart == jaarEnd) {
+                    chartTitle.setText("Rapportage van " + jaarStart.jaarNum);
+                } else {
+                    chartTitle.setText("Rapportage van " + jaarStart.jaarNum + " tot en met " + jaarEnd.jaarNum);
+                }
+
                 series.setName("Hoeveelheid aangemaakte bagage");
                 // days[0] = maximum amount, days[1-7] = Calendar.MONDAY - Calendar.SUNDAY
                 int[] months = new int[13];
                 resultStream.forEach((item) -> {
                     Calendar cal = Calendar.getInstance();
                     cal.setTime(item.date);
-                    months[0] = Math.max(months[0], ++months[cal.get(Calendar.MONTH)+1]);
+                    months[0] = Math.max(months[0], ++months[cal.get(Calendar.MONTH) + 1]);
                 });
-                
-                
+
                 chartBarY.setUpperBound(boundSize(months[0]));
-                for (int i=0; i<12; i++) {
-                    series.getData().add(new XYChart.Data(MONTH_NAMES[i], months[i+1]));
+                for (int i = 0; i < 12; i++) {
+                    series.getData().add(new XYChart.Data(MONTH_NAMES[i], months[i + 1]));
                 }
                 chartBar.getData().clear();
                 showChart(chartBar);
                 chartBar.getData().add(series);
-                
+
                 break;
         }
     }
-    
+
     private List<Luggage> loadFilteredResults() {
-        
+
         List<String> wheres = new ArrayList<>();
         List<Object> params = new ArrayList<>();
-        
+
         if (cbKind.getValue() != null) {
             wheres.add("`Kind` = ?");
             params.add(cbKind.getValue().id);
@@ -281,43 +305,50 @@ public class Report extends SubSceneController {
             Arrays.stream(keywords).forEach((keyword) -> {
                 keyword = keyword.trim();
                 wheres.add("`Miscellaneous` LIKE ? OR `FlightCode` LIKE ?");
-                for (int i=0; i<2; i++) params.add("%" + keyword + "%");
+                for (int i = 0; i < 2; i++) {
+                    params.add("%" + keyword + "%");
+                }
             });
         }
-        
+
         String query = "SELECT * FROM `luggage`";
         if (wheres.size() > 0) {
             query += " WHERE ";
-            for (int i=0; i<wheres.size(); i++) {
+            for (int i = 0; i < wheres.size(); i++) {
                 query = query + wheres.get(i) + " AND ";
             }
-            query = query.substring(0, query.length()-5);
+            query = query.substring(0, query.length() - 5);
         }
-        
+
         return app.db.executeAndReadList(Luggage.class, query, params.toArray());
     }
-    
+
     public void showChart(Node node) {
         this.chartBar.setVisible(node == chartBar);
         this.chartArea.setVisible(node == chartArea);
     }
-    
+
     public int boundSize(int size) {
-        for (int i=0; i<CHART_STEPS.length; i++) {
-            if (size < CHART_STEPS[i]) return CHART_STEPS[i];
+        for (int i = 0; i < CHART_STEPS.length; i++) {
+            if (size < CHART_STEPS[i]) {
+                return CHART_STEPS[i];
+            }
         }
-        return CHART_STEPS[CHART_STEPS.length-1];
+        return CHART_STEPS[CHART_STEPS.length - 1];
     }
-    
+
     private static interface ReportEntry {
+
         public Calendar getStartDate();
+
         public Calendar getEndDate();
     }
-    
+
     private static class ReportWeek implements ReportEntry {
+
         private final int weekNum;
         private final int jaarNum;
-        
+
         public ReportWeek(int weekNum, int jaarNum) {
             this.weekNum = weekNum;
             this.jaarNum = jaarNum;
@@ -346,8 +377,9 @@ public class Report extends SubSceneController {
             return cal;
         }
     }
-    
+
     private static class ReportMaand implements ReportEntry {
+
         private final int monthNum;
         private final int jaarNum;
         private final String monthName;
@@ -373,13 +405,14 @@ public class Report extends SubSceneController {
         @Override
         public Calendar getEndDate() {
             Calendar cal = Calendar.getInstance();
-            cal.set(monthNum==12 ? jaarNum+1 : jaarNum, monthNum==12 ? 1 : monthNum+1, 1, 23, 59, 59);
+            cal.set(monthNum == 12 ? jaarNum + 1 : jaarNum, monthNum == 12 ? 1 : monthNum + 1, 1, 23, 59, 59);
             cal.add(Calendar.DAY_OF_YEAR, -1);
             return cal;
         }
     }
-    
+
     private static class ReportJaar implements ReportEntry {
+
         private final int jaarNum;
 
         public ReportJaar(int jaarNum) {
@@ -390,7 +423,7 @@ public class Report extends SubSceneController {
         public String toString() {
             return "" + jaarNum;
         }
-        
+
         @Override
         public final Calendar getStartDate() {
             Calendar cal = Calendar.getInstance();
@@ -401,7 +434,7 @@ public class Report extends SubSceneController {
         @Override
         public Calendar getEndDate() {
             Calendar cal = Calendar.getInstance();
-            cal.set(jaarNum+1, 0, 1, 23, 59, 59);
+            cal.set(jaarNum + 1, 0, 1, 23, 59, 59);
             cal.add(Calendar.DAY_OF_YEAR, -1);
             return cal;
         }

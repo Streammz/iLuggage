@@ -10,7 +10,7 @@ import com.ithee.iluggage.core.database.classes.LuggageKind;
 import com.ithee.iluggage.core.scene.SubSceneController;
 import com.ithee.iluggage.core.scene.SceneController;
 import com.ithee.iluggage.core.security.PasswordHasher;
-import com.ithee.iluggage.screens.MainMenu;
+import com.ithee.iluggage.screens.Login;
 import java.util.Date;
 import java.util.Optional;
 import javafx.application.Application;
@@ -92,7 +92,6 @@ public class ILuggageApplication extends Application {
         // Initializeer het scherm en zijn standaardwaarden.
         this.primaryStage = primaryStage;
         this.primaryStage.getIcons().add(new Image("/Appicon.png"));
-        this.primaryStage.setMaximized(true);
         this.primaryStage.setMinWidth(MIN_WIDTH);
         this.primaryStage.setMinHeight(MIN_HEIGHT);
         this.primaryStage.setWidth(MIN_WIDTH);
@@ -120,7 +119,7 @@ public class ILuggageApplication extends Application {
         };
 
         // Schakel naar het eerste scherm: het inlogscherm.
-        this.switchMainScene(MainMenu.class);
+        this.switchMainScene(Login.class);
     }
 
     /**
@@ -291,15 +290,6 @@ public class ILuggageApplication extends Application {
 
         // Indien het account niet bestaat, geef false terug.
         if (a == null) {
-
-            // Controleert of het programma buiten het HvA word benaderd
-            if (db.lastError.contains("Access denied for user")) {
-                ILuggageApplication.showSimpleMessage(Alert.AlertType.ERROR,
-                        "Geen verbinding met de database",
-                        "Geen verbinding kunnen maken met de database van het HvA.\n"
-                        + "Deze applicatie is op dit moment niet buiten het HvA te gebruiken.");
-            }
-
             return false;
         }
 

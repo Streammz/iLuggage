@@ -1,4 +1,3 @@
-
 package com.ithee.iluggage.screens;
 
 import com.ithee.iluggage.core.database.classes.*;
@@ -17,25 +16,31 @@ import javafx.scene.layout.VBox;
  * @author iThee
  */
 public class SearchCustomer extends SubSceneController {
+
     private static final String DEFAULT_QUERY = "SELECT * FROM `customers`";
     private static final int MAX_DISPLAY_SIZE = 25;
 
-    @FXML private TextField tfName;
-    @FXML private TextField tfEmail;
-    @FXML private TextField tfAddress;
-    
-    @FXML private VBox results;
-    
+    @FXML
+    private TextField tfName;
+    @FXML
+    private TextField tfEmail;
+    @FXML
+    private TextField tfAddress;
+
+    @FXML
+    private VBox results;
+
     @Override
     public void onCreate() {
         List<Customer> list = app.db.executeAndReadList(Customer.class, DEFAULT_QUERY);
         showResults(list);
     }
-    
-    @FXML public void onSearch() {
+
+    @FXML
+    public void onSearch() {
         List<String> wheres = new ArrayList<>();
         List<Object> params = new ArrayList<>();
-        
+
         if (tfName.getLength() > 0) {
             wheres.add("`Name` LIKE ?");
             params.add("%" + tfName.getText() + "%");
@@ -48,26 +53,26 @@ public class SearchCustomer extends SubSceneController {
             wheres.add("`Address` LIKE ?");
             params.add("%" + tfAddress.getText() + "%");
         }
-        
+
         String query = DEFAULT_QUERY;
         if (wheres.size() > 0) {
             query += " WHERE ";
-            for (int i=0; i<wheres.size(); i++) {
+            for (int i = 0; i < wheres.size(); i++) {
                 query = query + wheres.get(i) + " AND ";
             }
-            query = query.substring(0, query.length()-5);
+            query = query.substring(0, query.length() - 5);
         }
-        
+
         List<Customer> list = app.db.executeAndReadList(Customer.class, query, params.toArray());
         showResults(list);
     }
-    
+
     public void showResults(List<Customer> list) {
         // Clear old list (if there is anything in it)
         this.results.getChildren().clear();
-        
+
         int size = Math.min(list.size(), MAX_DISPLAY_SIZE);
-        for (int i=0; i<size; i++) {
+        for (int i = 0; i < size; i++) {
             Customer customer = list.get(i);
             try {
                 //Load a new item (SearchCustomerListItem.java) so that it can be displayed in the list
@@ -80,10 +85,10 @@ public class SearchCustomer extends SubSceneController {
                 controller.app = this.app;
                 controller.parent = this;
                 controller.onCreate();
-                
+
                 // Add to the list and style
                 this.results.getChildren().add(controller.root);
-                
+
                 // Add a seperator between items
                 this.results.getChildren().add(new Separator(Orientation.HORIZONTAL));
             } catch (Exception ex) {
@@ -93,6 +98,4 @@ public class SearchCustomer extends SubSceneController {
         }
     }
 
-    
-    
 }

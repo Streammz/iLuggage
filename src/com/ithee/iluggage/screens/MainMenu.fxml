@@ -10,86 +10,89 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane minHeight="800.0" minWidth="1200.0" stylesheets="@../../../../main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.MainMenu">
-   <top>
-      <GridPane style="-fx-border-color: lightgray transparent darkgray transparent;" styleClass="mainHeader" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="NEVER" />
-          <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" />
-            <ColumnConstraints hgrow="NEVER" maxWidth="195.0" minWidth="129.0" prefWidth="129.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints maxHeight="109.0" minHeight="10.0" prefHeight="109.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <ImageView pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT">
-               <image>
-                  <Image url="@../../../../corendon.png" />
-               </image>
-               <GridPane.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </GridPane.margin>
-            </ImageView>
-            <Pane styleClass="bgTheme" GridPane.columnSpan="3" GridPane.rowIndex="1" />
-            <TextFlow textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets bottom="13.0" left="13.0" right="13.0" top="13.0" />
-               </GridPane.margin>
-               <children>
-                  <Text fill="WHITE" style="-fx-font-weight: bold;" text="U bent ingelogd als: " />
-                  <Text fx:id="loggedinUser" fill="WHITE" style="-fx-font-weight: bold;" text="Admin" />
-               </children>
-            </TextFlow>
-            <Button onAction="#onPressLogout" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: DDD; -fx-font-weight: bold;" text="Uitloggen" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets right="10.0" />
-               </GridPane.margin>
-            </Button>
-         </children>
-      </GridPane>
-   </top>
-   <left>
-      <VBox minHeight="520.0" minWidth="320.0" spacing="10.0" style="-fx-background-color: #FAFAFA; -fx-border-color: transparent darkgray transparent transparent;" BorderPane.alignment="CENTER">
-         <children>
-            <Text styleClass="menuTitle" text="Bagage" />
-            <Button fx:id="btnFoundLuggage" onAction="#onPressFoundLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Gevonden bagage" />
-            <Button fx:id="btnLostLuggage" onAction="#onPressLostLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Verloren bagage" />
-            <Button fx:id="btnSearchLuggage" onAction="#onPressSearchLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Bagage doorzoeken" />
+    <top>
+        <GridPane style="-fx-border-color: lightgray transparent darkgray transparent;" styleClass="mainHeader" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" />
+                <ColumnConstraints hgrow="NEVER" maxWidth="195.0" minWidth="129.0" prefWidth="129.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="109.0" minHeight="10.0" prefHeight="109.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <ImageView pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT">
+                    <image>
+                        <Image url="@../../../../corendon.png" />
+                    </image>
+                    <GridPane.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    </GridPane.margin>
+                </ImageView>
+                <Pane styleClass="bgTheme" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+                <TextFlow textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets bottom="13.0" left="13.0" right="13.0" top="13.0" />
+                    </GridPane.margin>
+                    <children>
+                        <Text fill="WHITE" style="-fx-font-weight: bold;" text="U bent ingelogd als: " />
+                        <Text fx:id="loggedinUser" fill="WHITE" style="-fx-font-weight: bold;" text="Admin" />
+                    </children>
+                </TextFlow>
+                <Button onAction="#onPressLogout" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: DDD; -fx-font-weight: bold;" text="Uitloggen" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets right="10.0" />
+                    </GridPane.margin>
+                </Button>
+            </children>
+        </GridPane>
+    </top>
+    <left>
+        <VBox minHeight="520.0" minWidth="320.0" spacing="10.0" style="-fx-background-color: #FAFAFA; -fx-border-color: transparent darkgray transparent transparent;" BorderPane.alignment="CENTER">
+            <children>
+                <Text styleClass="menuTitle" text="Bagage" />
+                <Button fx:id="btnFoundLuggage" onAction="#onPressFoundLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Gevonden bagage" />
+                <Button fx:id="btnLostLuggage" onAction="#onPressLostLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Verloren bagage" />
+                <Button fx:id="btnSearchLuggage" onAction="#onPressSearchLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Bagage doorzoeken" />
             
-            <Text styleClass="menuTitle" text="Klanten">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin></Text>
-            <Button fx:id="btnAddCustomer" onAction="#onPressAddCustomer" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Klant invoeren" />
-            <Button fx:id="btnSearchCustomer" onAction="#onPressSearchCustomer" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Klanten doorzoeken" />
+                <Text styleClass="menuTitle" text="Klanten">
+                    <VBox.margin>
+                        <Insets top="5.0" />
+                    </VBox.margin>
+                </Text>
+                <Button fx:id="btnAddCustomer" onAction="#onPressAddCustomer" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Klant invoeren" />
+                <Button fx:id="btnSearchCustomer" onAction="#onPressSearchCustomer" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Klanten doorzoeken" />
             
-            <Text fx:id="mngrTitle" styleClass="menuTitle" text="Management">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin></Text>
-            <Button fx:id="btnReport" onAction="#onPressReport" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Rapportage" />
-            <Text fx:id="adminTitle" styleClass="menuTitle" text="Administratie">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin></Text>
-            <Button fx:id="btnManageUsers" onAction="#onPressManageUsers" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Gebruikers beheren" />
-         </children>
-         <padding>
-            <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
-         </padding>
-      </VBox>
-   </left>
-   <bottom>
-      <TextFlow style="-fx-background-color: E0E0E0; -fx-border-color: darkgray transparent transparent transparent;" BorderPane.alignment="CENTER">
-         <children>
-            <Text text="Copyright © 2015 iThee, All rights reserved." />
-         </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-         <padding>
-            <Insets left="20.0" />
-         </padding>
-      </TextFlow>
-   </bottom>
+                <Text fx:id="mngrTitle" styleClass="menuTitle" text="Management">
+                    <VBox.margin>
+                        <Insets top="5.0" />
+                    </VBox.margin>
+                </Text>
+                <Button fx:id="btnReport" onAction="#onPressReport" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Rapportage" />
+                <Text fx:id="adminTitle" styleClass="menuTitle" text="Administratie">
+                    <VBox.margin>
+                        <Insets top="5.0" />
+                    </VBox.margin>
+                </Text>
+                <Button fx:id="btnManageUsers" onAction="#onPressManageUsers" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Gebruikers beheren" />
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
+            </padding>
+        </VBox>
+    </left>
+    <bottom>
+        <TextFlow style="-fx-background-color: E0E0E0; -fx-border-color: darkgray transparent transparent transparent;" BorderPane.alignment="CENTER">
+            <children>
+                <Text text="Copyright © 2015 iThee, All rights reserved." />
+            </children>
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+            <padding>
+                <Insets left="20.0" />
+            </padding>
+        </TextFlow>
+    </bottom>
 </BorderPane>

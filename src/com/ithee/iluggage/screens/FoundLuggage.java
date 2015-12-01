@@ -1,4 +1,3 @@
-
 package com.ithee.iluggage.screens;
 
 import com.ithee.iluggage.core.controls.AutocompleteTextField;
@@ -16,19 +15,28 @@ import javafx.scene.control.*;
  * @author iThee
  */
 public class FoundLuggage extends SubSceneController {
-    
+
     private static final String SQL_INSERT = "INSERT INTO `luggage` VALUES ("
             + "NULL, NULL, ?, ?, ?, ?, ?, ?, ?, ?, 1)";
-    
-    @FXML private ChoiceBox<LuggageKind> chKind;
-    @FXML private AutocompleteTextField tfBrand;
-    @FXML private AutocompleteTextField tfColor;
-    @FXML private TextField tfSize1;
-    @FXML private TextField tfSize2;
-    @FXML private TextField tfSize3;
-    @FXML private CheckBox cbStickers;
-    @FXML private TextField tfFlightnr;
-    @FXML private TextArea tfMisc;
+
+    @FXML
+    private ChoiceBox<LuggageKind> chKind;
+    @FXML
+    private AutocompleteTextField tfBrand;
+    @FXML
+    private AutocompleteTextField tfColor;
+    @FXML
+    private TextField tfSize1;
+    @FXML
+    private TextField tfSize2;
+    @FXML
+    private TextField tfSize3;
+    @FXML
+    private CheckBox cbStickers;
+    @FXML
+    private TextField tfFlightnr;
+    @FXML
+    private TextArea tfMisc;
 
     @Override
     public void onCreate() {
@@ -36,36 +44,34 @@ public class FoundLuggage extends SubSceneController {
         app.dbKinds.getValues().forEach((kind) -> {
             chKind.getItems().add(kind);
         });
-        
+
         app.dbBrands.getValues().forEach((brand) -> {
             tfBrand.getEntries().add(brand.name);
         });
-        
+
         app.dbColors.getValues().forEach((color) -> {
             tfColor.getEntries().add(color.name);
         });
     }
-    
+
     public void onCancel(ActionEvent event) {
         app.switchSubScene(null);
     }
 
     public void onAdd(ActionEvent event) {
-        
+
         if (!isFormValid()) {
-            showSimpleMessage(Alert.AlertType.ERROR, "Foutieve gegevens.", 
+            showSimpleMessage(Alert.AlertType.ERROR, "Foutieve gegevens.",
                     "Niet alle gegevens zijn (correct) ingevoerd.");
         }
-        
+
         double[] sizes;
         try {
             sizes = getSizes();
         } catch (NumberFormatException ex) {
             return;
         }
-        
-        
-        
+
         Luggage lugg = new Luggage();
         lugg.flightCode = tfFlightnr.getText();
         lugg.setKind(chKind.getValue());
@@ -75,7 +81,7 @@ public class FoundLuggage extends SubSceneController {
         lugg.stickers = cbStickers.isSelected();
         lugg.miscellaneous = tfMisc.getText();
         lugg.date = new Date();
-        
+
         lugg.id = app.db.executeStatement(SQL_INSERT, (statement) -> {
             statement.add(lugg.flightCode);
             statement.add(lugg.kind);
@@ -86,25 +92,29 @@ public class FoundLuggage extends SubSceneController {
             statement.add(lugg.miscellaneous);
             statement.add(lugg.date);
         });
-        
+
         app.switchSubScene(null);
     }
-    
+
     public boolean isFormValid() {
-        if (this.chKind.getValue() == null) return false;
-        
+        if (this.chKind.getValue() == null) {
+            return false;
+        }
+
         try {
             getSizes();
         } catch (NumberFormatException ex) {
             return false;
         }
-        
+
         return true;
     }
-    
+
     private double[] getSizes() throws NumberFormatException {
-        if (tfSize1.getLength() == 0 || tfSize2.getLength() == 0 || tfSize3.getLength() == 0) return null;
-        return new double[] {
+        if (tfSize1.getLength() == 0 || tfSize2.getLength() == 0 || tfSize3.getLength() == 0) {
+            return null;
+        }
+        return new double[]{
             Double.parseDouble(tfSize1.getText()),
             Double.parseDouble(tfSize2.getText()),
             Double.parseDouble(tfSize3.getText())

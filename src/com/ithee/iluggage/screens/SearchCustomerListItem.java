@@ -1,4 +1,3 @@
-
 package com.ithee.iluggage.screens;
 
 import com.ithee.iluggage.ILuggageApplication;
@@ -13,19 +12,26 @@ import javafx.scene.text.Text;
  * @author iThee
  */
 public class SearchCustomerListItem {
-        
+
     public ILuggageApplication app;
     public Customer myCustomer;
     public Parent root;
     public SearchCustomer parent;
-    
-    @FXML private Text txtName;
-    @FXML private Text txtEmail;
-    @FXML private Text txtPhone;
-    @FXML private Text txtAddress;
-    @FXML private Text txtPostalCode;
-    @FXML private Text txtHouseNumber;
-    @FXML private Text txtAddition;
+
+    @FXML
+    private Text txtName;
+    @FXML
+    private Text txtEmail;
+    @FXML
+    private Text txtPhone;
+    @FXML
+    private Text txtAddress;
+    @FXML
+    private Text txtPostalCode;
+    @FXML
+    private Text txtHouseNumber;
+    @FXML
+    private Text txtAddition;
 
     public void onCreate() {
         txtName.setText(myCustomer.name);
@@ -36,15 +42,17 @@ public class SearchCustomerListItem {
         txtHouseNumber.setText(myCustomer.housenumber == null ? "-" : myCustomer.housenumber);
         txtAddition.setText(myCustomer.addition == null ? "-" : myCustomer.addition);
     }
-    
+
     public void onClick() {
-        app.showPopupScene(CustomerDetails.class).loadCustomer(myCustomer, () -> { parent.onSearch(); });
+        app.showPopupScene(CustomerDetails.class).loadCustomer(myCustomer, () -> {
+            parent.onSearch();
+        });
     }
-    
+
     public void onClickDelete() {
-        boolean delete = ILuggageApplication.showConfirmDialog("Klant verwijderen", 
+        boolean delete = ILuggageApplication.showConfirmDialog("Klant verwijderen",
                 "Weet je zeker dat je de klant \"" + myCustomer.name + "\" wilt verwijderen?");
-        
+
         if (delete) {
             app.db.executeStatement("DELETE FROM `customers` WHERE `Id` = ?", myCustomer.id);
             // Refresh the results

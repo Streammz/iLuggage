@@ -1,4 +1,3 @@
-
 package com.ithee.iluggage.screens;
 
 import com.ithee.iluggage.core.controls.AutocompleteTextField;
@@ -21,47 +20,63 @@ import javafx.scene.control.*;
  * @author iThee
  */
 public class LostLuggage extends SubSceneController {
-    
+
     private static final String SQL_INSERT_CUSTOMER = "INSERT INTO `customers` VALUES ("
             + "NULL,  ?, ?, ?, ?, ?, ?, ?)";
-    
+
     private static final String SQL_INSERT_LUGGAGE = "INSERT INTO `luggage` VALUES ("
             + "NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, 2)";
-    
-    @FXML private ChoiceBox<LuggageKind> chKind;
-    @FXML private AutocompleteTextField tfBrand;
-    @FXML private AutocompleteTextField tfColor;
-    @FXML private TextField tfSize1;
-    @FXML private TextField tfSize2;
-    @FXML private TextField tfSize3;
-    @FXML private CheckBox cbStickers;
-    @FXML private TextField tfFlightnr;
-    @FXML private TextArea tfMisc;
-    @FXML private SelectingTextField<Customer> tfCustomername;
-    @FXML private TextField tfEmail;
-    @FXML private TextField tfPhone;
-    @FXML private TextField tfAddress;
-    @FXML private TextField tfPostalCode;
-    @FXML private TextField tfHousenumber;
-    @FXML private TextField tfAddition;
+
+    @FXML
+    private ChoiceBox<LuggageKind> chKind;
+    @FXML
+    private AutocompleteTextField tfBrand;
+    @FXML
+    private AutocompleteTextField tfColor;
+    @FXML
+    private TextField tfSize1;
+    @FXML
+    private TextField tfSize2;
+    @FXML
+    private TextField tfSize3;
+    @FXML
+    private CheckBox cbStickers;
+    @FXML
+    private TextField tfFlightnr;
+    @FXML
+    private TextArea tfMisc;
+    @FXML
+    private SelectingTextField<Customer> tfCustomername;
+    @FXML
+    private TextField tfEmail;
+    @FXML
+    private TextField tfPhone;
+    @FXML
+    private TextField tfAddress;
+    @FXML
+    private TextField tfPostalCode;
+    @FXML
+    private TextField tfHousenumber;
+    @FXML
+    private TextField tfAddition;
 
     private List<Customer> customers;
     private Customer selectedCustomer;
-    
+
     @Override
     public void onCreate() {
         app.dbKinds.getValues().forEach((kind) -> {
             chKind.getItems().add(kind);
         });
-        
+
         app.dbBrands.getValues().forEach((brand) -> {
             tfBrand.getEntries().add(brand.name);
         });
-        
+
         app.dbColors.getValues().forEach((color) -> {
             tfColor.getEntries().add(color.name);
         });
-        
+
         customers = app.db.executeAndReadList(Customer.class, "SELECT * FROM `customers`");
         tfCustomername.getEntries().addAll(customers);
         tfCustomername.setOnSelect((customer) -> {
@@ -78,9 +93,9 @@ public class LostLuggage extends SubSceneController {
             tfPostalCode.setText(customer.postalcode);
             tfHousenumber.setText(customer.housenumber);
             tfAddition.setText(customer.addition);
-            
+
             selectedCustomer = customer;
-            
+
             tfCustomername.textProperty().addListener(new ChangeListener<String>() {
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                     tfEmail.setText(null);
@@ -96,31 +111,31 @@ public class LostLuggage extends SubSceneController {
                     tfHousenumber.setDisable(false);
                     tfAddition.setDisable(false);
                     tfCustomername.textProperty().removeListener(this);
-                    
+
                     selectedCustomer = null;
                 }
             });
         });
     }
-    
+
     public void onCancel(ActionEvent event) {
         app.switchSubScene(null);
     }
 
     public void onAdd(ActionEvent event) {
-        
+
         if (!isFormValid()) {
-            showSimpleMessage(Alert.AlertType.ERROR, "Foutieve gegevens.", 
+            showSimpleMessage(Alert.AlertType.ERROR, "Foutieve gegevens.",
                     "Niet alle gegevens zijn (correct) ingevoerd.");
         }
-        
+
         double[] sizes;
         try {
             sizes = getSizes();
         } catch (NumberFormatException ex) {
             return;
         }
-        
+
         Customer cus;
         if (this.selectedCustomer != null) {
             cus = this.selectedCustomer;
@@ -133,7 +148,7 @@ public class LostLuggage extends SubSceneController {
             cus.postalcode = tfPostalCode.getText();
             cus.housenumber = tfHousenumber.getText();
             cus.addition = tfAddition.getText();
-            
+
             cus.id = app.db.executeStatement(SQL_INSERT_CUSTOMER, (statement) -> {
                 statement.add(cus.name);
                 statement.add(cus.email);
@@ -144,8 +159,10 @@ public class LostLuggage extends SubSceneController {
                 statement.add(cus.addition);
             });
         }
-        if (cus.id == -1) return;
-        
+        if (cus.id == -1) {
+            return;
+        }
+
         Luggage lugg = new Luggage();
         lugg.customerId = cus.id;
         lugg.flightCode = tfFlightnr.getText();
@@ -156,7 +173,7 @@ public class LostLuggage extends SubSceneController {
         lugg.stickers = cbStickers.isSelected();
         lugg.miscellaneous = tfMisc.getText();
         lugg.date = new Date();
-        
+
         lugg.id = app.db.executeStatement(SQL_INSERT_LUGGAGE, (statement) -> {
             statement.add(lugg.customerId);
             statement.add(lugg.flightCode);
@@ -168,33 +185,46 @@ public class LostLuggage extends SubSceneController {
             statement.add(lugg.miscellaneous);
             statement.add(lugg.date);
         });
-        
+
         app.switchSubScene(null);
     }
-    
+
     public boolean isFormValid() {
         if (this.selectedCustomer != null) {
-            if (this.tfCustomername.getLength() == 0) return false;
-            if (this.tfEmail.getLength() == 0) return false;
-            if (this.tfAddress.getLength() == 0) return false;
-            if (this.tfPostalCode.getLength() == 0) return false;
-            if (this.tfHousenumber.getLength() == 0) return false;
+            if (this.tfCustomername.getLength() == 0) {
+                return false;
+            }
+            if (this.tfEmail.getLength() == 0) {
+                return false;
+            }
+            if (this.tfAddress.getLength() == 0) {
+                return false;
+            }
+            if (this.tfPostalCode.getLength() == 0) {
+                return false;
+            }
+            if (this.tfHousenumber.getLength() == 0) {
+                return false;
+            }
         }
-        if (this.chKind.getValue() == null) return false;
-        
+        if (this.chKind.getValue() == null) {
+            return false;
+        }
+
         try {
             getSizes();
         } catch (NumberFormatException ex) {
             return false;
         }
-        
+
         return true;
     }
-    
-    
+
     private double[] getSizes() throws NumberFormatException {
-        if (tfSize1.getText().length() == 0 || tfSize2.getText().length() == 0 || tfSize3.getText().length() == 0) return null;
-        return new double[] {
+        if (tfSize1.getText().length() == 0 || tfSize2.getText().length() == 0 || tfSize3.getText().length() == 0) {
+            return null;
+        }
+        return new double[]{
             Double.parseDouble(tfSize1.getText()),
             Double.parseDouble(tfSize2.getText()),
             Double.parseDouble(tfSize3.getText())

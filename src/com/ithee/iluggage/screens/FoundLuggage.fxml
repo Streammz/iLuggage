@@ -14,53 +14,55 @@
     <stylesheets>
         <URL value="@../../../../main.css" />
     </stylesheets>
-   <center>
-      <GridPane hgap="5" vgap="5" BorderPane.alignment="CENTER">
-          <BorderPane.margin><Insets bottom="5" left="5" right="5" top="5" /></BorderPane.margin>
-        <columnConstraints>
-          <ColumnConstraints hgrow="NEVER" prefWidth="100.0" />
-          <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints prefHeight="30.0" vgrow="NEVER" />
-          <RowConstraints prefHeight="30.0" vgrow="NEVER" />
-          <RowConstraints prefHeight="30.0" vgrow="NEVER" />
-          <RowConstraints prefHeight="30.0" vgrow="NEVER" />
-          <RowConstraints prefHeight="30.0" vgrow="NEVER" />
-          <RowConstraints prefHeight="30.0" vgrow="NEVER" />
-          <RowConstraints prefHeight="50.0" vgrow="ALWAYS" />
-          <RowConstraints prefHeight="30.0" vgrow="NEVER" />
-        </rowConstraints>
-         <children>
-            <Text text="Soort" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="0" />
-            <Text text="Merk" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="1" />
-            <Text text="Kleur" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="2" />
-            <Text text="Formaat" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="3" />
-            <Text text="Stickers" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="4" />
-            <Text text="Vluchtnummer" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="5" />
-            <Text text="Overige Kenmerken" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="6" />
+    <center>
+        <GridPane hgap="5" vgap="5" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="5" left="5" right="5" top="5" />
+            </BorderPane.margin>
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" prefWidth="100.0" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints prefHeight="30.0" vgrow="NEVER" />
+                <RowConstraints prefHeight="30.0" vgrow="NEVER" />
+                <RowConstraints prefHeight="30.0" vgrow="NEVER" />
+                <RowConstraints prefHeight="30.0" vgrow="NEVER" />
+                <RowConstraints prefHeight="30.0" vgrow="NEVER" />
+                <RowConstraints prefHeight="30.0" vgrow="NEVER" />
+                <RowConstraints prefHeight="50.0" vgrow="ALWAYS" />
+                <RowConstraints prefHeight="30.0" vgrow="NEVER" />
+            </rowConstraints>
+            <children>
+                <Text text="Soort" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="0" />
+                <Text text="Merk" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="1" />
+                <Text text="Kleur" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="2" />
+                <Text text="Formaat" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="3" />
+                <Text text="Stickers" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="4" />
+                <Text text="Vluchtnummer" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="5" />
+                <Text text="Overige Kenmerken" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="6" />
             
-            <ChoiceBox maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="0" fx:id="chKind" />
-            <AutocompleteTextField maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="tfBrand" />
-            <AutocompleteTextField maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="tfColor" />
-            <HBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                <children>
-                    <TextField HBox.hgrow="ALWAYS" fx:id="tfSize1" />
-                    <TextField HBox.hgrow="ALWAYS" fx:id="tfSize2" />
-                    <TextField HBox.hgrow="ALWAYS" fx:id="tfSize3" />
-                </children>
-            </HBox>
-            <CheckBox maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="4" fx:id="cbStickers" />
-            <TextField maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="5" fx:id="tfFlightnr" />   
-            <TextArea maxWidth="Infinity" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6" fx:id="tfMisc" />
+                <ChoiceBox maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="0" fx:id="chKind" />
+                <AutocompleteTextField maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="tfBrand" />
+                <AutocompleteTextField maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="tfColor" />
+                <HBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <children>
+                        <TextField HBox.hgrow="ALWAYS" fx:id="tfSize1" />
+                        <TextField HBox.hgrow="ALWAYS" fx:id="tfSize2" />
+                        <TextField HBox.hgrow="ALWAYS" fx:id="tfSize3" />
+                    </children>
+                </HBox>
+                <CheckBox maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="4" fx:id="cbStickers" />
+                <TextField maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="5" fx:id="tfFlightnr" />   
+                <TextArea maxWidth="Infinity" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6" fx:id="tfMisc" />
             
-            <HBox alignment="CENTER_RIGHT" spacing="5" GridPane.columnSpan="2" GridPane.rowIndex="7">
-                <children>
-                    <Button text="Annuleer" onAction="#onCancel" />
-                    <Button text="Toevoegen" onAction="#onAdd" />
-                </children>
-            </HBox> 
-         </children>
-      </GridPane>
-   </center>
+                <HBox alignment="CENTER_RIGHT" spacing="5" GridPane.columnSpan="2" GridPane.rowIndex="7">
+                    <children>
+                        <Button text="Annuleer" onAction="#onCancel" />
+                        <Button text="Toevoegen" onAction="#onAdd" />
+                    </children>
+                </HBox> 
+            </children>
+        </GridPane>
+    </center>
 </BorderPane>

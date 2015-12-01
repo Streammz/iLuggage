@@ -14,32 +14,38 @@ import javafx.scene.text.Text;
  * @author iThee
  */
 public class MainMenu extends SceneController {
-    
-    @FXML private Text adminTitle, mngrTitle;
-    @FXML private Text loggedinUser;
-    
-    @FXML private Button btnFoundLuggage, btnLostLuggage, btnSearchLuggage;
-    @FXML private Button btnAddCustomer, btnSearchCustomer;
-    @FXML private Button btnReport;
-    @FXML private Button btnManageUsers;
-    
+
+    @FXML
+    private Text adminTitle, mngrTitle;
+    @FXML
+    private Text loggedinUser;
+
+    @FXML
+    private Button btnFoundLuggage, btnLostLuggage, btnSearchLuggage;
+    @FXML
+    private Button btnAddCustomer, btnSearchCustomer;
+    @FXML
+    private Button btnReport;
+    @FXML
+    private Button btnManageUsers;
+
     private Button currentSelected;
-    
+
     @Override
     public void onCreate() {
         loggedinUser.setText(app.getUser().name);
-        
+
         if (!app.isUserManager()) {
             removeNode(btnReport, mngrTitle, btnManageUsers, adminTitle);
         } else if (!app.isUserAdmin()) {
             removeNode(btnManageUsers, adminTitle);
         }
     }
-    
+
     private <T extends SubSceneController> void clickButton(Class<T> theClass, Button btn) {
         if (this.currentSelected != null) {
             this.currentSelected.getStyleClass().remove("selected");
-            
+
             if (this.currentSelected == btn) {
                 this.currentSelected = null;
                 app.switchSubScene(null);
@@ -48,10 +54,9 @@ public class MainMenu extends SceneController {
         }
         this.currentSelected = btn;
         btn.getStyleClass().add("selected");
-        
+
         app.switchSubScene(theClass);
     }
-    
 
     public void onPressFoundLuggage(ActionEvent event) {
         clickButton(FoundLuggage.class, btnFoundLuggage);
@@ -85,5 +90,5 @@ public class MainMenu extends SceneController {
         app.logOut();
         app.switchMainScene(Login.class);
     }
-    
+
 }
