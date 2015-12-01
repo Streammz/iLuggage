@@ -2,6 +2,7 @@
 package com.ithee.iluggage.screens;
 
 import com.ithee.iluggage.core.controls.AutocompleteTextField;
+import com.ithee.iluggage.core.controls.SelectingTextField;
 import com.ithee.iluggage.core.database.classes.Customer;
 import com.ithee.iluggage.core.database.classes.Luggage;
 import com.ithee.iluggage.core.database.classes.LuggageKind;
@@ -9,6 +10,7 @@ import com.ithee.iluggage.core.scene.SubSceneController;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Date;
+import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -33,10 +35,16 @@ public class LostLuggage extends SubSceneController {
     @FXML private CheckBox cbStickers;
     @FXML private TextField tfFlightnr;
     @FXML private TextArea tfMisc;
-    @FXML private TextField tfCustomername;
+    @FXML private SelectingTextField<Customer> tfCustomername;
     @FXML private TextField tfEmail;
     @FXML private TextField tfPhone;
+    @FXML private TextField tfAddress;
+    @FXML private TextField tfPostalCode;
+    @FXML private TextField tfHousenumber;
+    @FXML private TextField tfAddition;
 
+    private List<Customer> customers;
+    
     @Override
     public void onCreate() {
         app.dbKinds.getValues().forEach((kind) -> {
@@ -49,6 +57,18 @@ public class LostLuggage extends SubSceneController {
         
         app.dbColors.getValues().forEach((color) -> {
             tfColor.getEntries().add(color.name);
+        });
+        
+        customers = app.db.executeAndReadList(Customer.class, "SELECT * FROM `customers`");
+        tfCustomername.getEntries().addAll(customers);
+        tfCustomername.setOnSelect((customer) -> {
+            tfCustomername.setText(customer.name);
+            tfEmail.setText(customer.email);
+            tfPhone.setText(customer.phone);
+            tfAddress.setText(customer.address);
+            tfPostalCode.setText(customer.postalcode);
+            tfHousenumber.setText(customer.housenumber);
+            tfAddition.setText(customer.addition);
         });
     }
     

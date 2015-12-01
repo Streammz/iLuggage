@@ -5,6 +5,7 @@ import com.ithee.iluggage.ILuggageApplication;
 import com.ithee.iluggage.core.database.classes.Customer;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 
 /**
@@ -16,6 +17,7 @@ public class SearchCustomerListItem {
     public ILuggageApplication app;
     public Customer myCustomer;
     public Parent root;
+    public SearchCustomer parent;
     
     @FXML private Text txtName;
     @FXML private Text txtEmail;
@@ -37,5 +39,16 @@ public class SearchCustomerListItem {
     
     public void onClick() {
         app.showPopupScene(CustomerDetails.class).loadCustomer(myCustomer);
+    }
+    
+    public void onClickDelete() {
+        boolean delete = ILuggageApplication.showConfirmDialog("Klant verwijderen", 
+                "Weet je zeker dat je de klant \"" + myCustomer.name + "\" wilt verwijderen?");
+        
+        if (delete) {
+            app.db.executeStatement("DELETE FROM `customers` WHERE `Id` = ?", myCustomer.id);
+            // Refresh the results
+            parent.onSearch();
+        }
     }
 }

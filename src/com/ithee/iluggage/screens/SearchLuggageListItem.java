@@ -15,6 +15,7 @@ public class SearchLuggageListItem {
     public ILuggageApplication app;
     public Luggage myLuggage;
     public Parent root;
+    public SearchLuggage parent;
 
     
     @FXML private Text txtKind;
@@ -39,6 +40,17 @@ public class SearchLuggageListItem {
     
     public void onClick() {
         app.showPopupScene(LuggageDetails.class).loadLuggage(myLuggage);
+    }
+    
+    public void onClickDelete() {
+        boolean delete = ILuggageApplication.showConfirmDialog("Bagage verwijderen", 
+                "Weet je zeker dat je deze bagage wilt verwijderen?");
+        
+        if (delete) {
+            app.db.executeStatement("DELETE FROM `luggage` WHERE `Id` = ?", myLuggage.id);
+            // Refresh the results
+            parent.onSearch();
+        }
     }
 
 }

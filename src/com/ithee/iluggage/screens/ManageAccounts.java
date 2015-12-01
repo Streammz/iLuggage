@@ -68,6 +68,7 @@ public class ManageAccounts extends SubSceneController {
                 controller.myAccount = account;
                 controller.root = parent;
                 controller.app = this.app;
+                controller.parent = this;
                 controller.onCreate();
                 
                 // Add to the list and style

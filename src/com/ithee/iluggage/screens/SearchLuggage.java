@@ -102,6 +102,7 @@ public class SearchLuggage extends SubSceneController {
                 controller.myLuggage = luggage;
                 controller.root = parent;
                 controller.app = this.app;
+                controller.parent = this;
                 controller.onCreate();
                 
                 // Add to the list and style

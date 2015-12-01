@@ -42,34 +42,34 @@
     -fx-text-fill: #ffffff;
 }
 .menuButton.selected {
-    -fx-background-color: #00809A;
+    -fx-background-color: #0082BA;
     -fx-underline: true;
 }
 
 /* Color 2 */
-.colored2 .coloredButton {
+.colored1 .coloredButton {
     -fx-background-color: #D81E05;
 }
-.colored2 .menuButton {
+.colored1 .menuButton {
     -fx-background-color: #D81E05;
 }
-.colored2 .bgTheme {
+.colored1 .bgTheme {
     -fx-background-color: #D81E05;
 }
-.colored2 .menuButton.selected {
-    -fx-background-color: #9A1604;
+.colored1 .menuButton.selected {
+    -fx-background-color: #AF272F;
 }
 
 /* Color 3 */
-.colored1 .coloredButton {
-    -fx-background-color: #FFC61E;
+.colored2 .coloredButton {
+    -fx-background-color: #EA7600;
 }
-.colored1 .menuButton {
-    -fx-background-color: #FFC61E;
+.colored2 .menuButton {
+    -fx-background-color: #EA7600;
 }
-.colored1 .bgTheme {
-    -fx-background-color: #FFC61E;
+.colored2 .bgTheme {
+    -fx-background-color: #EA7600;
 }
-.colored1 .menuButton.selected {
-    -fx-background-color: #CB9E18;
+.colored2 .menuButton.selected {
+    -fx-background-color: #BE6000;
 }

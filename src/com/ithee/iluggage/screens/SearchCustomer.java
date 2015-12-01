@@ -4,13 +4,11 @@ package com.ithee.iluggage.screens;
 import com.ithee.iluggage.core.database.classes.*;
 import com.ithee.iluggage.core.scene.SubSceneController;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Orientation;
 import javafx.scene.Parent;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -80,6 +78,7 @@ public class SearchCustomer extends SubSceneController {
                 controller.myCustomer = customer;
                 controller.root = parent;
                 controller.app = this.app;
+                controller.parent = this;
                 controller.onCreate();
                 
                 // Add to the list and style

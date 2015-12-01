@@ -14,6 +14,7 @@ import java.util.Locale;
 import java.util.stream.Stream;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.print.PrinterJob;
 import javafx.scene.Node;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.BarChart;
@@ -21,6 +22,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 
 /**
@@ -47,6 +49,8 @@ public class Report extends SubSceneController {
     @FXML private AreaChart chartArea;
     @FXML private NumberAxis chartAreaY;
     @FXML private Text chartTitle;
+    
+    @FXML private BorderPane printView;
 
     private List<Luggage> results;
     
@@ -132,6 +136,27 @@ public class Report extends SubSceneController {
     
     public void onSearch(ActionEvent event) {
         loadResults(cbGraphType.getValue(), cbGraphStart.getValue().getStartDate(), cbGraphEnd.getValue().getEndDate());
+    }
+    
+    public void onPressPrint() {
+        PrinterJob pj = PrinterJob.createPrinterJob();
+        if (pj.showPrintDialog(stage.getOwner())) {
+            printView.setScaleX(0.75);
+            printView.setScaleY(0.75);
+            printView.setTranslateX(-60);
+            printView.setTranslateY(-45);
+            printView.setMaxWidth(480);
+            printView.setMaxHeight(320);
+            if (pj.printPage(this.printView)) {
+                pj.endJob();
+            }
+            printView.setScaleX(1);
+            printView.setScaleY(1);
+            printView.setTranslateX(0);
+            printView.setTranslateY(0);
+            printView.setMaxWidth(-1.0);
+            printView.setMaxHeight(-1.0);
+        }
     }
 
     private void loadResults(String type, Calendar start, Calendar end) {

@@ -18,6 +18,7 @@ public class ManageAccountsListItem {
     public ILuggageApplication app;
     public Account myAccount;
     public Parent root;
+    public ManageAccounts parent;
     
     @FXML private Text txtName;
     @FXML private Text txtUsername;
@@ -38,6 +39,13 @@ public class ManageAccountsListItem {
     }
     
     public void onClickDelete() {
+        boolean delete = ILuggageApplication.showConfirmDialog("Account verwijderen", 
+                "Weet je zeker dat je het account \"" + myAccount.name + "\" wilt verwijderen?");
         
+        if (delete) {
+            app.db.executeStatement("DELETE FROM `accounts` WHERE `Id` = ?", myAccount.id);
+            // Refresh the results
+            parent.onSearch();
+        }
     }
 }

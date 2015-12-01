@@ -12,14 +12,14 @@ import com.ithee.iluggage.core.scene.SceneController;
 import com.ithee.iluggage.core.security.PasswordHasher;
 import com.ithee.iluggage.screens.Login;
 import com.ithee.iluggage.screens.MainMenu;
-import java.security.MessageDigest;
 import java.util.Date;
-import java.util.Random;
+import java.util.Optional;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
@@ -31,7 +31,7 @@ import javafx.stage.Stage;
  */
 public class ILuggageApplication extends Application {
     
-    private static final int MAX_WIDTH = 1100, MAX_HEIGHT = 800;
+    private static final int MIN_WIDTH = 1200, MIN_HEIGHT = 900;
     
     public DatabaseConnection db;
     
@@ -52,8 +52,11 @@ public class ILuggageApplication extends Application {
         
         this.primaryStage = primaryStage;
         this.primaryStage.getIcons().add(new Image("/Appicon.png"));
-        this.primaryStage.setMinWidth(MAX_WIDTH);
-        this.primaryStage.setMinHeight(MAX_HEIGHT);
+        this.primaryStage.setMaximized(true);
+        this.primaryStage.setMinWidth(MIN_WIDTH);
+        this.primaryStage.setMinHeight(MIN_HEIGHT);
+        this.primaryStage.setWidth(MIN_WIDTH);
+        this.primaryStage.setHeight(MIN_HEIGHT);
         primaryStage.setTitle("iLuggage | Corendon");
         
         this.db = new DatabaseConnection(this);
@@ -86,7 +89,7 @@ public class ILuggageApplication extends Application {
         controller.onCreate();
         
         controller.stage = this.primaryStage;
-        this.primaryStage.setScene(new Scene(controller.root, MAX_WIDTH, MAX_HEIGHT));
+        this.primaryStage.setScene(new Scene(controller.root, MIN_WIDTH, MIN_HEIGHT));
         this.currentScene = controller;
         
         updateColors();
@@ -215,10 +218,20 @@ public class ILuggageApplication extends Application {
     public static void showSimpleMessage(Alert.AlertType type, String title, String content) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
-        alert.setHeaderText(title);
+        alert.setHeaderText(null);
         alert.setContentText(content);
 
         alert.showAndWait();
+    }
+    
+    public static boolean showConfirmDialog(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        return (result.isPresent() && result.get() == ButtonType.OK);
     }
     
     public static void main(String[] args) {

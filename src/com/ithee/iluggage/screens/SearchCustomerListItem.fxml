@@ -7,6 +7,7 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" onMouseClicked="#onClick" xmlns="http://javafx.com/javafx/8" fx:controller="com.ithee.iluggage.screens.SearchCustomerListItem">
     <children>
@@ -71,6 +72,16 @@
             <Text fx:id="txtPostalCode" text="&lt;postalcode&gt;" underline="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <Text fx:id="txtHouseNumber" text="&lt;housenumber&gt;" underline="true" GridPane.columnIndex="5" GridPane.rowIndex="1" />
             <Text fx:id="txtAddition" text="&lt;addition&gt;" underline="true" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+            
+            <Button onAction="#onClickDelete" GridPane.columnIndex="10">
+               <graphic>
+                  <ImageView fitHeight="20" fitWidth="20">
+                     <image>
+                        <Image url="@../../../../trash.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </GridPane>
    </children>

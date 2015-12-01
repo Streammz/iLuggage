@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -22,9 +23,12 @@
             <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0" />
             <ColumnConstraints />
             <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0" />
+            <ColumnConstraints hgrow="SOMETIMES" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints vgrow="ALWAYS" />
+            <RowConstraints minHeight="24.0" valignment="BOTTOM" vgrow="ALWAYS" />
+            <RowConstraints vgrow="ALWAYS" />
         </rowConstraints>
          <children>
             <Text text="Soort:" GridPane.columnIndex="0">
@@ -58,14 +62,24 @@
             <Text fx:id="txtBrand" text="&lt;brand&gt;" underline="true" GridPane.columnIndex="5" />
             <Text fx:id="txtSize" text="&lt;size&gt;" underline="true" GridPane.columnIndex="7" />
             <Text fx:id="txtStickers" text="&lt;stickers&gt;" underline="true" GridPane.columnIndex="9" />
+            <Text text="Overige kenmerken" GridPane.columnSpan="10" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text fx:id="txtMisc" text="&lt;misc&gt;" GridPane.columnSpan="10" GridPane.rowIndex="2" />
+            
+            <Button onAction="#onClickDelete" GridPane.columnIndex="10">
+               <graphic>
+                  <ImageView fitHeight="20" fitWidth="20">
+                     <image>
+                        <Image url="@../../../../trash.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </GridPane>
-      <Text text="Overige kenmerken">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Text>
-      <Text fx:id="txtMisc" text="&lt;misc&gt;" />
    </children>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import com.ithee.iluggage.core.controls.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" styleClass="root" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" fx:controller="com.ithee.iluggage.screens.SearchLuggage" >
+<BorderPane minHeight="300.0" minWidth="300.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.SearchLuggage">
     <top>
         <GridPane style="-fx-border-color: darkgray;">
          <rowConstraints>
@@ -51,7 +51,7 @@
             <ChoiceBox fx:id="cbBrand" prefWidth="150.0" GridPane.columnIndex="3" />
             <TextField fx:id="tfKeywords" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             
-            <Button prefWidth="100.0" text="Zoek" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="1" onAction="#onSearch" />
+            <Button onAction="#onSearch" prefWidth="100.0" text="Zoek" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
          </children>
          <BorderPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -65,7 +65,7 @@
         
     </center>
    <center>
-      <VBox style="-fx-border-color: darkgray;" BorderPane.alignment="CENTER" fx:id="results" fillWidth="true" >
+      <VBox fx:id="results" fillWidth="true" style="-fx-border-color: darkgray;" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </BorderPane.margin>

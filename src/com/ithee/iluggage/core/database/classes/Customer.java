@@ -13,5 +13,15 @@ public class Customer {
     public String housenumber;
     public String postalcode;
     public String addition;
+
+    @Override
+    public String toString() {
+        String result = name;
+        if (address != null) {
+            result += " {" + address + ")";
+        }
+        return result;
+    }
+    
     
 }
