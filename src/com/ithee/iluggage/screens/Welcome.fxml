@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import java.lang.*?>
@@ -17,10 +18,13 @@
         <URL value="@../../../../main.css" />
     </stylesheets>
    <right>
-      <ImageView fitHeight="450.0" fitWidth="651.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 40%;" BorderPane.alignment="CENTER">
+      <ImageView fitHeight="450.0" fitWidth="651.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 100%;" BorderPane.alignment="CENTER">
          <image>
-            <Image url="@../../../../welkom.jpg" />
+            <Image url="@../../../../welkom2.jpg" />
          </image>
+         <effect>
+            <Blend />
+         </effect>
       </ImageView>
    </right>
 </BorderPane>
