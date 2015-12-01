@@ -1,49 +1,47 @@
 package com.ithee.iluggage.core.scene;
 
 import com.ithee.iluggage.ILuggageApplication;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.SQLType;
-import java.sql.Types;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
+ * Een controller waarvan de view automatisch geladen kan worden. Deze class
+ * bevat tevens enkele helperfuncties voor veelgebruikte functies in
+ * controllers.
+ *
  * @author iThee
  */
 public abstract class SceneController {
 
     /**
-     * The application.
+     * Een referentie naar de applicatie.
      */
     public ILuggageApplication app;
 
     /**
-     * The root node.
+     * De root node, oftewel de node waar alle views in verwerkt zitten.
      */
     public Parent root;
-    
+
     /**
-     * The stage this controller is displayed in
+     * De stage waarin de view word weergegeven van de controller.
      */
     public Stage stage;
 
     /**
-     * Override this in the superclass to have it execute a piece of code as
-     * soon as the layout is shown
+     * Override deze functie om de superclass een functie uit te laten voeren
+     * zodra het layout word weergegeven.
      */
     public void onCreate() {
     }
 
     /**
-     * Helper function to remove a node from their parents. You can supply
-     * multiple nodes at once.
+     * Helper functie om één of meerdere nodes te verwijderen van zijn parent.
      *
-     * @param nodes The nodes to remove
+     * @param nodes De nodes om te verwijderen.
      */
     public void removeNode(Node... nodes) {
         for (Node node : nodes) {
@@ -55,14 +53,24 @@ public abstract class SceneController {
     }
 
     /**
-     * Shows an alert and waits for it to dissapear before returning.
+     * Laat een simpele dialoog zien met het meegegeven type, titel en bericht.
      *
-     * @param type The type of alert to display, like an error or information
-     * dialog.
-     * @param title The title of the alert.
-     * @param content The message of the alert.
+     * @param type Het type wat het dialoog moet zijn.
+     * @param title De titel van het dialoog.
+     * @param content Het bericht wat in het dialoog staat.
      */
     public void showSimpleMessage(AlertType type, String title, String content) {
         ILuggageApplication.showSimpleMessage(type, title, content);
+    }
+    
+    /**
+     * Laat een confirmatie dialoog zien met het meegegeven titel en bericht.
+     *
+     * @param title De titel van het dialoog.
+     * @param content Het bericht wat in het dialoog staat.
+     * @return True als de gebruiker op OK heeft gedrukt, en anders false.
+     */
+    public boolean showConfirmDialog(String title, String content) {
+        return ILuggageApplication.showConfirmDialog(title, content);
     }
 }

@@ -3,8 +3,6 @@ package com.ithee.iluggage.core.controls;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
 import java.util.function.Consumer;
 import javafx.geometry.Side;
 import javafx.scene.control.ContextMenu;
@@ -14,15 +12,21 @@ import javafx.scene.control.TextField;
 
 /**
  * This class is a TextField which implements an "autocomplete" functionality,
- * based on a supplied list of entries.
+ * based on a supplied list of entries. These entries can be of any class, and
+ * there can be an extra listener for when an entry is selected.
  *
- * @author Caleb Brinkman
- * @author iThee
+ * Deze class is online gevonden op
+ * https://gist.github.com/floralvikings/10290131 met modificaties door iThee
+ *
+ * @author Caleb Brinkman, iThee
  */
 public class SelectingTextField<T> extends TextField {
 
+    /**
+     * The maximum amount of entries visible in the results contextmenu.
+     */
     private static final int MAX_ENTRIES = 10;
-    
+
     /**
      * The existing autocomplete entries.
      */
@@ -32,8 +36,11 @@ public class SelectingTextField<T> extends TextField {
      * The popup used to select an entry.
      */
     private ContextMenu entriesPopup;
-    
-    public Consumer<T> onSelect;
+
+    /**
+     * A function that gets executed when an entry is selected.
+     */
+    private Consumer<T> onSelect;
 
     /**
      * Construct a new AutocompleteTextField.
@@ -58,7 +65,7 @@ public class SelectingTextField<T> extends TextField {
                     }
                 });
                 searchResult.addAll(altSearchResult);
-                
+
                 if (entries.size() > 0) {
                     populatePopup(searchResult);
                     if (!entriesPopup.isShowing()) {
@@ -74,9 +81,14 @@ public class SelectingTextField<T> extends TextField {
             entriesPopup.hide();
         });
     }
-    
-    public void setOnSelect(Consumer<T> onSelect) {
-        this.onSelect = onSelect;
+
+    /**
+     * Sets the listener that gets executed when an entry is selected.
+     * 
+     * @param listener The listener.
+     */
+    public void setOnSelect(Consumer<T> listener) {
+        this.onSelect = listener;
     }
 
     /**
@@ -115,5 +127,5 @@ public class SelectingTextField<T> extends TextField {
         entriesPopup.getItems().clear();
         entriesPopup.getItems().addAll(menuItems);
     }
-    
+
 }

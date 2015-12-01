@@ -1,6 +1,8 @@
 package com.ithee.iluggage.core.database.classes;
 
 /**
+ * Een bagagesoort dat binnen de applicatie gebruikt word.
+ *
  * @author iThee
  */
 public class LuggageKind {
@@ -12,6 +14,5 @@ public class LuggageKind {
     public String toString() {
         return name;
     }
-    
-    
+
 }

@@ -14,13 +14,19 @@ import javafx.scene.control.TextField;
  * This class is a TextField which implements an "autocomplete" functionality,
  * based on a supplied list of entries.
  *
- * @author Caleb Brinkman
- * @author iThee
+ * Deze class is online gevonden op
+ * https://gist.github.com/floralvikings/10290131 met enkele modificaties door
+ * iThee
+ *
+ * @author Caleb Brinkman, iThee
  */
 public class AutocompleteTextField extends TextField {
 
+    /**
+     * The maximum amount of entries visible in the results contextmenu.
+     */
     private static final int MAX_ENTRIES = 10;
-    
+
     /**
      * The existing autocomplete entries.
      */
@@ -54,7 +60,7 @@ public class AutocompleteTextField extends TextField {
                     }
                 });
                 searchResult.addAll(altSearchResult);
-                
+
                 if (entries.size() > 0) {
                     populatePopup(searchResult);
                     if (!entriesPopup.isShowing()) {
