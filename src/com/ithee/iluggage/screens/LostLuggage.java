@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Date;
 import java.util.List;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -21,7 +23,7 @@ import javafx.scene.control.*;
 public class LostLuggage extends SubSceneController {
     
     private static final String SQL_INSERT_CUSTOMER = "INSERT INTO `customers` VALUES ("
-            + "NULL,  ?, ?, ?)";
+            + "NULL,  ?, ?, ?, ?, ?, ?, ?)";
     
     private static final String SQL_INSERT_LUGGAGE = "INSERT INTO `luggage` VALUES ("
             + "NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, 2)";
@@ -44,6 +46,7 @@ public class LostLuggage extends SubSceneController {
     @FXML private TextField tfAddition;
 
     private List<Customer> customers;
+    private Customer selectedCustomer;
     
     @Override
     public void onCreate() {
@@ -62,6 +65,12 @@ public class LostLuggage extends SubSceneController {
         customers = app.db.executeAndReadList(Customer.class, "SELECT * FROM `customers`");
         tfCustomername.getEntries().addAll(customers);
         tfCustomername.setOnSelect((customer) -> {
+            tfEmail.setDisable(true);
+            tfPhone.setDisable(true);
+            tfAddress.setDisable(true);
+            tfPostalCode.setDisable(true);
+            tfHousenumber.setDisable(true);
+            tfAddition.setDisable(true);
             tfCustomername.setText(customer.name);
             tfEmail.setText(customer.email);
             tfPhone.setText(customer.phone);
@@ -69,6 +78,28 @@ public class LostLuggage extends SubSceneController {
             tfPostalCode.setText(customer.postalcode);
             tfHousenumber.setText(customer.housenumber);
             tfAddition.setText(customer.addition);
+            
+            selectedCustomer = customer;
+            
+            tfCustomername.textProperty().addListener(new ChangeListener<String>() {
+                public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                    tfEmail.setText(null);
+                    tfPhone.setText(null);
+                    tfAddress.setText(null);
+                    tfPostalCode.setText(null);
+                    tfHousenumber.setText(null);
+                    tfAddition.setText(null);
+                    tfEmail.setDisable(false);
+                    tfPhone.setDisable(false);
+                    tfAddress.setDisable(false);
+                    tfPostalCode.setDisable(false);
+                    tfHousenumber.setDisable(false);
+                    tfAddition.setDisable(false);
+                    tfCustomername.textProperty().removeListener(this);
+                    
+                    selectedCustomer = null;
+                }
+            });
         });
     }
     
@@ -78,35 +109,42 @@ public class LostLuggage extends SubSceneController {
 
     public void onAdd(ActionEvent event) {
         
+        if (!isFormValid()) {
+            showSimpleMessage(Alert.AlertType.ERROR, "Foutieve gegevens.", 
+                    "Niet alle gegevens zijn (correct) ingevoerd.");
+        }
+        
         double[] sizes;
         try {
             sizes = getSizes();
         } catch (NumberFormatException ex) {
-            showSimpleMessage(Alert.AlertType.ERROR, "Grootte", 
-                    "De ingevulde waarden voor \"Grootte\" zijn geen nummers");
             return;
         }
-        Customer cus = new Customer();
-        cus.name = tfCustomername.getText();
-        cus.email = tfEmail.getText();
-        cus.phone = tfPhone.getText();
         
-        app.db.executeStatement(SQL_INSERT_CUSTOMER, 
-                cus.name, cus.email, cus.phone);
-        cus.id = app.db.executeStatement(SQL_INSERT_CUSTOMER, (statement) -> {
-            try {
-                if (cus.name.length() == 0) statement.setNull(1, Types.VARCHAR);
-                else statement.setString(1, cus.name);
-
-                if (cus.email.length() == 0) statement.setNull(2, Types.VARCHAR);
-                else statement.setString(2, cus.email);
-
-                if (cus.phone.length() == 0) statement.setNull(3, Types.VARCHAR);
-                else statement.setString(3, cus.phone);
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-        });
+        Customer cus;
+        if (this.selectedCustomer != null) {
+            cus = this.selectedCustomer;
+        } else {
+            cus = new Customer();
+            cus.name = tfCustomername.getText();
+            cus.email = tfEmail.getText();
+            cus.phone = tfPhone.getText();
+            cus.address = tfAddress.getText();
+            cus.postalcode = tfPostalCode.getText();
+            cus.housenumber = tfHousenumber.getText();
+            cus.addition = tfAddition.getText();
+            
+            cus.id = app.db.executeStatement(SQL_INSERT_CUSTOMER, (statement) -> {
+                statement.add(cus.name);
+                statement.add(cus.email);
+                statement.add(cus.phone);
+                statement.add(cus.address);
+                statement.add(cus.postalcode);
+                statement.add(cus.housenumber);
+                statement.add(cus.addition);
+            });
+        }
+        if (cus.id == -1) return;
         
         Luggage lugg = new Luggage();
         lugg.customerId = cus.id;
@@ -120,36 +158,37 @@ public class LostLuggage extends SubSceneController {
         lugg.date = new Date();
         
         lugg.id = app.db.executeStatement(SQL_INSERT_LUGGAGE, (statement) -> {
-            try {
-                statement.setInt(1, lugg.customerId);
-                
-                if (lugg.flightCode.length() == 0) statement.setNull(2, Types.VARCHAR);
-                else statement.setString(2, lugg.flightCode);
-                
-                if (lugg.kind == null) statement.setNull(3, Types.INTEGER);
-                else statement.setInt(3, lugg.kind);
-                
-                if (lugg.brand == null) statement.setNull(4, Types.INTEGER);
-                else statement.setInt(4, lugg.brand);
-                
-                if (lugg.color == null) statement.setNull(5, Types.INTEGER);
-                else statement.setInt(5, lugg.color);
-                
-                if (lugg.size == null) statement.setNull(6, Types.VARCHAR);
-                else statement.setString(6, lugg.size);
-                
-                statement.setBoolean(7, lugg.stickers);
-                
-                if (lugg.miscellaneous.length() == 0) statement.setNull(8, Types.VARCHAR);
-                else statement.setString(8, lugg.miscellaneous);
-                
-                statement.setDate(9, new java.sql.Date(lugg.date.getTime()));
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+            statement.add(lugg.customerId);
+            statement.add(lugg.flightCode);
+            statement.add(lugg.kind);
+            statement.add(lugg.brand);
+            statement.add(lugg.color);
+            statement.add(lugg.size);
+            statement.add(lugg.stickers);
+            statement.add(lugg.miscellaneous);
+            statement.add(lugg.date);
         });
         
         app.switchSubScene(null);
+    }
+    
+    public boolean isFormValid() {
+        if (this.selectedCustomer != null) {
+            if (this.tfCustomername.getLength() == 0) return false;
+            if (this.tfEmail.getLength() == 0) return false;
+            if (this.tfAddress.getLength() == 0) return false;
+            if (this.tfPostalCode.getLength() == 0) return false;
+            if (this.tfHousenumber.getLength() == 0) return false;
+        }
+        if (this.chKind.getValue() == null) return false;
+        
+        try {
+            getSizes();
+        } catch (NumberFormatException ex) {
+            return false;
+        }
+        
+        return true;
     }
     
     

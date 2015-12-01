@@ -57,7 +57,7 @@
                 <children>
                     <TextField fx:id="tfSize1" HBox.hgrow="ALWAYS" />
                     <TextField fx:id="tfSize2" HBox.hgrow="ALWAYS" />
-                  <TextField fx:id="tfSize3" layoutX="204.0" layoutY="10.0" />
+                    <TextField fx:id="tfSize3" HBox.hgrow="ALWAYS" />
                 </children>
             </HBox>
             <CheckBox fx:id="cbStickers" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="8" GridPane.columnSpan="5" />

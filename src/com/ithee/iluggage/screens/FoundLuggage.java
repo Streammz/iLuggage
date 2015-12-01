@@ -52,12 +52,15 @@ public class FoundLuggage extends SubSceneController {
 
     public void onAdd(ActionEvent event) {
         
+        if (!isFormValid()) {
+            showSimpleMessage(Alert.AlertType.ERROR, "Foutieve gegevens.", 
+                    "Niet alle gegevens zijn (correct) ingevoerd.");
+        }
+        
         double[] sizes;
         try {
             sizes = getSizes();
         } catch (NumberFormatException ex) {
-            showSimpleMessage(Alert.AlertType.ERROR, "Grootte", 
-                    "De ingevulde waarden voor \"Grootte\" zijn geen nummers");
             return;
         }
         
@@ -73,39 +76,34 @@ public class FoundLuggage extends SubSceneController {
         lugg.miscellaneous = tfMisc.getText();
         lugg.date = new Date();
         
-        app.db.executeStatement(SQL_INSERT, (statement) -> {
-            try {
-                if (lugg.flightCode.length() == 0) statement.setNull(1, Types.VARCHAR);
-                else statement.setString(1, lugg.flightCode);
-                
-                if (lugg.kind == null) statement.setNull(2, Types.INTEGER);
-                else statement.setInt(2, lugg.kind);
-                
-                if (lugg.brand == null) statement.setNull(3, Types.INTEGER);
-                else statement.setInt(3, lugg.brand);
-                
-                if (lugg.color == null) statement.setNull(4, Types.INTEGER);
-                else statement.setInt(4, lugg.color);
-                
-                if (lugg.size == null) statement.setNull(5, Types.VARCHAR);
-                else statement.setString(5, lugg.size);
-                
-                statement.setBoolean(6, lugg.stickers);
-                if (lugg.miscellaneous.length() == 0) statement.setNull(7, Types.VARCHAR);
-                else statement.setString(7, lugg.miscellaneous);
-                
-                statement.setDate(8, new java.sql.Date(lugg.date.getTime()));
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+        lugg.id = app.db.executeStatement(SQL_INSERT, (statement) -> {
+            statement.add(lugg.flightCode);
+            statement.add(lugg.kind);
+            statement.add(lugg.brand);
+            statement.add(lugg.color);
+            statement.add(lugg.size);
+            statement.add(lugg.stickers);
+            statement.add(lugg.miscellaneous);
+            statement.add(lugg.date);
         });
         
         app.switchSubScene(null);
     }
     
+    public boolean isFormValid() {
+        if (this.chKind.getValue() == null) return false;
+        
+        try {
+            getSizes();
+        } catch (NumberFormatException ex) {
+            return false;
+        }
+        
+        return true;
+    }
     
     private double[] getSizes() throws NumberFormatException {
-        if (tfSize1.getText().length() == 0 || tfSize2.getText().length() == 0 || tfSize3.getText().length() == 0) return null;
+        if (tfSize1.getLength() == 0 || tfSize2.getLength() == 0 || tfSize3.getLength() == 0) return null;
         return new double[] {
             Double.parseDouble(tfSize1.getText()),
             Double.parseDouble(tfSize2.getText()),

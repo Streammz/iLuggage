@@ -39,7 +39,7 @@ public class SearchLuggageListItem {
     }
     
     public void onClick() {
-        app.showPopupScene(LuggageDetails.class).loadLuggage(myLuggage);
+        app.showPopupScene(LuggageDetails.class).loadLuggage(myLuggage, () -> parent.onSearch());
     }
     
     public void onClickDelete() {

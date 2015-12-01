@@ -38,7 +38,7 @@ public class SearchCustomerListItem {
     }
     
     public void onClick() {
-        app.showPopupScene(CustomerDetails.class).loadCustomer(myCustomer);
+        app.showPopupScene(CustomerDetails.class).loadCustomer(myCustomer, () -> { parent.onSearch(); });
     }
     
     public void onClickDelete() {

@@ -1,6 +1,10 @@
 package com.ithee.iluggage.core.scene;
 
 import com.ithee.iluggage.ILuggageApplication;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.SQLType;
+import java.sql.Types;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

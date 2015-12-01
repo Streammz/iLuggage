@@ -124,14 +124,14 @@ public class DatabaseConnection {
         
         return -1;
     }
-    public int executeStatement(String sql, Consumer<PreparedStatement> params) {
+    public int executeStatement(String sql, Consumer<StatementHelper> params) {
         Connection conn = null;
         ResultSet rs = null;
         try {
             conn = getConnection();
             PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             
-            params.accept(statement);
+            params.accept(new StatementHelper(statement));
             
             if (statement.executeUpdate() > 0) {
                 rs = statement.getGeneratedKeys();

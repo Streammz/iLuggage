@@ -9,7 +9,7 @@ import java.util.Date;
  */
 public class Luggage {
     public int id;
-    public int customerId;
+    public Integer customerId;
     public String flightCode;
     public Integer kind;
     public Integer brand;
