@@ -118,7 +118,7 @@ public class AccountAdd extends SceneController {
 
     /**
      * Een rol voor in de selectielijst, met id en naam. Heeft een toString
-     * functie die gebruikt.
+     * functie die gebruikt wordt als weergave.
      */
     private static final class Role {
 

@@ -117,6 +117,10 @@ public class AccountEdit extends SceneController {
         this.stage.close();
     }
 
+    /**
+     * Controleert of alle velden binnen het formulier correct zijn ingevuld.
+     * @return True als de velden correct zijn ingevuld, anders false.
+     */
     public boolean isFormValid() {
         // Controleert of de naam niet leeg is
         if (tfName.getLength() == 0) {
@@ -139,7 +143,7 @@ public class AccountEdit extends SceneController {
 
     /**
      * Een rol voor in de selectielijst, met id en naam. Heeft een toString
-     * functie die gebruikt.
+     * functie die gebruikt wordt als weergave.
      */
     private static final class Role {
 
