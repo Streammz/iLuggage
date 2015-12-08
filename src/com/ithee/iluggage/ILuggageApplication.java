@@ -13,7 +13,9 @@ import com.ithee.iluggage.core.security.PasswordHasher;
 import com.ithee.iluggage.screens.Login;
 import com.ithee.iluggage.screens.MainMenu;
 import com.ithee.iluggage.screens.WelcomeScreen;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -51,7 +53,7 @@ public class ILuggageApplication extends Application {
     /**
      * Een cache voor bagagesoorten.
      */
-    public DatabaseCache<LuggageKind> dbKinds;
+    public List<LuggageKind> dbKinds;
 
     /**
      * Een cache voor bagagemerken. Aan deze cache kan worden toegevoegd.
@@ -112,7 +114,10 @@ public class ILuggageApplication extends Application {
 
         // Initializeer de database en gecachde objecten
         this.db = new DatabaseConnection(this);
-        this.dbKinds = new DatabaseCache(this, "SELECT * FROM `luggagekinds`", LuggageKind.class);
+        this.dbKinds = new ArrayList<>();
+        for (int i=1; i<=4; i++) {
+            dbKinds.add(new LuggageKind(this, i));
+        }
         this.dbBrands = new AddableDatabaseCache<LuggageBrand>(this, "SELECT * FROM `luggagebrands`",
                 "INSERT INTO `luggagebrands` VALUES (NULL, ?)", LuggageBrand.class) {
 

@@ -83,9 +83,7 @@ public class Luggage {
         if (kind == null) {
             return null;
         }
-        return app.dbKinds.getValue((o) -> {
-            return o.id == kind;
-        });
+        return app.dbKinds.get(kind-1);
     }
 
     /**
@@ -99,19 +97,6 @@ public class Luggage {
         } else {
             this.kind = b.id;
         }
-    }
-
-    /**
-     * Veranderd het bagagesoort naar het meegegeven bagagesoort. Deze haalt de
-     * waarde op uit de cache.
-     *
-     * @param app Een referentie naar de applicatie
-     * @param name De naam van het bagagesoort.
-     */
-    public void setKind(ILuggageApplication app, String name) {
-        setKind(app.dbKinds.getValue((o) -> {
-            return o.name.equals(name);
-        }));
     }
 
     /**
