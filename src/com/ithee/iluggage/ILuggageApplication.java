@@ -104,6 +104,7 @@ public class ILuggageApplication extends Application {
     public void start(Stage primaryStage) {
         // Laad alle zelf-toegevoegde fonts en voeg deze toe aan het programma.
         Font.loadFont(ILuggageApplication.class.getResource("/Uni-Sans-Bold.otf").toExternalForm(), 10);
+        Font.loadFont(ILuggageApplication.class.getResource("/Uni-Sans-HeavyItalic.otf").toExternalForm(), 10);
 
         // Laad de standaard taal
         setLanguage("nl", "NL");
