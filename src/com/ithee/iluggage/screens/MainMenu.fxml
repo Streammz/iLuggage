@@ -36,7 +36,7 @@
                         <Insets bottom="13.0" left="13.0" right="13.0" top="13.0" />
                     </GridPane.margin>
                     <children>
-                        <Text fill="WHITE" style="-fx-font-weight: bold;" text="You are logged in as:" />
+                        <Text fill="WHITE" style="-fx-font-weight: bold;" text="%logged_in_as" />
                         <Text fx:id="loggedinUser" fill="WHITE" style="-fx-font-weight: bold;" text="Admin" />
                     </children>
                 </TextFlow>
@@ -51,31 +51,31 @@
     <left>
         <VBox minHeight="520.0" minWidth="320.0" spacing="10.0" style="-fx-background-color: #FAFAFA; -fx-border-color: transparent darkgray transparent transparent;" BorderPane.alignment="CENTER">
             <children>
-                <Text styleClass="menuTitle" text="Luggage" />
-                <Button fx:id="btnFoundLuggage" onAction="#onPressFoundLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Found Luggage" />
-                <Button fx:id="btnLostLuggage" onAction="#onPressLostLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Lost Luggage" />
-                <Button fx:id="btnSearchLuggage" onAction="#onPressSearchLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Search Luggage" />
+                <Text styleClass="menuTitle" text="%menu_luggage" />
+                <Button fx:id="btnFoundLuggage" onAction="#onPressFoundLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="%menu_luggage_found" />
+                <Button fx:id="btnLostLuggage" onAction="#onPressLostLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="%menu_luggage_lost" />
+                <Button fx:id="btnSearchLuggage" onAction="#onPressSearchLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="%menu_luggage_search" />
             
-                <Text styleClass="menuTitle" text="Customers">
+                <Text styleClass="menuTitle" text="%menu_customers">
                     <VBox.margin>
                         <Insets top="5.0" />
                     </VBox.margin>
                 </Text>
-                <Button fx:id="btnAddCustomer" onAction="#onPressAddCustomer" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Add Customer" />
-                <Button fx:id="btnSearchCustomer" onAction="#onPressSearchCustomer" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Search Customers" />
+                <Button fx:id="btnAddCustomer" onAction="#onPressAddCustomer" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="%menu_customers_add" />
+                <Button fx:id="btnSearchCustomer" onAction="#onPressSearchCustomer" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="%menu_customers_search" />
             
-                <Text fx:id="mngrTitle" styleClass="menuTitle" text="Management">
+                <Text fx:id="mngrTitle" styleClass="menuTitle" text="%menu_managers">
                     <VBox.margin>
                         <Insets top="5.0" />
                     </VBox.margin>
                 </Text>
-                <Button fx:id="btnReport" onAction="#onPressReport" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Rapportage" />
-                <Text fx:id="adminTitle" styleClass="menuTitle" text="Administration">
+                <Button fx:id="btnReport" onAction="#onPressReport" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="%menu_managers_report" />
+                <Text fx:id="adminTitle" styleClass="menuTitle" text="%menu_admin">
                     <VBox.margin>
                         <Insets top="5.0" />
                     </VBox.margin>
                 </Text>
-                <Button fx:id="btnManageUsers" onAction="#onPressManageUsers" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Manage Users" />
+                <Button fx:id="btnManageUsers" onAction="#onPressManageUsers" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="%menu_admin_users" />
             </children>
             <padding>
                 <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
@@ -85,7 +85,7 @@
     <bottom>
         <TextFlow style="-fx-background-color: E0E0E0; -fx-border-color: darkgray transparent transparent transparent;" BorderPane.alignment="CENTER">
             <children>
-                <Text text="Copyright © 2015 iThee, All rights reserved." />
+                <Text text="%copyright" />
             </children>
             <BorderPane.margin>
                 <Insets />

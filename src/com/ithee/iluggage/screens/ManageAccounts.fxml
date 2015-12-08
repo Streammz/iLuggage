@@ -27,18 +27,18 @@
                 <ColumnConstraints />
             </columnConstraints>
             <children>
-                <Button text="Account toevoegen" prefWidth="130" onAction="#onClickAdd" />
+                <Button text="%add_account" prefWidth="130" onAction="#onClickAdd" />
              
                 <Separator orientation="VERTICAL" GridPane.columnIndex="2" GridPane.rowSpan="2"  /> 
             
-                <Text text="Naam" GridPane.halignment="RIGHT" GridPane.columnIndex="3">
+                <Text text="%name" GridPane.halignment="RIGHT" GridPane.columnIndex="3">
                     <GridPane.margin>
                         <Insets left="20.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
                 <TextField fx:id="tfName" GridPane.columnIndex="4" GridPane.rowIndex="0" />
             
-                <Button prefWidth="100.0" text="Zoek" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1" onAction="#onSearch" />
+                <Button prefWidth="100.0" text="%search" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1" onAction="#onSearch" />
             </children>
             <BorderPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

@@ -47,8 +47,7 @@ public class SearchLuggageListItem {
     }
 
     public void onClickDelete() {
-        boolean delete = ILuggageApplication.showConfirmDialog("Delete luggage",
-                "Are you sure you want to delete the luggage?");
+        boolean delete = app.showConfirmDialog("Delete luggage");
 
         if (delete) {
             app.db.executeStatement("DELETE FROM `luggage` WHERE `Id` = ?", myLuggage.id);

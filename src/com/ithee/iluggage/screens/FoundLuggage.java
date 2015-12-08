@@ -61,8 +61,8 @@ public class FoundLuggage extends SubSceneController {
     public void onAdd(ActionEvent event) {
 
         if (!isFormValid()) {
-            showSimpleMessage(Alert.AlertType.ERROR, "Foutieve gegevens.",
-                    "Niet alle gegevens zijn (correct) ingevoerd.");
+            app.showErrorMessage("form_invalid");
+            return;
         }
 
         double[] sizes;

@@ -65,6 +65,7 @@ public class ManageAccounts extends SubSceneController {
             try {
                 //Load a new item (ManageAccountsListItem.java) so that it can be displayed in the list
                 FXMLLoader loader = new FXMLLoader();
+                loader.setResources(app.getLanguage());
                 loader.setLocation(getClass().getResource("/com/ithee/iluggage/screens/ManageAccountsListItem.fxml"));
                 Parent parent = loader.load();
                 ManageAccountsListItem controller = loader.getController();

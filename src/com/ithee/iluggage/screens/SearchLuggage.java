@@ -104,6 +104,7 @@ public class SearchLuggage extends SubSceneController {
             try {
                 //Load a new item (SearchLuggageListItem.java) so that it can be displayed in the list
                 FXMLLoader loader = new FXMLLoader();
+                loader.setResources(app.getLanguage());
                 loader.setLocation(getClass().getResource("/com/ithee/iluggage/screens/SearchLuggageListItem.fxml"));
                 Parent parent = loader.load();
                 SearchLuggageListItem controller = loader.getController();

@@ -24,7 +24,7 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="60.0" />
                 <ColumnConstraints hgrow="NEVER" minWidth="80.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="60.0" />
-                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="100.0" minHeight="0.0" prefHeight="0.0" vgrow="ALWAYS" />
@@ -35,17 +35,17 @@
                 <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
             </rowConstraints>
             <children>
-                <Text text="Telefoonnummer:" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-                <Text text="E-mail:" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-                <Text text="Naam klant:" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                <Text text="%name_customer" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                <Text text="%email" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                <Text text="%phone_number" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
                 <TextField fx:id="tfCustomername" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="tfEmail" prefHeight="31.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <TextField fx:id="tfPhone" prefHeight="31.0" prefWidth="303.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <Button mnemonicParsing="false" onAction="#onAdd" text="Toevoegen" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-                <Text text="Adres:" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                <Text text="Postcode:" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-                <Text text="Huisnummer:" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-                <Text text="Toevoeging:" textAlignment="RIGHT" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />            
+                <Button onAction="#onAdd" text="%add" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+                <Text text="%address" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                <Text text="%postalcode" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                <Text text="%housenumber" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                <Text text="%addition" textAlignment="RIGHT" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />            
                 <TextField fx:id="tfAddress" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="1" />
                 <TextField fx:id="tfPostalcode" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="2" />
                 <TextField fx:id="tfHousenumber" GridPane.columnIndex="3" GridPane.rowIndex="3" />

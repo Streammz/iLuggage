@@ -77,6 +77,7 @@ public class SearchCustomer extends SubSceneController {
             try {
                 //Load a new item (SearchCustomerListItem.java) so that it can be displayed in the list
                 FXMLLoader loader = new FXMLLoader();
+                loader.setResources(app.getLanguage());
                 loader.setLocation(getClass().getResource("/com/ithee/iluggage/screens/SearchCustomerListItem.fxml"));
                 Parent parent = loader.load();
                 SearchCustomerListItem controller = loader.getController();

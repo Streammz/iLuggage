@@ -28,22 +28,22 @@
                 <RowConstraints minHeight="20" vgrow="NEVER" />
             </rowConstraints>
             <children>
-                <Text text="Naam:" GridPane.columnIndex="0" GridPane.halignment="RIGHT">
+                <Text text="%name" GridPane.columnIndex="0" GridPane.halignment="RIGHT">
                     <GridPane.margin>
                         <Insets right="5" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Gebruikersnaam:" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+                <Text text="%username" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
                     <GridPane.margin>
                         <Insets left="10" right="5" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Rol:" GridPane.columnIndex="4" GridPane.halignment="RIGHT">
+                <Text text="%role" GridPane.columnIndex="4" GridPane.halignment="RIGHT">
                     <GridPane.margin>
                         <Insets left="10" right="5" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Laatste log-in:" GridPane.columnIndex="6" GridPane.halignment="RIGHT">
+                <Text text="%lastlogin" GridPane.columnIndex="6" GridPane.halignment="RIGHT">
                     <GridPane.margin>
                         <Insets left="10" right="5" />
                     </GridPane.margin>

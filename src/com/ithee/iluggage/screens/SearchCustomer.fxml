@@ -25,17 +25,17 @@
                 <ColumnConstraints />
             </columnConstraints>
             <children>
-                <Text text="Naam" GridPane.halignment="RIGHT">
+                <Text text="%name" GridPane.halignment="RIGHT">
                     <GridPane.margin>
                         <Insets left="20.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Email" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                <Text text="%email" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                     <GridPane.margin>
                         <Insets left="20.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Woonplaats" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+                <Text text="%address" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
                     <GridPane.margin>
                         <Insets left="20.0" right="5.0" />
                     </GridPane.margin>
@@ -45,7 +45,7 @@
                 <TextField fx:id="tfEmail" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="tfAddress" prefWidth="150.0" GridPane.columnIndex="3" />
             
-                <Button prefWidth="100.0" text="Zoek" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="1" onAction="#onSearch" />
+                <Button prefWidth="100.0" text="%search" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="1" onAction="#onSearch" />
             </children>
             <BorderPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

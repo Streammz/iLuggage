@@ -8,17 +8,13 @@ import javafx.scene.text.Text;
  * @author iThee
  */
 public class WelcomeScreen extends SubSceneController {
-    
+
     @FXML
     private Text tfNaam;
 
-  
     @Override
     public void onCreate() {
-        
-                tfNaam.setText(app.getUser().name);
-
+        tfNaam.setText(app.getUser().name);
     }
-    
 
 }

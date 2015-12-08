@@ -17,12 +17,12 @@
     <children>
       <TextFlow prefHeight="200.0" prefWidth="200.0">
          <children>
-                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" wrappingWidth="512.2000122070312">
-                    <font>
-                        <Font name="Uni-Sans-Heavy-Italic" size="130.0" />
-                    </font>
-                </Text>
-            <Text fx:id="tfNaam" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Kelvin Rowaan">
+            <Text fill="WHITE" text="%welcome_space">
+                <font>
+                    <Font name="Uni-Sans-Heavy-Italic" size="130.0" />
+                </font>
+            </Text>
+            <Text fx:id="tfNaam" fill="WHITE">
                <font>
                   <Font name="Uni-Sans-Heavy-Italic" size="80.0" />
                </font>

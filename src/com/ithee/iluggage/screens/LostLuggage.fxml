@@ -44,13 +44,13 @@
                 <RowConstraints prefHeight="30.0" vgrow="NEVER" />
             </rowConstraints>
             <children>
-                <Text text="Soort" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-                <Text text="Merk" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
-                <Text text="Kleur" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
-                <Text text="Formaat" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
-                <Text text="Stickers" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
-                <Text text="Vluchtnummer" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
-                <Text text="Overige Kenmerken" GridPane.halignment="RIGHT" GridPane.valignment="TOP" wrappingWidth="110" textAlignment="RIGHT"  GridPane.rowIndex="10" />
+                <Text text="%kind" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+                <Text text="%brand" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                <Text text="%color" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+                <Text text="%brand" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+                <Text text="%stickers" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
+                <Text text="%flight_number" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
+                <Text text="%miscellaneous" GridPane.halignment="RIGHT" GridPane.valignment="TOP" wrappingWidth="110" textAlignment="RIGHT"  GridPane.rowIndex="10" />
             
                 <ChoiceBox fx:id="chKind" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.columnSpan="5" />
                 <AutocompleteTextField fx:id="tfBrand" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.columnSpan="5" />
@@ -74,18 +74,18 @@
                 </HBox>
                 <Separator prefWidth="200.0" GridPane.columnSpan="6" GridPane.rowIndex="3"/>
             
-                <Text text="Naam klant:" GridPane.halignment="RIGHT" />
-                <Text text="E-mail:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                <Text text="Telefoonnummer:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                <Text text="%name_customer" GridPane.halignment="RIGHT" />
+                <Text text="%email" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                <Text text="%phone_number" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
             
                 <SelectingTextField fx:id="tfCustomername" GridPane.columnIndex="1" /> 
                 <TextField fx:id="tfEmail" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="tfPhone" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             
-                <Text text="Woonplaats:" GridPane.halignment="RIGHT" GridPane.columnIndex="2" />
-                <Text text="Postcode:" GridPane.halignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                <Text text="Huisnummer:" GridPane.halignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                <Text text="Toevoeging:" GridPane.halignment="RIGHT" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                <Text text="%address" GridPane.halignment="RIGHT" GridPane.columnIndex="2" />
+                <Text text="%postalcode" GridPane.halignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <Text text="%housenumber" GridPane.halignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <Text text="%addition" GridPane.halignment="RIGHT" GridPane.columnIndex="4" GridPane.rowIndex="2" />
             
                 <TextField fx:id="tfAddress" GridPane.columnIndex="3" GridPane.columnSpan="3" /> 
                 <TextField fx:id="tfPostalCode" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.columnSpan="3" />

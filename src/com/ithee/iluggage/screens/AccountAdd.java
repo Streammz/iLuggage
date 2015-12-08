@@ -55,9 +55,9 @@ public class AccountAdd extends SceneController {
     @Override
     public void onCreate() {
         // Voeg de bestaande rollen toe aan het selectielijstje voor rollen.
-        cbRole.getItems().add(new Role(0, "Medewerker"));
-        cbRole.getItems().add(new Role(1, "Manager"));
-        cbRole.getItems().add(new Role(2, "Administrator"));
+        for (int i=0; i<3; i++) {
+            cbRole.getItems().add(new Role(i, app.getString("role_" + i)));
+        }
     }
 
     /**
@@ -68,7 +68,7 @@ public class AccountAdd extends SceneController {
     public void onAdd(ActionEvent event) {
         // Controleer of alle gegevens in de form correct zijn.
         if (!isFormValid()) {
-            showSimpleMessage(Alert.AlertType.ERROR, "Ontbrekende gegevens", "Niet alle velden zijn (correct) ingevuld.");
+            app.showErrorMessage("form_invalid");
             return;
         }
 
@@ -91,8 +91,7 @@ public class AccountAdd extends SceneController {
             this.stage.close();
         } else if (app.db.lastError.matches("Duplicate entry .* for key 'Username'")) {
             // Controleert of het gebruikersnaam al in gebruik is
-            showSimpleMessage(Alert.AlertType.ERROR, "Gebruikersnaam bestaat al",
-                    "De gebruikersnaam \"" + acc.username + "\" is al gebruikt.");
+            app.showErrorMessage("account_already_exists", acc.username);
         }
     }
 

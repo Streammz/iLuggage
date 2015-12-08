@@ -34,13 +34,13 @@
                 <RowConstraints prefHeight="30.0" vgrow="NEVER" />
             </rowConstraints>
             <children>
-                <Text text="Soort" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="0" />
-                <Text text="Merk" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="1" />
-                <Text text="Kleur" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="2" />
-                <Text text="Formaat" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="3" />
-                <Text text="Stickers" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="4" />
-                <Text text="Vluchtnummer" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="5" />
-                <Text text="Overige Kenmerken" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="6" />
+                <Text text="%kind" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="0" />
+                <Text text="%brand" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="1" />
+                <Text text="%color" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="2" />
+                <Text text="%size" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="3" />
+                <Text text="%stickers" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="4" />
+                <Text text="%flight_number" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="5" />
+                <Text text="%miscellaneous" textAlignment="RIGHT" wrappingWidth="100" GridPane.rowIndex="6" />
             
                 <ChoiceBox maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="0" fx:id="chKind" />
                 <AutocompleteTextField maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="tfBrand" />
@@ -58,8 +58,8 @@
             
                 <HBox alignment="CENTER_RIGHT" spacing="5" GridPane.columnSpan="2" GridPane.rowIndex="7">
                     <children>
-                        <Button text="Annuleer" onAction="#onCancel" />
-                        <Button text="Toevoegen" onAction="#onAdd" />
+                        <Button text="%cancel" onAction="#onCancel" />
+                        <Button text="%add" onAction="#onAdd" />
                     </children>
                 </HBox> 
             </children>

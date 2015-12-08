@@ -25,22 +25,22 @@
                 <ColumnConstraints />
             </columnConstraints>
             <children>
-                <Text text="Soort" GridPane.halignment="RIGHT">
+                <Text text="%kind" GridPane.halignment="RIGHT">
                     <GridPane.margin>
                         <Insets left="20.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Kleur" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                <Text text="%color" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                     <GridPane.margin>
                         <Insets left="20.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Merk" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+                <Text text="%brand" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
                     <GridPane.margin>
                         <Insets left="20.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Keywords" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                <Text text="%keywords" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                     <GridPane.margin>
                         <Insets left="20.0" right="5.0" />
                     </GridPane.margin>
@@ -51,7 +51,7 @@
                 <ChoiceBox fx:id="cbBrand" prefWidth="150.0" GridPane.columnIndex="3" />
                 <TextField fx:id="tfKeywords" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             
-                <Button onAction="#onSearch" prefWidth="100.0" text="Zoek" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                <Button onAction="#onSearch" prefWidth="100.0" text="%search" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
             </children>
             <BorderPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

@@ -61,8 +61,9 @@ public class LuggageDetails extends SceneController {
         this.myLuggage = luggage;
         this.afterSave = afterSave;
 
-        cbType.getItems().add(new LuggageStatus(1, "Gevonden bagage"));
-        cbType.getItems().add(new LuggageStatus(2, "Verloren bagage"));
+        for (int i=1; i<=2; i++) {
+            cbType.getItems().add(new LuggageStatus(i, app.getString("luggage_type_" + i)));
+        }
         cbType.setValue(cbType.getItems().get(luggage.status - 1));
 
         tfDate.setText(dateFormat.format(luggage.date));

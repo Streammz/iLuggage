@@ -29,37 +29,37 @@
                 <ColumnConstraints />
             </columnConstraints>
             <children>
-                <Text text="Soort" GridPane.halignment="RIGHT">
+                <Text text="%kind" GridPane.halignment="RIGHT">
                     <GridPane.margin>
                         <Insets left="20.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Kleur" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                <Text text="%color" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                     <GridPane.margin>
                         <Insets left="20.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Merk" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+                <Text text="%brand" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
                     <GridPane.margin>
                         <Insets left="20.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Keywords" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                <Text text="%keywords" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                     <GridPane.margin>
                         <Insets left="20.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Datumbereik" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                <Text text="%daterange" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                     <GridPane.margin>
                         <Insets left="20.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Begin" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                <Text text="%daterange_start" GridPane.columnIndex="3" GridPane.rowIndex="2">
                     <GridPane.margin>
                         <Insets bottom="-2.0" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Eind" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                <Text text="%daterange_end" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="2">
                     <GridPane.margin>
                         <Insets bottom="-2.0" />
                     </GridPane.margin>
@@ -74,7 +74,7 @@
                 <ChoiceBox fx:id="cbGraphStart" prefWidth="150" GridPane.columnIndex="3" GridPane.rowIndex="3" />  
                 <ChoiceBox fx:id="cbGraphEnd" prefWidth="150" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="3" />  
             
-                <Button onAction="#onSearch" prefWidth="100.0" text="Zoek" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+                <Button onAction="#onSearch" prefWidth="100.0" text="%search" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
             
             </children>
             <BorderPane.margin>

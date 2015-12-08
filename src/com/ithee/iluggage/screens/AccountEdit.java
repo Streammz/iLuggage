@@ -66,9 +66,9 @@ public class AccountEdit extends SceneController {
     @Override
     public void onCreate() {
         // Voeg de bestaande rollen toe aan het selectielijstje voor rollen.
-        cbRole.getItems().add(new Role(0, "Medewerker"));
-        cbRole.getItems().add(new Role(1, "Manager"));
-        cbRole.getItems().add(new Role(2, "Administrator"));
+        for (int i=0; i<3; i++) {
+            cbRole.getItems().add(new Role(i, app.getString("role_" + i)));
+        }
 
         // Zet het gebruikersnaamveld uit, deze is niet bewerkbaar.
         tfUsername.setDisable(true);
@@ -97,7 +97,8 @@ public class AccountEdit extends SceneController {
     public void onSave(ActionEvent event) {
         // Controleer of alle gegevens in de form correct zijn.
         if (!isFormValid()) {
-            showSimpleMessage(Alert.AlertType.ERROR, "Ontbrekende gegevens", "Niet alle velden zijn (correct) ingevuld.");
+            app.showErrorMessage("form_invalid");
+            return;
         }
 
         // Veranderd de gegevens van het account aan de hand van de ingevulde gegevens.

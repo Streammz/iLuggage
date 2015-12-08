@@ -32,17 +32,17 @@
             </columnConstraints>
             <children>
                 
-                <Text text="Naam:" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
+                <Text text="%name_customer" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
                     <GridPane.margin>
                         <Insets left="10.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
-                <Text text="E-mailadres:" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                <Text text="%email_address" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                     <GridPane.margin>
                         <Insets left="10.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Telefoonnummer:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
+                <Text text="%phone_number" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
                     <GridPane.margin>
                         <Insets left="10.0" right="5.0" />
                     </GridPane.margin>
@@ -55,22 +55,22 @@
                 
                 <Separator GridPane.columnSpan="4" GridPane.rowIndex="2" />
                 
-                <Text text="Woonplaats:" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                <Text text="%address" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                     <GridPane.margin>
                         <Insets left="10.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Postcode:" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                <Text text="%postalcode" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                     <GridPane.margin>
                         <Insets left="10.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Huisnummer:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                <Text text="%housenumber" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                     <GridPane.margin>
                         <Insets left="10.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Toevoeging:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                <Text text="%addition" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                     <GridPane.margin>
                         <Insets left="10.0" right="5.0" />
                     </GridPane.margin>
@@ -81,7 +81,7 @@
                 <TextField fx:id="tfHousenumber" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                 <TextField fx:id="tfAddition" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                 
-                <Button text="Opslaan" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="5" GridPane.halignment="RIGHT" onAction="#onSave" />
+                <Button text="%save" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="5" GridPane.halignment="RIGHT" onAction="#onSave" />
             </children>
         </GridPane>
     </children>

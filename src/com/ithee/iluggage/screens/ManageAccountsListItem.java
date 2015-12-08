@@ -32,9 +32,7 @@ public class ManageAccountsListItem {
     public void onCreate() {
         txtName.setText(myAccount.name);
         txtUsername.setText(myAccount.username);
-        txtRole.setText(myAccount.permissionLevel == 0 ? "Medewerker"
-                : myAccount.permissionLevel == 1 ? "Manager"
-                        : myAccount.permissionLevel == 2 ? "Administrator" : "Onbekend");
+        txtRole.setText(app.getString("role_" + myAccount.permissionLevel));
         txtLastLogin.setText(DATE_FORMAT.format(myAccount.lastLogin));
     }
 
@@ -43,8 +41,7 @@ public class ManageAccountsListItem {
     }
 
     public void onClickDelete() {
-        boolean delete = ILuggageApplication.showConfirmDialog("Account verwijderen",
-                "Weet je zeker dat je het account \"" + myAccount.name + "\" wilt verwijderen?");
+        boolean delete = app.showConfirmDialog("delete_account", myAccount.name);
 
         if (delete) {
             app.db.executeStatement("DELETE FROM `accounts` WHERE `Id` = ?", myAccount.id);

@@ -62,15 +62,4 @@ public abstract class SceneController {
     public void showSimpleMessage(AlertType type, String title, String content) {
         ILuggageApplication.showSimpleMessage(type, title, content);
     }
-    
-    /**
-     * Laat een confirmatie dialoog zien met het meegegeven titel en bericht.
-     *
-     * @param title De titel van het dialoog.
-     * @param content Het bericht wat in het dialoog staat.
-     * @return True als de gebruiker op OK heeft gedrukt, en anders false.
-     */
-    public boolean showConfirmDialog(String title, String content) {
-        return ILuggageApplication.showConfirmDialog(title, content);
-    }
 }

@@ -27,17 +27,17 @@
                 <RowConstraints vgrow="NEVER" minHeight="20" />
             </rowConstraints>
             <children>
-                <Text text="Naam:" GridPane.columnIndex="0" GridPane.halignment="RIGHT" >
+                <Text text="%name" GridPane.columnIndex="0" GridPane.halignment="RIGHT" >
                     <GridPane.margin>
                         <Insets right="5" />
                     </GridPane.margin>
                 </Text>
-                <Text text="E-mail:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" >
+                <Text text="%email" GridPane.columnIndex="2" GridPane.halignment="RIGHT" >
                     <GridPane.margin>
                         <Insets left="10" right="5" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Telefoon:" GridPane.columnIndex="4" GridPane.halignment="RIGHT" >
+                <Text text="%phone_number" GridPane.columnIndex="4" GridPane.halignment="RIGHT" >
                     <GridPane.margin>
                         <Insets left="10" right="5" />
                     </GridPane.margin>
@@ -47,22 +47,22 @@
                 <Text fx:id="txtEmail" text="&lt;email&gt;" underline="true" GridPane.columnIndex="3" />
                 <Text fx:id="txtPhone" text="&lt;phone&gt;" underline="true" GridPane.columnIndex="5" />
             
-                <Text text="Woonplaats:" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="RIGHT" >
+                <Text text="%address" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="RIGHT" >
                     <GridPane.margin>
                         <Insets right="5.0" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Postcode:" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.halignment="RIGHT" >
+                <Text text="%postalcode" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.halignment="RIGHT" >
                     <GridPane.margin>
                         <Insets left="10.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Huisnummer:" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.halignment="RIGHT" >
+                <Text text="%housenumber" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.halignment="RIGHT" >
                     <GridPane.margin>
                         <Insets left="10.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
-                <Text text="Toevoeging:" GridPane.columnIndex="6" GridPane.rowIndex="1" GridPane.halignment="RIGHT" >
+                <Text text="%addition" GridPane.columnIndex="6" GridPane.rowIndex="1" GridPane.halignment="RIGHT" >
                     <GridPane.margin>
                         <Insets left="10.0" right="5.0" />
                     </GridPane.margin>

@@ -343,6 +343,21 @@ public class Report extends SubSceneController {
 
         public Calendar getEndDate();
     }
+    
+    private static class ReportType {
+        private final int id;
+        private final String text;
+        
+        public ReportType(int id, String text) {
+            this.id = id;
+            this.text = text;
+        }
+
+        @Override
+        public String toString() {
+            return text;
+        }
+    }
 
     private static class ReportWeek implements ReportEntry {
 

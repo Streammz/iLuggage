@@ -14,7 +14,9 @@ import com.ithee.iluggage.screens.Login;
 import com.ithee.iluggage.screens.MainMenu;
 import com.ithee.iluggage.screens.WelcomeScreen;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Optional;
+import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -81,6 +83,11 @@ public class ILuggageApplication extends Application {
     private Account user;
 
     /**
+     * De resources waar de taal in word opgeslagen en van geladen.
+     */
+    private ResourceBundle language;
+
+    /**
      * De eerste functie die word aangeroepen zodra de applicatie word
      * opgestart. Hier komen alle initialisatie processen in.
      *
@@ -90,6 +97,9 @@ public class ILuggageApplication extends Application {
     public void start(Stage primaryStage) {
         // Laad alle zelf-toegevoegde fonts en voeg deze toe aan het programma.
         Font.loadFont(ILuggageApplication.class.getResource("/Uni-Sans-Bold.otf").toExternalForm(), 10);
+
+        // Laad de standaard taal
+        language = ResourceBundle.getBundle("language", new Locale("en", "EN"));
 
         // Initializeer het scherm en zijn standaardwaarden.
         this.primaryStage = primaryStage;
@@ -106,19 +116,19 @@ public class ILuggageApplication extends Application {
         this.dbBrands = new AddableDatabaseCache<LuggageBrand>(this, "SELECT * FROM `luggagebrands`",
                 "INSERT INTO `luggagebrands` VALUES (NULL, ?)", LuggageBrand.class) {
 
-            @Override
-            public Object[] getDbParams(LuggageBrand brand) {
-                return new Object[]{brand.name};
-            }
-        };
+                    @Override
+                    public Object[] getDbParams(LuggageBrand brand) {
+                        return new Object[]{brand.name};
+                    }
+                };
         this.dbColors = new AddableDatabaseCache<LuggageColor>(this, "SELECT * FROM `luggagecolors`",
                 "INSERT INTO `luggagecolors` VALUES (NULL, ?)", LuggageColor.class) {
 
-            @Override
-            public Object[] getDbParams(LuggageColor color) {
-                return new Object[]{color.name};
-            }
-        };
+                    @Override
+                    public Object[] getDbParams(LuggageColor color) {
+                        return new Object[]{color.name};
+                    }
+                };
 
         // Schakel naar het eerste scherm: het inlogscherm.
         this.switchMainScene(Login.class);
@@ -154,9 +164,10 @@ public class ILuggageApplication extends Application {
         if (!this.primaryStage.isShowing()) {
             this.primaryStage.show();
         }
-        
-        if (controller instanceof MainMenu) 
+
+        if (controller instanceof MainMenu) {
             switchSubScene(WelcomeScreen.class);
+        }
 
         // Geeft de controller mee terug.
         return controller;
@@ -256,6 +267,7 @@ public class ILuggageApplication extends Application {
             // Laad de view en controller door middel van het fxml bestand.
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource(fxmlName));
+            fxmlLoader.setResources(language);
             Parent root = fxmlLoader.load();
             T controller = fxmlLoader.getController();
 
@@ -271,6 +283,14 @@ public class ILuggageApplication extends Application {
             // en de correcte foutmelding weergeven. 
             throw new RuntimeException(ex);
         }
+    }
+    
+    /**
+     * Geeft het huidig taalbestand mee terug.
+     * @return Het huidig taalbestand.
+     */
+    public ResourceBundle getLanguage() {
+        return this.language;
     }
 
     /**
@@ -395,6 +415,17 @@ public class ILuggageApplication extends Application {
     }
 
     /**
+     * Haalt een (vertaalde) string op aan de hand van de meegegeven key. De
+     * string komt uit de language-bundle.
+     *
+     * @param key De key om op te halen
+     * @return Een (vertaalde) string die bij de key hoort.
+     */
+    public String getString(String key) {
+        return language.getString(key);
+    }
+
+    /**
      * Laat een simpele dialoog zien met het meegegeven type, titel en bericht.
      *
      * @param type Het type wat het dialoog moet zijn.
@@ -411,17 +442,39 @@ public class ILuggageApplication extends Application {
     }
 
     /**
-     * Laat een confirmatie dialoog zien met het meegegeven titel en bericht.
+     * Laat een error message zien met een bericht uit het talenbestand.
      *
-     * @param title De titel van het dialoog.
-     * @param content Het bericht wat in het dialoog staat.
+     * @param errorKey De naam van de key in het talenbestand.
+     * @param params De parameters die vervangen worden in het bericht.
+     */
+    public void showErrorMessage(String errorKey, Object... params) {
+        String title = getString("error_" + errorKey + "_title");
+        String message = getString("error_" + errorKey);
+        if (params != null && params.length > 0) {
+            message = String.format(message, params);
+        }
+        showSimpleMessage(Alert.AlertType.ERROR, title, message);
+    }
+
+    /**
+     * Laat een confirmatie dialoog zien met het meegegeven titel en bericht.
+     * Deze worden opgehaald uit het talenbestand.
+     *
+     * @param key De naam van de key in het talenbestand.
+     * @param params De parameters die vervangen worden in het bericht.
      * @return True als de gebruiker op OK heeft gedrukt, en anders false.
      */
-    public static boolean showConfirmDialog(String title, String content) {
+    public boolean showConfirmDialog(String key, Object... params) {
+        String title = getString("dialog_" + key + "_title");
+        String message = getString("dialog_" + key);
+        if (params != null && params.length > 0) {
+            message = String.format(message, params);
+        }
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
-        alert.setContentText(content);
+        alert.setContentText(message);
 
         Optional<ButtonType> result = alert.showAndWait();
         return (result.isPresent() && result.get() == ButtonType.OK);
