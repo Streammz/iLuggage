@@ -51,7 +51,7 @@ public class SearchCustomerListItem {
 
     public void onClickDelete() {
         boolean delete = ILuggageApplication.showConfirmDialog("Klant verwijderen",
-                "Weet je zeker dat je de klant \"" + myCustomer.name + "\" wilt verwijderen?");
+                "Are you sure you want to delete the customer \"" + myCustomer.name + "\"?");
 
         if (delete) {
             app.db.executeStatement("DELETE FROM `customers` WHERE `Id` = ?", myCustomer.id);

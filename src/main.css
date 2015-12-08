@@ -26,6 +26,10 @@
 .root {
     -fx-background-color: white;
 }
+#welcomeScreen {
+    -fx-background-image: url("corendonwelkomstscherm.png");
+    -fx-background-size: cover;
+}
 
 /* Colors */
 .coloredButton {

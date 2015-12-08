@@ -38,7 +38,7 @@ public class SearchLuggageListItem {
         txtColor.setText(color == null ? "-" : color.name);
         txtBrand.setText(brand == null ? "-" : brand.name);
         txtSize.setText(myLuggage.size == null ? "-" : myLuggage.size);
-        txtStickers.setText(myLuggage.stickers ? "Ja" : "Nee");
+        txtStickers.setText(myLuggage.stickers ? "Yes" : "No");
         txtMisc.setText(myLuggage.miscellaneous == null || myLuggage.miscellaneous.length() == 0 ? "-" : myLuggage.miscellaneous);
     }
 
@@ -47,8 +47,8 @@ public class SearchLuggageListItem {
     }
 
     public void onClickDelete() {
-        boolean delete = ILuggageApplication.showConfirmDialog("Bagage verwijderen",
-                "Weet je zeker dat je deze bagage wilt verwijderen?");
+        boolean delete = ILuggageApplication.showConfirmDialog("Delete luggage",
+                "Are you sure you want to delete the luggage?");
 
         if (delete) {
             app.db.executeStatement("DELETE FROM `luggage` WHERE `Id` = ?", myLuggage.id);

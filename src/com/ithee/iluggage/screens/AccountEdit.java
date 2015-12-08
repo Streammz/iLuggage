@@ -16,20 +16,20 @@ import javafx.scene.control.*;
 public class AccountEdit extends SceneController {
 
     /**
-     * De string die gebruikt word in het wachtwoordveld om het wachtwoord niet
+     * De string die gebruikt wordt in het wachtwoordveld om het wachtwoord niet
      * te veranderen.
      */
     private static final String DO_NOT_UPDATE = "DONOTUPDATE";
 
     /**
-     * De query die gebruikt word om een account bij te werken in de database.
+     * De query die gebruikt wordt om een account bij te werken in de database.
      */
     private static final String SQL_UPDATE_ACCOUNT = "UPDATE `accounts` SET "
             + "`Password` = ?, `Salt` = ?, `Name` = ?, `Phone` = ?, `PermissionLevel` = ? "
             + "WHERE `Id` = ?";
 
     /**
-     * Het account dat bewerkt word.
+     * Het account dat bewerkt wordt.
      */
     private Account myAcc;
 

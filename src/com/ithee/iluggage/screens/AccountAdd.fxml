@@ -30,8 +30,8 @@
                 <RowConstraints minHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Text text="Naam" GridPane.halignment="RIGHT" GridPane.rowIndex="0" />
-                <Text text="Gebruikersnaam:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                <Text text="Name: " GridPane.halignment="RIGHT" GridPane.rowIndex="0" />
+                <Text text="Username: " GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                 <Text text="Wachtwoord:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                 <TextField fx:id="tfName" GridPane.columnIndex="1" GridPane.rowIndex="0" />
                 <TextField fx:id="tfUsername" GridPane.columnIndex="1" GridPane.rowIndex="1" />
