@@ -106,7 +106,7 @@ public class ILuggageApplication extends Application {
         Font.loadFont(ILuggageApplication.class.getResource("/Uni-Sans-Bold.otf").toExternalForm(), 10);
 
         // Laad de standaard taal
-        setLanguage("en", "EN");
+        setLanguage("nl", "NL");
 
         // Initializeer het scherm en zijn standaardwaarden.
         this.primaryStage = primaryStage;
@@ -314,7 +314,7 @@ public class ILuggageApplication extends Application {
         this.languageCountry = language;
         
         if (primaryStage != null && primaryStage.isShowing()) {
-            if (currentScene instanceof MainMenu && ((MainMenu)currentScene).subscene != null) {
+            if (currentScene instanceof MainMenu) {
                 if (showConfirmDialog("change_language")) {
                     switchMainScene(MainMenu.class);
                 }
