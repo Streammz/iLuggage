@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
@@ -10,52 +11,77 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.Login">
+<BorderPane id="loginScreen" prefHeight="833.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.Login">
     <stylesheets>
         <URL value="@../../../../main.css" />
     </stylesheets>
-    
-    <center>
-        <VBox alignment="CENTER" maxWidth="250.0" prefWidth="200.0" spacing="5.0">
-            <children>
-                <HBox alignment="CENTER" spacing="5.0">
-                    <children>
-                        <Text text="%username" textAlignment="RIGHT" wrappingWidth="120.0" />
-                        <TextField fx:id="tfUsername" />
-                    </children>
-                </HBox>
-                <HBox alignment="CENTER" spacing="5.0">
-                    <children>
-                        <Text text="%password" textAlignment="RIGHT" wrappingWidth="120.0" />
-                        <PasswordField fx:id="tfPassword" onAction="#onLoginPressed" />
-                    </children>
-                </HBox>
-                <HBox alignment="CENTER_RIGHT" spacing="5.0">
-                    <children>
-                        <Button onAction="#onLoginPressed" text="%login" />
-                    </children>
-                </HBox>
-            </children>
-        </VBox>
-    </center>
     <top>
         <ImageView pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
             <image>
                 <Image url="@../../../../corendon.png" />
             </image>
             <BorderPane.margin>
-                <Insets bottom="-30.0" top="30.0" />
+                <Insets top="30.0" />
             </BorderPane.margin>
         </ImageView>
     </top>
-    <bottom>
-        <TextFlow BorderPane.alignment="CENTER">
-            <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%copyright" />
-            </children>
-            <BorderPane.margin>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-            </BorderPane.margin>
-        </TextFlow>
-    </bottom>
+   <right>
+      <GridPane prefHeight="661.0" prefWidth="1063.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="662.0" minWidth="10.0" prefWidth="48.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="971.0" minWidth="10.0" prefWidth="646.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.0" minWidth="10.0" prefWidth="143.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.0" minWidth="10.0" prefWidth="147.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.0" minWidth="10.0" prefWidth="87.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="256.0" minHeight="10.0" prefHeight="256.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="308.0" minHeight="0.0" prefHeight="58.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="483.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="483.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="486.0" minHeight="10.0" prefHeight="352.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="483.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+                  <Text text="%password" textAlignment="RIGHT" wrappingWidth="120.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+                  <Text text="%username" textAlignment="RIGHT" wrappingWidth="120.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+                  <TextField fx:id="tfUsername" prefHeight="30.0" prefWidth="146.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <opaqueInsets>
+                  <Insets right="30.0" />
+               </opaqueInsets>
+            </TextField>
+                  <PasswordField fx:id="tfPassword" onAction="#onLoginPressed" prefHeight="30.0" prefWidth="146.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <opaqueInsets>
+                  <Insets right="30.0" />
+               </opaqueInsets>
+            </PasswordField>
+                  <Button onAction="#onLoginPressed" prefHeight="25.0" prefWidth="145.0" text="%login" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%copyright" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+              <TextFlow GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="3">
+               <children>
+                  <Text fill="#34bde6" strokeType="OUTSIDE" strokeWidth="0.0" text="Bagageafhandeling">
+                     <font>
+                        <Font name="Uni-Sans-Heavy-Italic" size="69.0" />
+                     </font>
+                  </Text>
+               </children>
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+              </TextFlow>
+         </children>
+      </GridPane>
+   </right>
 </BorderPane>

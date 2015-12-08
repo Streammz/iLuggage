@@ -31,6 +31,11 @@
     -fx-background-size: cover;
 }
 
+#loginScreen {
+    -fx-background-image: url("gradientbg.png");
+    -fx-background-size: cover;
+}
+
 /* Colors */
 .coloredButton {
     -fx-background-color: #00BCE2;
