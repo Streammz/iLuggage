@@ -37,7 +37,7 @@ public class SearchLuggage extends SubSceneController {
     public void onCreate() {
 
         cbKind.getItems().add(null);
-        app.dbKinds.getValues().forEach((o) -> {
+        app.dbKinds.forEach((o) -> {
             cbKind.getItems().add(o);
         });
         cbColor.getItems().add(null);

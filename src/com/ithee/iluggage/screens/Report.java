@@ -74,7 +74,7 @@ public class Report extends SubSceneController {
 
         // Reguliere filters
         cbKind.getItems().add(null);
-        app.dbKinds.getValues().forEach((o) -> {
+        app.dbKinds.forEach((o) -> {
             cbKind.getItems().add(o);
         });
         cbColor.getItems().add(null);

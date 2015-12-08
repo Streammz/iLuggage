@@ -34,7 +34,7 @@ public class SearchLuggageListItem {
         LuggageColor color = myLuggage.getColor(app);
         LuggageBrand brand = myLuggage.getBrand(app);
 
-        txtKind.setText(kind == null ? "-" : kind.name);
+        txtKind.setText(kind == null ? "-" : kind.toString());
         txtColor.setText(color == null ? "-" : color.name);
         txtBrand.setText(brand == null ? "-" : brand.name);
         txtSize.setText(myLuggage.size == null ? "-" : myLuggage.size);

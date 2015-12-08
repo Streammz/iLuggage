@@ -65,7 +65,7 @@ public class LostLuggage extends SubSceneController {
 
     @Override
     public void onCreate() {
-        app.dbKinds.getValues().forEach((kind) -> {
+        app.dbKinds.forEach((kind) -> {
             chKind.getItems().add(kind);
         });
 

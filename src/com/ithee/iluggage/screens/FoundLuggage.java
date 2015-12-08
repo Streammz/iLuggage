@@ -41,7 +41,7 @@ public class FoundLuggage extends SubSceneController {
     @Override
     public void onCreate() {
         chKind.getItems().add(null);
-        app.dbKinds.getValues().forEach((kind) -> {
+        app.dbKinds.forEach((kind) -> {
             chKind.getItems().add(kind);
         });
 

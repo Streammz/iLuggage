@@ -1,5 +1,7 @@
 package com.ithee.iluggage.core.database.classes;
 
+import com.ithee.iluggage.ILuggageApplication;
+
 /**
  * Een bagagesoort dat binnen de applicatie gebruikt word.
  *
@@ -8,11 +10,16 @@ package com.ithee.iluggage.core.database.classes;
 public class LuggageKind {
 
     public int id;
-    public String name;
+    public ILuggageApplication app;
+    
+    public LuggageKind(ILuggageApplication app, int id) {
+        this.id = id;
+        this.app = app;
+    }
 
     @Override
     public String toString() {
-        return name;
+        return app.getString("kind_" + id);
     }
 
 }

@@ -8,9 +8,7 @@ import com.ithee.iluggage.core.database.classes.LuggageKind;
 import com.ithee.iluggage.core.scene.SceneController;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Optional;
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
@@ -80,7 +78,7 @@ public class LuggageDetails extends SceneController {
             tfCustomer.setText(customer.name);
         });
 
-        cbKind.getItems().addAll(app.dbKinds.getValues());
+        cbKind.getItems().addAll(app.dbKinds);
         cbKind.setValue(myLuggage.getKind(app));
 
         tfBrand.setText(myLuggage.getBrand(app).name);
