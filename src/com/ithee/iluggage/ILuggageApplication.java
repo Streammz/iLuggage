@@ -88,6 +88,11 @@ public class ILuggageApplication extends Application {
      * De resources waar de taal in word opgeslagen en van geladen.
      */
     private ResourceBundle language;
+    
+    /**
+     * De taal val de geselecteerde language.
+     */
+    private String languageCountry;
 
     /**
      * De eerste functie die word aangeroepen zodra de applicatie word
@@ -99,9 +104,10 @@ public class ILuggageApplication extends Application {
     public void start(Stage primaryStage) {
         // Laad alle zelf-toegevoegde fonts en voeg deze toe aan het programma.
         Font.loadFont(ILuggageApplication.class.getResource("/Uni-Sans-Bold.otf").toExternalForm(), 10);
+        Font.loadFont(ILuggageApplication.class.getResource("/Uni-Sans-HeavyItalic.otf").toExternalForm(), 10);
 
         // Laad de standaard taal
-        language = ResourceBundle.getBundle("language", new Locale("en", "EN"));
+        setLanguage("nl", "NL");
 
         // Initializeer het scherm en zijn standaardwaarden.
         this.primaryStage = primaryStage;
@@ -231,6 +237,7 @@ public class ILuggageApplication extends Application {
             // Indien de meegegeven class null is, dan word een leeg scherm 
             // getoont. Anders word de meegegeven class aangemaakt.
             if (sceneClass == null) {
+                ((MainMenu)currentScene).subscene = null;
                 currentPane.setCenter(null);
                 return null;
             } else {
@@ -238,6 +245,7 @@ public class ILuggageApplication extends Application {
                 T controller = initScene(sceneClass);
                 controller.onCreate();
                 controller.stage = this.currentScene.stage;
+                ((MainMenu)currentScene).subscene = controller;
 
                 // Veranderd het center gedeelte van de BorderedPane naar de 
                 // aangemaakte View van de controller.
@@ -296,6 +304,23 @@ public class ILuggageApplication extends Application {
      */
     public ResourceBundle getLanguage() {
         return this.language;
+    }
+    
+    public String getCountry() {
+        return this.languageCountry;
+    }
+    
+    public void setLanguage(String language, String country) {
+        this.language = ResourceBundle.getBundle("language", new Locale(language, country));
+        this.languageCountry = language;
+        
+        if (primaryStage != null && primaryStage.isShowing()) {
+            if (currentScene instanceof MainMenu) {
+                if (showConfirmDialog("change_language")) {
+                    switchMainScene(MainMenu.class);
+                }
+            }
+        }
     }
 
     /**

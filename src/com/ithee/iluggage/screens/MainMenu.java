@@ -5,6 +5,7 @@ import com.ithee.iluggage.core.scene.SubSceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.text.Text;
 
 /**
@@ -13,6 +14,8 @@ import javafx.scene.text.Text;
  */
 public class MainMenu extends SceneController {
 
+    public SubSceneController subscene;
+    
     @FXML
     private Text adminTitle, mngrTitle;
     @FXML
@@ -26,12 +29,28 @@ public class MainMenu extends SceneController {
     private Button btnReport;
     @FXML
     private Button btnManageUsers;
+    
+    @FXML
+    private ChoiceBox<Language> cbLanguage;
 
     private Button currentSelected;
 
     @Override
     public void onCreate() {
         loggedinUser.setText(app.getUser().name);
+        
+        // Verander de taal-menu
+        cbLanguage.getItems().add(new Language("en", "EN", "English"));
+        cbLanguage.getItems().add(new Language("nl", "NL", "Nederlands"));
+        if (app.getCountry().equals("en")) {
+            cbLanguage.setValue(cbLanguage.getItems().get(0));
+        } else {
+            cbLanguage.setValue(cbLanguage.getItems().get(1));
+        }
+        
+        cbLanguage.getSelectionModel().selectedItemProperty().addListener((ov, oldVal, newVal) -> {
+            app.setLanguage(newVal.language, newVal.country);
+        });
 
         if (!app.isUserManager()) {
             removeNode(btnReport, mngrTitle, btnManageUsers, adminTitle);
@@ -90,4 +109,23 @@ public class MainMenu extends SceneController {
         app.switchMainScene(Login.class);
     }
 
+    private static class Language {
+        private final String language;
+        private final String country;
+        private final String display;
+        
+        public Language(String language, String country, String display) {
+            this.language = language;
+            this.country = country;
+            this.display = display;
+        }
+
+        @Override
+        public String toString() {
+            return display;
+        }
+        
+        
+    }
+    
 }
