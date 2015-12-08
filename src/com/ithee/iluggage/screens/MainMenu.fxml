@@ -16,6 +16,7 @@
                 <ColumnConstraints hgrow="NEVER" />
                 <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" />
                 <ColumnConstraints hgrow="NEVER" maxWidth="195.0" minWidth="129.0" prefWidth="129.0" />
+            <ColumnConstraints hgrow="NEVER" maxWidth="195.0" minWidth="129.0" prefWidth="129.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="109.0" minHeight="10.0" prefHeight="109.0" vgrow="SOMETIMES" />
@@ -30,7 +31,7 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                     </GridPane.margin>
                 </ImageView>
-                <Pane styleClass="bgTheme" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+                <Pane styleClass="bgTheme" GridPane.columnSpan="4" GridPane.rowIndex="1" />
                 <TextFlow textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                     <GridPane.margin>
                         <Insets bottom="13.0" left="13.0" right="13.0" top="13.0" />
@@ -45,6 +46,7 @@
                         <Insets right="10.0" />
                     </GridPane.margin>
                 </Button>
+            <ChoiceBox prefHeight="31.0" prefWidth="126.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             </children>
         </GridPane>
     </top>
