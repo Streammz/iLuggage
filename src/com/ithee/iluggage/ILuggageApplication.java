@@ -42,7 +42,7 @@ public class ILuggageApplication extends Application {
     /**
      * De minimum breedte/hoogte van de applicatie.
      */
-    private static final int MIN_WIDTH = 1200, MIN_HEIGHT = 900;
+    private static final int MIN_WIDTH = 1275, MIN_HEIGHT = 750;
 
     /**
      * De database helper-class, waar de verbinding met de database tot stand
