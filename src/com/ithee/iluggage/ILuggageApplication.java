@@ -11,6 +11,8 @@ import com.ithee.iluggage.core.scene.SubSceneController;
 import com.ithee.iluggage.core.scene.SceneController;
 import com.ithee.iluggage.core.security.PasswordHasher;
 import com.ithee.iluggage.screens.Login;
+import com.ithee.iluggage.screens.MainMenu;
+import com.ithee.iluggage.screens.WelcomeScreen;
 import java.util.Date;
 import java.util.Optional;
 import javafx.application.Application;
@@ -152,6 +154,9 @@ public class ILuggageApplication extends Application {
         if (!this.primaryStage.isShowing()) {
             this.primaryStage.show();
         }
+        
+        if (controller instanceof MainMenu) 
+            switchSubScene(WelcomeScreen.class);
 
         // Geeft de controller mee terug.
         return controller;

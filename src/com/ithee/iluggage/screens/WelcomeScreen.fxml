@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane id="welcomeScreen" alignment="TOP_LEFT" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.WelcomeScreen">
+    <stylesheets>
+        <URL value="@../../../../main.css" />
+    </stylesheets>
+    <children>
+      <TextFlow prefHeight="200.0" prefWidth="200.0">
+         <children>
+                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" wrappingWidth="512.2000122070312">
+                    <font>
+                        <Font name="Uni-Sans-Heavy-Italic" size="130.0" />
+                    </font>
+                </Text>
+            <Text fx:id="tfNaam" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Kelvin Rowaan">
+               <font>
+                  <Font name="Uni-Sans-Heavy-Italic" size="80.0" />
+               </font>
+            </Text>
+         </children>
+         <StackPane.margin>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </StackPane.margin>
+      </TextFlow>
+    </children>
+</StackPane>

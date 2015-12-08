@@ -40,6 +40,7 @@ public class MainMenu extends SceneController {
         } else if (!app.isUserAdmin()) {
             removeNode(btnManageUsers, adminTitle);
         }
+        
     }
 
     private <T extends SubSceneController> void clickButton(Class<T> theClass, Button btn) {

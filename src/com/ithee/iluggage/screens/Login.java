@@ -25,14 +25,14 @@ public class Login extends SceneController {
         if (app.tryLogin(tfUsername.getText(), tfPassword.getText())) {
             app.switchMainScene(MainMenu.class);
         } else {
-            // Controleert of het programma buiten het HvA word benaderd
+            // Controleert of het programma buiten het HvA wordt benaderd
             if (app.db.lastError.contains("Access denied for user")) {
                 ILuggageApplication.showSimpleMessage(Alert.AlertType.ERROR,
-                        "Geen verbinding met de database",
-                        "Geen verbinding kunnen maken met de database van het HvA.\n"
-                        + "Deze applicatie is op dit moment niet buiten het HvA te gebruiken.");
+                        "No connection with the database",
+                        "Couldn't make a connection with HvA database.\n"
+                        + "At the moment it's not possible to use this application outside HvA.");
             } else {
-                showSimpleMessage(AlertType.ERROR, "Foute inloggegevens", "Gebruikersnaam of wachtwoord komt niet overeen.");
+                showSimpleMessage(AlertType.ERROR, "Incorrect username and/or password", "Please fill in the correct credentials");
             }
         }
     }

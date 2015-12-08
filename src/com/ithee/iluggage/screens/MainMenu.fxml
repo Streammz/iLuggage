@@ -36,7 +36,7 @@
                         <Insets bottom="13.0" left="13.0" right="13.0" top="13.0" />
                     </GridPane.margin>
                     <children>
-                        <Text fill="WHITE" style="-fx-font-weight: bold;" text="U bent ingelogd als: " />
+                        <Text fill="WHITE" style="-fx-font-weight: bold;" text="You are logged in as:" />
                         <Text fx:id="loggedinUser" fill="WHITE" style="-fx-font-weight: bold;" text="Admin" />
                     </children>
                 </TextFlow>
@@ -51,18 +51,18 @@
     <left>
         <VBox minHeight="520.0" minWidth="320.0" spacing="10.0" style="-fx-background-color: #FAFAFA; -fx-border-color: transparent darkgray transparent transparent;" BorderPane.alignment="CENTER">
             <children>
-                <Text styleClass="menuTitle" text="Bagage" />
-                <Button fx:id="btnFoundLuggage" onAction="#onPressFoundLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Gevonden bagage" />
-                <Button fx:id="btnLostLuggage" onAction="#onPressLostLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Verloren bagage" />
-                <Button fx:id="btnSearchLuggage" onAction="#onPressSearchLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Bagage doorzoeken" />
+                <Text styleClass="menuTitle" text="Luggage" />
+                <Button fx:id="btnFoundLuggage" onAction="#onPressFoundLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Found Luggage" />
+                <Button fx:id="btnLostLuggage" onAction="#onPressLostLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Lost Luggage" />
+                <Button fx:id="btnSearchLuggage" onAction="#onPressSearchLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Search Luggage" />
             
-                <Text styleClass="menuTitle" text="Klanten">
+                <Text styleClass="menuTitle" text="Customers">
                     <VBox.margin>
                         <Insets top="5.0" />
                     </VBox.margin>
                 </Text>
-                <Button fx:id="btnAddCustomer" onAction="#onPressAddCustomer" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Klant invoeren" />
-                <Button fx:id="btnSearchCustomer" onAction="#onPressSearchCustomer" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Klanten doorzoeken" />
+                <Button fx:id="btnAddCustomer" onAction="#onPressAddCustomer" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Add Customer" />
+                <Button fx:id="btnSearchCustomer" onAction="#onPressSearchCustomer" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Search Customers" />
             
                 <Text fx:id="mngrTitle" styleClass="menuTitle" text="Management">
                     <VBox.margin>
@@ -70,12 +70,12 @@
                     </VBox.margin>
                 </Text>
                 <Button fx:id="btnReport" onAction="#onPressReport" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Rapportage" />
-                <Text fx:id="adminTitle" styleClass="menuTitle" text="Administratie">
+                <Text fx:id="adminTitle" styleClass="menuTitle" text="Administration">
                     <VBox.margin>
                         <Insets top="5.0" />
                     </VBox.margin>
                 </Text>
-                <Button fx:id="btnManageUsers" onAction="#onPressManageUsers" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Gebruikers beheren" />
+                <Button fx:id="btnManageUsers" onAction="#onPressManageUsers" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="Manage Users" />
             </children>
             <padding>
                 <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
