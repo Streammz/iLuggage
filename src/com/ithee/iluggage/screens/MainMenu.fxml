@@ -49,7 +49,7 @@
                         <Insets right="10.0" />
                     </GridPane.margin>
                 </Button>
-            <ChoiceBox prefHeight="31.0" prefWidth="126.0" GridPane.columnIndex="3" GridPane.rowIndex="1" fx:id="cbLanguage" />
+            <ChoiceBox fx:id="cbLanguage" prefHeight="36.0" prefWidth="126.0" style="-fx-background-color: #ddd; -fx-font-weight: bold;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             </children>
         </GridPane>
     </top>
