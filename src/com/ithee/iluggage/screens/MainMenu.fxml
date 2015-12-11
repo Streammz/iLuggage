@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane minHeight="600.0" minWidth="1250.0" stylesheets="@../../../../main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.MainMenu">
+<BorderPane maxHeight="600.0" maxWidth="1250.0" stylesheets="@../../../../main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.MainMenu">
     <top>
         <GridPane style="-fx-border-color: lightgray transparent darkgray transparent;" styleClass="mainHeader" BorderPane.alignment="CENTER">
             <columnConstraints>
@@ -54,7 +54,7 @@
         </GridPane>
     </top>
     <left>
-        <VBox minHeight="520.0" minWidth="320.0" spacing="10.0" style="-fx-background-color: #FAFAFA; -fx-border-color: transparent darkgray transparent transparent;" BorderPane.alignment="CENTER">
+        <VBox minHeight="480.0" minWidth="320.0" spacing="10.0" style="-fx-background-color: #FAFAFA; -fx-border-color: transparent darkgray transparent transparent;" BorderPane.alignment="CENTER">
             <children>
                 <Text styleClass="menuTitle" text="%menu_luggage" />
                 <Button fx:id="btnFoundLuggage" onAction="#onPressFoundLuggage" prefHeight="31.0" prefWidth="246.0" styleClass="menuButton" text="%menu_luggage_found" />
