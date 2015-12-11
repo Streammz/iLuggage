@@ -77,6 +77,7 @@ public class CustomerAdd extends SubSceneController {
      */
     public void onAdd(ActionEvent event) {
         if (!isFormValid()) {
+            app.showErrorMessage("invalid_form");
             return;
         }
         // Maakt een nieuwe customer aan, aan de hand van de ingevulde velden.
