@@ -18,4 +18,5 @@ public class Account {
     public String phone;
     public int permissionLevel;
     public Date lastLogin;
+    public boolean disabled;
 }

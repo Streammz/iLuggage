@@ -36,6 +36,19 @@
     -fx-background-size: cover;
 }
 
+.accountlist.disabled {
+    -fx-background-color: #ffaaaa;
+}
+.accountlist.disabled .text {
+    -fx-text-fill: #ffcccc;
+}
+.accountlist.disabled .delete {
+    visibility: hidden;
+}
+.accountlist.enabled .restore {
+    visibility: hidden;
+}
+
 /* Colors */
 .coloredButton {
     -fx-background-color: #00BCE2;

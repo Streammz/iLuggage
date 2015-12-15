@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx/8" onMouseClicked="#onClick"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.ManageAccountsListItem">
+<VBox fx:id="container" xmlns="http://javafx.com/javafx/8" onMouseClicked="#onClick" styleClass="accountlist" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ithee.iluggage.screens.ManageAccountsListItem">
     <children>
         <GridPane>
             <columnConstraints>
@@ -54,11 +54,20 @@
                 <Text fx:id="txtRole" text="&lt;role&gt;" underline="true" GridPane.columnIndex="5" />
                 <Text fx:id="txtLastLogin" text="&lt;lastLogin&gt;" underline="true" GridPane.columnIndex="7" />
             
-                <Button onAction="#onClickDelete" GridPane.columnIndex="8" >
+                <Button onAction="#onClickDelete" GridPane.columnIndex="8" styleClass="delete">
                     <graphic>
                         <ImageView fitWidth="20" fitHeight="20" >
                             <image>
                                 <Image url="@../../../../trash.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button onAction="#onClickRestore" GridPane.columnIndex="8" styleClass="restore">
+                    <graphic>
+                        <ImageView fitWidth="20" fitHeight="20" >
+                            <image>
+                                <Image url="@../../../../restore.png" />
                             </image>
                         </ImageView>
                     </graphic>

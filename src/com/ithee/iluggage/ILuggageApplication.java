@@ -341,7 +341,7 @@ public class ILuggageApplication extends Application {
         }
 
         // Laad het accountinformatie aan de hand van de gebruikersnaam.
-        Account a = db.executeAndReadSingle(Account.class, "SELECT * FROM `accounts` WHERE `Username` = ?", username);
+        Account a = db.executeAndReadSingle(Account.class, "SELECT * FROM `accounts` WHERE `Username` = ? AND `Disabled` = 0", username);
 
         // Indien het account niet bestaat, geef false terug.
         if (a == null) {
