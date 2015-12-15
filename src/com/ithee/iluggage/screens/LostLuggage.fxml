@@ -47,7 +47,7 @@
                 <Text text="%kind" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
                 <Text text="%brand" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
                 <Text text="%color" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
-                <Text text="%brand" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+                <Text text="%size" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
                 <Text text="%stickers" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
                 <Text text="%flight_number" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
                 <Text text="%miscellaneous" GridPane.halignment="RIGHT" GridPane.valignment="TOP" wrappingWidth="110" textAlignment="RIGHT"  GridPane.rowIndex="10" />
