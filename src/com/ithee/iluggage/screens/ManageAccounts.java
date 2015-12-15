@@ -88,7 +88,9 @@ public class ManageAccounts extends SubSceneController {
     }
 
     public void onClickAdd() {
-        app.showPopupScene(AccountAdd.class);
+        app.showPopupScene(AccountAdd.class).load(() -> {
+            this.onSearch();
+        });
     }
 
 }

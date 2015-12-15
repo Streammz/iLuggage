@@ -46,7 +46,9 @@ public class ManageAccountsListItem {
     }
 
     public void onClick() {
-        app.showPopupScene(AccountEdit.class).loadAccount(myAccount);
+        app.showPopupScene(AccountEdit.class).loadAccount(myAccount, () -> {
+            parent.onSearch();
+        });
     }
 
     public void onClickDelete() {

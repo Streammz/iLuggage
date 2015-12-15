@@ -52,6 +52,8 @@ public class AccountAdd extends SceneController {
     @FXML
     private ChoiceBox<Role> cbRole;
 
+    private Runnable afterSave;
+    
     @Override
     public void onCreate() {
         // Voeg de bestaande rollen toe aan het selectielijstje voor rollen.
@@ -60,6 +62,10 @@ public class AccountAdd extends SceneController {
         }
     }
 
+    public void load(Runnable afterSave) {
+        this.afterSave = afterSave;
+    }
+    
     /**
      * De onAction event die word aangeroepen als er op aanmaken word gedrukt.
      *
@@ -90,6 +96,9 @@ public class AccountAdd extends SceneController {
             app.changeStatus("account_added", acc.username);
             // Sluit het scherm
             this.stage.close();
+            if (afterSave != null) {
+                afterSave.run();
+            }
         } else if (app.db.lastError.matches("Duplicate entry .* for key 'Username'")) {
             // Controleert of het gebruikersnaam al in gebruik is
             app.showErrorMessage("account_already_exists", acc.username);
