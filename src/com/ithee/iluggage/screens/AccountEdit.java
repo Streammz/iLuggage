@@ -62,6 +62,8 @@ public class AccountEdit extends SceneController {
      */
     @FXML
     private ChoiceBox<Role> cbRole;
+    
+    private Runnable afterSave;
 
     @Override
     public void onCreate() {
@@ -80,13 +82,15 @@ public class AccountEdit extends SceneController {
      *
      * @param account Het account dat bewerkt moet worden.
      */
-    public void loadAccount(Account account) {
+    public void loadAccount(Account account, Runnable afterSave) {
         this.myAcc = account;
         tfName.setText(account.name);
         tfUsername.setText(account.username);
         tfPassword.setText(DO_NOT_UPDATE);
         tfPhone.setText(account.phone);
         cbRole.setValue(cbRole.getItems().get(account.permissionLevel));
+        
+        this.afterSave = afterSave;
     }
 
     /**
@@ -105,7 +109,7 @@ public class AccountEdit extends SceneController {
         myAcc.name = tfName.getText();
         if (!tfPassword.getText().equals(DO_NOT_UPDATE)) {
             myAcc.salt = PasswordHasher.generateSalt();
-            myAcc.password = PasswordHasher.generateHash(myAcc.salt + tfPassword.getText());
+            myAcc.password = PasswordHasher.generateHash(tfPassword.getText(), myAcc.salt);
         }
         myAcc.phone = tfPhone.getLength() == 0 ? null : tfPhone.getText();
         myAcc.permissionLevel = cbRole.getValue().roleId;
@@ -118,6 +122,9 @@ public class AccountEdit extends SceneController {
         app.changeStatus("account_modified", myAcc.username);
         // Sluit het scherm
         this.stage.close();
+        if (afterSave != null) {
+            afterSave.run();
+        }
     }
 
     /**
