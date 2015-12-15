@@ -93,6 +93,9 @@ public class CustomerAdd extends SubSceneController {
         app.db.executeStatement(SQL_INSERT_CUSTOMER,
                 cus.name, cus.email, cus.phone, cus.address, cus.postalcode, cus.housenumber, cus.addition);
 
+        // Verander de status
+        app.changeStatus("customer_created", cus.name);
+        // Ga terug naar het hoofdscherm
         app.switchSubScene(null);
     }
 

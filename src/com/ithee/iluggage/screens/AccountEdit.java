@@ -114,6 +114,8 @@ public class AccountEdit extends SceneController {
         app.db.executeStatement(SQL_UPDATE_ACCOUNT,
                 myAcc.password, myAcc.salt, myAcc.name, myAcc.phone, myAcc.permissionLevel, myAcc.id);
 
+        // Verander de status
+        app.changeStatus("account_modified", myAcc.username);
         // Sluit het scherm
         this.stage.close();
     }

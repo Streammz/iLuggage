@@ -32,6 +32,9 @@ public class MainMenu extends SceneController {
     
     @FXML
     private ChoiceBox<Language> cbLanguage;
+    
+    @FXML
+    private Text txtStatus;
 
     private Button currentSelected;
 
@@ -58,6 +61,7 @@ public class MainMenu extends SceneController {
             removeNode(btnManageUsers, adminTitle);
         }
         
+        app.changeStatus("logged_in");
     }
 
     private <T extends SubSceneController> void clickButton(Class<T> theClass, Button btn) {
@@ -124,8 +128,10 @@ public class MainMenu extends SceneController {
         public String toString() {
             return display;
         }
-        
-        
+    }
+    
+    public void changeStatus(String text) {
+        this.txtStatus.setText(text);
     }
     
 }

@@ -59,7 +59,7 @@ public class LuggageDetails extends SceneController {
         this.myLuggage = luggage;
         this.afterSave = afterSave;
 
-        for (int i=1; i<=2; i++) {
+        for (int i=1; i<=3; i++) {
             cbType.getItems().add(new LuggageStatus(i, app.getString("luggage_type_" + i)));
         }
         cbType.setValue(cbType.getItems().get(luggage.status - 1));
@@ -129,6 +129,8 @@ public class LuggageDetails extends SceneController {
         });
 
         this.stage.close();
+        // Verander de status
+        app.changeStatus("luggage_modified");
         if (afterSave != null) {
             afterSave.run();
         }

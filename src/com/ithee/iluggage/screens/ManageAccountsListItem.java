@@ -50,10 +50,13 @@ public class ManageAccountsListItem {
     }
 
     public void onClickDelete() {
-        boolean delete = app.showConfirmDialog("delete_account", myAccount.name);
+        boolean delete = app.showConfirmDialog("disable_account", myAccount.name);
 
         if (delete) {
             app.db.executeStatement("UPDATE `accounts` SET `Disabled` = 1 WHERE `Id` = ?", myAccount.id);
+            // Verander de status
+            app.changeStatus("account_disabled", myAccount.username);
+
             // Refresh the results
             parent.onSearch();
         }
@@ -64,6 +67,8 @@ public class ManageAccountsListItem {
         
         if (restore) {
             app.db.executeStatement("UPDATE `accounts` SET `Disabled` = 0 WHERE `Id` = ?", myAccount.id);
+            // Verander de status
+            app.changeStatus("account_restored", myAccount.username);
             // Refresh the results
             parent.onSearch();
         }

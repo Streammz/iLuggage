@@ -88,16 +88,24 @@
         </VBox>
     </left>
     <bottom>
-        <TextFlow style="-fx-background-color: E0E0E0; -fx-border-color: darkgray transparent transparent transparent;" BorderPane.alignment="CENTER">
-            <children>
-                <Text text="Copyright © 2015 iThee, All rights reserved." />
-            </children>
-            <BorderPane.margin>
-                <Insets />
-            </BorderPane.margin>
+        <BorderPane style="-fx-background-color: E0E0E0; -fx-border-color: darkgray transparent transparent transparent;">
             <padding>
-                <Insets left="20.0" />
+                <Insets left="20.0" right="20" />
             </padding>
-        </TextFlow>
+            <left>
+                <TextFlow BorderPane.alignment="CENTER">
+                    <children>
+                        <Text text="%copyright" />
+                    </children>
+                </TextFlow>
+            </left>
+            <right>
+                <TextFlow BorderPane.alignment="CENTER_RIGHT">
+                    <children>
+                        <Text text="" fx:id="txtStatus" />
+                    </children>
+                </TextFlow>
+            </right>
+        </BorderPane>
     </bottom>
 </BorderPane>

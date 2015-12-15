@@ -37,10 +37,7 @@
 }
 
 .accountlist.disabled {
-    -fx-background-color: #ffaaaa;
-}
-.accountlist.disabled .text {
-    -fx-text-fill: #ffcccc;
+    -fx-background-color: #E8927C;
 }
 .accountlist.disabled .delete {
     visibility: hidden;

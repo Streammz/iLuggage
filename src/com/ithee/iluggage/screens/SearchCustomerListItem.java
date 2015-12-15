@@ -53,7 +53,10 @@ public class SearchCustomerListItem {
         boolean delete = app.showConfirmDialog("delete_customer", myCustomer.name);
 
         if (delete) {
+            app.db.executeStatement("DELETE FROM `luggage` WHERE `CustomerId` = ?", myCustomer.id);
             app.db.executeStatement("DELETE FROM `customers` WHERE `Id` = ?", myCustomer.id);
+            // Verander de status
+            app.changeStatus("customer_delete", myCustomer.name);
             // Refresh the results
             parent.onSearch();
         }

@@ -87,6 +87,7 @@ public class AccountAdd extends SceneController {
                 acc.username, acc.password, acc.salt, acc.name, acc.phone, acc.permissionLevel, acc.lastLogin);
 
         if (acc.id > 0) {
+            app.changeStatus("account_added", acc.username);
             // Sluit het scherm
             this.stage.close();
         } else if (app.db.lastError.matches("Duplicate entry .* for key 'Username'")) {

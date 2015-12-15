@@ -93,6 +93,9 @@ public class FoundLuggage extends SubSceneController {
             statement.add(lugg.date);
         });
 
+        // Verander de status
+        app.changeStatus("luggage_created");
+        // Terug naar het hoofdscherm
         app.switchSubScene(null);
     }
 

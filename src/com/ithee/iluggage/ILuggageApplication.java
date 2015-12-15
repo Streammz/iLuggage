@@ -159,13 +159,13 @@ public class ILuggageApplication extends Application {
     public <T extends SceneController> T switchMainScene(Class<T> sceneClass) {
         // Maakt een controller aan en initialiseert deze
         T controller = initScene(sceneClass);
+        this.currentScene = controller;
         controller.onCreate();
 
         // Veranderd de Scene van de main stage naar een nieuwe scene met de 
         // aangemaakte view.
         controller.stage = this.primaryStage;
         this.primaryStage.setScene(new Scene(controller.root, MIN_WIDTH, MIN_HEIGHT));
-        this.currentScene = controller;
 
         // Verander de kleuren van de applicatie aan de hand van de ingelogde 
         // gebruiker
@@ -238,7 +238,7 @@ public class ILuggageApplication extends Application {
             // getoont. Anders word de meegegeven class aangemaakt.
             if (sceneClass == null) {
                 ((MainMenu)currentScene).subscene = null;
-                currentPane.setCenter(null);
+                switchSubScene(WelcomeScreen.class);
                 return null;
             } else {
                 // Maakt een controller aan en initialiseert deze
@@ -508,6 +508,20 @@ public class ILuggageApplication extends Application {
 
         Optional<ButtonType> result = alert.showAndWait();
         return (result.isPresent() && result.get() == ButtonType.OK);
+    }
+    
+    /**
+     * Veranderd de status-text in het mainmenu naar de meegegeven key
+     * @param key De naam van de key in het talenbestand.
+     */
+    public void changeStatus(String key, Object... params) {
+        if (this.currentScene instanceof MainMenu) {
+            String text = getString("status_" + key);
+            if (params != null && params.length > 0) {
+                text = String.format(text, params);
+            }
+            ((MainMenu)this.currentScene).changeStatus(text);
+        }
     }
 
     /**

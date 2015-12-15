@@ -70,6 +70,8 @@ public class CustomerDetails extends SceneController {
         });
 
         this.stage.close();
+        // Verander de status
+        app.changeStatus("customer_modified", myCustomer.name);
         if (afterSave != null) {
             afterSave.run();
         }

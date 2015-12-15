@@ -28,6 +28,8 @@ public class SearchLuggageListItem {
     private Text txtStickers;
     @FXML
     private Text txtMisc;
+    @FXML
+    private Text txtType;
 
     public void onCreate() {
         LuggageKind kind = myLuggage.getKind(app);
@@ -40,6 +42,7 @@ public class SearchLuggageListItem {
         txtSize.setText(myLuggage.size == null ? "-" : myLuggage.size);
         txtStickers.setText(myLuggage.stickers ? app.getString("yes") : app.getString("no"));
         txtMisc.setText(myLuggage.miscellaneous == null || myLuggage.miscellaneous.length() == 0 ? "-" : myLuggage.miscellaneous);
+        txtType.setText(app.getString("luggage_type_" + myLuggage.status));
     }
 
     public void onClick() {
@@ -51,7 +54,10 @@ public class SearchLuggageListItem {
 
         if (delete) {
             app.db.executeStatement("DELETE FROM `luggage` WHERE `Id` = ?", myLuggage.id);
-            // Refresh the results
+            // Verander de status
+            app.changeStatus("luggage_deleted");
+            
+            // Ververs de resultaten
             parent.onSearch();
         }
     }
