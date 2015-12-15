@@ -20,7 +20,7 @@ public class AccountAdd extends SceneController {
      * De query die gebruikt word om een account in te voeren in de database.
      */
     private static final String SQL_INSERT_ACCOUNT = "INSERT INTO `accounts` VALUES ("
-            + "NULL, ?, ?, ?, ?, ?, ?, ?)";
+            + "NULL, ?, ?, ?, ?, ?, ?, ?, 0)";
 
     /**
      * Het veld voor de naam van het aan te maken account.

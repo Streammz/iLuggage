@@ -59,10 +59,14 @@
         
     </center>
     <center>
-        <VBox style="-fx-border-color: darkgray;" BorderPane.alignment="CENTER" fx:id="results" fillWidth="true" >
-            <BorderPane.margin>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-            </BorderPane.margin>
-        </VBox>
+        <ScrollPane vbarPolicy="AS_NEEDED" hbarPolicy="AS_NEEDED" fitToWidth="true" fitToHeight="true">
+            <content>
+                <VBox style="-fx-border-color: darkgray;" BorderPane.alignment="CENTER" fx:id="results" fillWidth="true" >
+                    <BorderPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </BorderPane.margin>
+                </VBox>
+            </content>
+        </ScrollPane>
     </center>
 </BorderPane>

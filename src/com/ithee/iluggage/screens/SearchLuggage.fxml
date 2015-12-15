@@ -65,10 +65,15 @@
         
     </center>
     <center>
-        <VBox fx:id="results" fillWidth="true" style="-fx-border-color: darkgray;" BorderPane.alignment="CENTER">
-            <BorderPane.margin>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-            </BorderPane.margin>
-        </VBox>
+        <ScrollPane hbarPolicy="AS_NEEDED" vbarPolicy="AS_NEEDED" fitToHeight="true" fitToWidth="true">
+            <content>
+                <VBox fx:id="results" fillWidth="true" style="-fx-border-color: darkgray;" BorderPane.alignment="CENTER">
+                    <BorderPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </BorderPane.margin>
+                </VBox>
+            </content>
+        </ScrollPane>    
+        
     </center>
 </BorderPane>
