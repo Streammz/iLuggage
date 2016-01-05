@@ -13,6 +13,9 @@ import javafx.scene.text.Text;
  * @author iThee
  */
 public class ManageAccountsListItem {
+    private static final String DISABLE_ACCOUNT = "UPDATE `accounts` SET `Disabled` = 1 WHERE `Id` = ?";
+    private static final String ENABLE_ACCOUNT = "UPDATE `accounts` SET `Disabled` = 0 WHERE `Id` = ?";
+    
 
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd MMM yyyy");
 
@@ -55,7 +58,7 @@ public class ManageAccountsListItem {
         boolean delete = app.showConfirmDialog("disable_account", myAccount.name);
 
         if (delete) {
-            app.db.executeStatement("UPDATE `accounts` SET `Disabled` = 1 WHERE `Id` = ?", myAccount.id);
+            app.db.executeStatement(DISABLE_ACCOUNT, myAccount.id);
             // Verander de status
             app.changeStatus("account_disabled", myAccount.username);
 
@@ -68,7 +71,7 @@ public class ManageAccountsListItem {
         boolean restore = app.showConfirmDialog("restore_account", myAccount.name);
         
         if (restore) {
-            app.db.executeStatement("UPDATE `accounts` SET `Disabled` = 0 WHERE `Id` = ?", myAccount.id);
+            app.db.executeStatement(ENABLE_ACCOUNT, myAccount.id);
             // Verander de status
             app.changeStatus("account_restored", myAccount.username);
             // Refresh the results

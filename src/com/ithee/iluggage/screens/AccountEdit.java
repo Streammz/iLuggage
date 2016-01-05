@@ -62,13 +62,13 @@ public class AccountEdit extends SceneController {
      */
     @FXML
     private ChoiceBox<Role> cbRole;
-    
+
     private Runnable afterSave;
 
     @Override
     public void onCreate() {
         // Voeg de bestaande rollen toe aan het selectielijstje voor rollen.
-        for (int i=0; i<3; i++) {
+        for (int i = 0; i < 3; i++) {
             cbRole.getItems().add(new Role(i, app.getString("role_" + i)));
         }
 
@@ -81,6 +81,8 @@ public class AccountEdit extends SceneController {
      * account bewerkbaar is.
      *
      * @param account Het account dat bewerkt moet worden.
+     * @param afterSave De functie die uitgevoerd moet worden zodra er gesaved
+     * word.
      */
     public void loadAccount(Account account, Runnable afterSave) {
         this.myAcc = account;
@@ -89,13 +91,13 @@ public class AccountEdit extends SceneController {
         tfPassword.setText(DO_NOT_UPDATE);
         tfPhone.setText(account.phone);
         cbRole.setValue(cbRole.getItems().get(account.permissionLevel));
-        
+
         this.afterSave = afterSave;
     }
 
     /**
      * De onAction event die word aangeroepen als er op opslaan word gedrukt.
-     * 
+     *
      * @param event De parameters van het event.
      */
     public void onSave(ActionEvent event) {
@@ -115,8 +117,17 @@ public class AccountEdit extends SceneController {
         myAcc.permissionLevel = cbRole.getValue().roleId;
 
         // Voer de query uit.
-        app.db.executeStatement(SQL_UPDATE_ACCOUNT,
-                myAcc.password, myAcc.salt, myAcc.name, myAcc.phone, myAcc.permissionLevel, myAcc.id);
+        app.db.executeStatement(SQL_UPDATE_ACCOUNT, (statement) -> {
+            // Values
+            statement.add(myAcc.password);
+            statement.add(myAcc.salt);
+            statement.add(myAcc.name);
+            statement.add(myAcc.phone);
+            statement.add(myAcc.permissionLevel);
+            
+            // Filters
+            statement.add(myAcc.id);
+        });
 
         // Verander de status
         app.changeStatus("account_modified", myAcc.username);
@@ -129,6 +140,7 @@ public class AccountEdit extends SceneController {
 
     /**
      * Controleert of alle velden binnen het formulier correct zijn ingevuld.
+     *
      * @return True als de velden correct zijn ingevuld, anders false.
      */
     public boolean isFormValid() {

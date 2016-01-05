@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
  * @author iThee
  */
 public class SearchLuggageListItem {
+    private static final String DELETE_LUGGAGE = "DELETE FROM `luggage` WHERE `Id` = ?";
 
     public ILuggageApplication app;
     public Luggage myLuggage;
@@ -53,7 +54,7 @@ public class SearchLuggageListItem {
         boolean delete = app.showConfirmDialog("delete_luggage");
 
         if (delete) {
-            app.db.executeStatement("DELETE FROM `luggage` WHERE `Id` = ?", myLuggage.id);
+            app.db.executeStatement(DELETE_LUGGAGE, myLuggage.id);
             // Verander de status
             app.changeStatus("luggage_deleted");
             

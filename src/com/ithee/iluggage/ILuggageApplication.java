@@ -1,7 +1,6 @@
 package com.ithee.iluggage;
 
 import com.ithee.iluggage.core.database.AddableDatabaseCache;
-import com.ithee.iluggage.core.database.DatabaseCache;
 import com.ithee.iluggage.core.database.DatabaseConnection;
 import com.ithee.iluggage.core.database.classes.Account;
 import com.ithee.iluggage.core.database.classes.LuggageBrand;
@@ -38,6 +37,8 @@ import javafx.stage.Stage;
  * @author iThee
  */
 public class ILuggageApplication extends Application {
+    private static final String UPDATE_LASTLOGIN = "UPDATE `accounts` SET `LastLogin` = ? WHERE `Id` = ?";
+    private static final String UPDATE_SALT = "UPDATE `accounts` SET `Salt` = ? WHERE `Id` = ?";
 
     /**
      * De minimum breedte/hoogte van de applicatie.
@@ -352,7 +353,7 @@ public class ILuggageApplication extends Application {
         // genereer er hier een. 
         if (a.salt == null || a.salt.length() < 8) {
             a.salt = PasswordHasher.generateSalt();
-            db.executeStatement("UPDATE `accounts` SET `Salt` = ? WHERE `Id` = ?", a.salt, a.id);
+            db.executeStatement(UPDATE_SALT, a.salt, a.id);
         }
 
         // Pak de salt en voeg deze toe aan het wachtwoord, en maak er dan een 
@@ -366,7 +367,7 @@ public class ILuggageApplication extends Application {
         } else {
             // Verander de laatste inlogtijd naar het huidige tijdstip.
             a.lastLogin = new Date();
-            db.executeStatement("UPDATE `accounts` SET `LastLogin` = ? WHERE `Id` = ?", a.lastLogin, a.id);
+            db.executeStatement(UPDATE_LASTLOGIN, a.lastLogin, a.id);
 
             // Verander de huidig ingelogde gebruiker in de applicatie naar deze.
             this.user = a;
@@ -513,6 +514,7 @@ public class ILuggageApplication extends Application {
     /**
      * Veranderd de status-text in het mainmenu naar de meegegeven key
      * @param key De naam van de key in het talenbestand.
+     * @param params De parameters die vervangen worden in de status.
      */
     public void changeStatus(String key, Object... params) {
         if (this.currentScene instanceof MainMenu) {

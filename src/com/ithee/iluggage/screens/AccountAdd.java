@@ -89,8 +89,15 @@ public class AccountAdd extends SceneController {
         acc.lastLogin = new Date(0L);
 
         // Voer de query uit en sla het gegenereerde ID op.
-        acc.id = app.db.executeStatement(SQL_INSERT_ACCOUNT,
-                acc.username, acc.password, acc.salt, acc.name, acc.phone, acc.permissionLevel, acc.lastLogin);
+        acc.id = app.db.executeStatement(SQL_INSERT_ACCOUNT, (statement) -> {
+            statement.add(acc.username);
+            statement.add(acc.password);
+            statement.add(acc.salt);
+            statement.add(acc.name);
+            statement.add(acc.phone);
+            statement.add(acc.permissionLevel);
+            statement.add(acc.lastLogin);
+        });
 
         if (acc.id > 0) {
             app.changeStatus("account_added", acc.username);

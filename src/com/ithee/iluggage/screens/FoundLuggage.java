@@ -4,8 +4,6 @@ import com.ithee.iluggage.core.controls.AutocompleteTextField;
 import com.ithee.iluggage.core.database.classes.Luggage;
 import com.ithee.iluggage.core.database.classes.LuggageKind;
 import com.ithee.iluggage.core.scene.SubSceneController;
-import java.sql.SQLException;
-import java.sql.Types;
 import java.util.Date;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

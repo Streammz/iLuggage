@@ -4,7 +4,6 @@ import com.ithee.iluggage.ILuggageApplication;
 import com.ithee.iluggage.core.database.classes.Customer;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 
 /**
@@ -12,7 +11,9 @@ import javafx.scene.text.Text;
  * @author iThee
  */
 public class SearchCustomerListItem {
-
+    private static final String DELETE_LUGGAGE = "DELETE FROM `luggage` WHERE `CustomerId` = ?";
+    private static final String DELETE_CUSTOMERS = "DELETE FROM `customers` WHERE `Id` = ?";
+    
     public ILuggageApplication app;
     public Customer myCustomer;
     public Parent root;
@@ -53,8 +54,8 @@ public class SearchCustomerListItem {
         boolean delete = app.showConfirmDialog("delete_customer", myCustomer.name);
 
         if (delete) {
-            app.db.executeStatement("DELETE FROM `luggage` WHERE `CustomerId` = ?", myCustomer.id);
-            app.db.executeStatement("DELETE FROM `customers` WHERE `Id` = ?", myCustomer.id);
+            app.db.executeStatement(DELETE_LUGGAGE, myCustomer.id);
+            app.db.executeStatement(DELETE_CUSTOMERS, myCustomer.id);
             // Verander de status
             app.changeStatus("customer_delete", myCustomer.name);
             // Refresh the results

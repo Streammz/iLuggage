@@ -6,8 +6,6 @@ import com.ithee.iluggage.core.database.classes.Customer;
 import com.ithee.iluggage.core.database.classes.Luggage;
 import com.ithee.iluggage.core.database.classes.LuggageKind;
 import com.ithee.iluggage.core.scene.SubSceneController;
-import java.sql.SQLException;
-import java.sql.Types;
 import java.util.Date;
 import java.util.List;
 import javafx.beans.value.ChangeListener;

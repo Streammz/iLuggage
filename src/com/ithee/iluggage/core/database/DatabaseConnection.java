@@ -11,6 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import javafx.scene.control.Alert;
 
 /**
  * Een helper-class die het eenvoudiger maakt om met een Database te werken.
@@ -69,6 +70,9 @@ public class DatabaseConnection {
         try {
             Class.forName(JDBC_DRIVER);
         } catch (ClassNotFoundException ex) {
+            ILuggageApplication.showSimpleMessage(Alert.AlertType.ERROR, "Driver niet gevonden", 
+                    "De MySQL-driver is niet gevonden. "
+                    + "Indien dit bestand word geopend vanuit een ZIP-bestand, graag uitpakken.");
             throw new RuntimeException("MySQL database driver not found");
         }
     }
