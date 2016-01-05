@@ -124,7 +124,7 @@ public class AccountEdit extends SceneController {
             statement.add(myAcc.name);
             statement.add(myAcc.phone);
             statement.add(myAcc.permissionLevel);
-            
+
             // Filters
             statement.add(myAcc.id);
         });

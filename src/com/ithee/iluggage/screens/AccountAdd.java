@@ -53,11 +53,11 @@ public class AccountAdd extends SceneController {
     private ChoiceBox<Role> cbRole;
 
     private Runnable afterSave;
-    
+
     @Override
     public void onCreate() {
         // Voeg de bestaande rollen toe aan het selectielijstje voor rollen.
-        for (int i=0; i<3; i++) {
+        for (int i = 0; i < 3; i++) {
             cbRole.getItems().add(new Role(i, app.getString("role_" + i)));
         }
     }
@@ -65,7 +65,7 @@ public class AccountAdd extends SceneController {
     public void load(Runnable afterSave) {
         this.afterSave = afterSave;
     }
-    
+
     /**
      * De onAction event die word aangeroepen als er op aanmaken word gedrukt.
      *

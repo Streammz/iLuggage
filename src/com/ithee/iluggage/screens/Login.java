@@ -21,8 +21,8 @@ public class Login extends SceneController {
     public void onLoginPressed(ActionEvent event) {
         if (app.tryLogin(tfUsername.getText(), tfPassword.getText())) {
             app.switchMainScene(MainMenu.class);
-        } else {
-            // Controleert of het programma buiten het HvA wordt benaderd
+        } else // Controleert of het programma buiten het HvA wordt benaderd
+        {
             if (app.db.lastError.contains("Access denied for user")) {
                 app.showErrorMessage("no_hva_connection");
             } else {

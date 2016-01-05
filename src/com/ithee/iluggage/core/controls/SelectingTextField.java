@@ -84,7 +84,7 @@ public class SelectingTextField<T> extends TextField {
 
     /**
      * Sets the listener that gets executed when an entry is selected.
-     * 
+     *
      * @param listener The listener.
      */
     public void setOnSelect(Consumer<T> listener) {

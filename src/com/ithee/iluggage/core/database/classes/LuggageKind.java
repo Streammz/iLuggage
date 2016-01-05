@@ -11,7 +11,7 @@ public class LuggageKind {
 
     public int id;
     public ILuggageApplication app;
-    
+
     public LuggageKind(ILuggageApplication app, int id) {
         this.id = id;
         this.app = app;

@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
  * @author iThee
  */
 public class SearchLuggageListItem {
+
     private static final String DELETE_LUGGAGE = "DELETE FROM `luggage` WHERE `Id` = ?";
 
     public ILuggageApplication app;
@@ -57,7 +58,7 @@ public class SearchLuggageListItem {
             app.db.executeStatement(DELETE_LUGGAGE, myLuggage.id);
             // Verander de status
             app.changeStatus("luggage_deleted");
-            
+
             // Ververs de resultaten
             parent.onSearch();
         }

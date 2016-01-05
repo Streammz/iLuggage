@@ -83,7 +83,7 @@ public class Luggage {
         if (kind == null) {
             return null;
         }
-        return app.dbKinds.get(kind-1);
+        return app.dbKinds.get(kind - 1);
     }
 
     /**

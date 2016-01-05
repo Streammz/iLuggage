@@ -91,13 +91,13 @@ public class CustomerAdd extends SubSceneController {
         cus.addition = tfAddition.getLength() == 0 ? null : tfAddition.getText();
 
         app.db.executeStatement(SQL_INSERT_CUSTOMER, (statement) -> {
-           statement.add(cus.name);
-           statement.add(cus.email);
-           statement.add(cus.phone);
-           statement.add(cus.address);
-           statement.add(cus.postalcode);
-           statement.add(cus.housenumber);
-           statement.add(cus.addition);
+            statement.add(cus.name);
+            statement.add(cus.email);
+            statement.add(cus.phone);
+            statement.add(cus.address);
+            statement.add(cus.postalcode);
+            statement.add(cus.housenumber);
+            statement.add(cus.addition);
         });
 
         // Verander de status

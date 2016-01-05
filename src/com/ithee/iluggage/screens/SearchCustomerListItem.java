@@ -11,9 +11,10 @@ import javafx.scene.text.Text;
  * @author iThee
  */
 public class SearchCustomerListItem {
+
     private static final String DELETE_LUGGAGE = "DELETE FROM `luggage` WHERE `CustomerId` = ?";
     private static final String DELETE_CUSTOMERS = "DELETE FROM `customers` WHERE `Id` = ?";
-    
+
     public ILuggageApplication app;
     public Customer myCustomer;
     public Parent root;

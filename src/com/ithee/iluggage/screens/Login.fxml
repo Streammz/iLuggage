@@ -67,14 +67,15 @@
                     <font>
                         <Font size="18.0" />
                     </font>
-               <GridPane.margin>
-                  <Insets top="10.0" />
-               </GridPane.margin>
+                    <GridPane.margin>
+                        <Insets top="10.0" />
+                    </GridPane.margin>
                 </Button>
                 <Text text="%copyright" GridPane.columnIndex="0" GridPane.columnSpan="5" GridPane.rowIndex="5">
-               <GridPane.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </GridPane.margin></Text>
+                    <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </GridPane.margin>
+                </Text>
                 <TextFlow GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="3">
                     <children>
                         <Text fill="#34bde6" text="Bagageafhandeling">

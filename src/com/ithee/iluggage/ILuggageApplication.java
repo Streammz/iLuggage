@@ -37,6 +37,7 @@ import javafx.stage.Stage;
  * @author iThee
  */
 public class ILuggageApplication extends Application {
+
     private static final String UPDATE_LASTLOGIN = "UPDATE `accounts` SET `LastLogin` = ? WHERE `Id` = ?";
     private static final String UPDATE_SALT = "UPDATE `accounts` SET `Salt` = ? WHERE `Id` = ?";
 
@@ -89,7 +90,7 @@ public class ILuggageApplication extends Application {
      * De resources waar de taal in word opgeslagen en van geladen.
      */
     private ResourceBundle language;
-    
+
     /**
      * De taal val de geselecteerde language.
      */
@@ -122,25 +123,25 @@ public class ILuggageApplication extends Application {
         // Initializeer de database en gecachde objecten
         this.db = new DatabaseConnection(this);
         this.dbKinds = new ArrayList<>();
-        for (int i=1; i<=4; i++) {
+        for (int i = 1; i <= 4; i++) {
             dbKinds.add(new LuggageKind(this, i));
         }
         this.dbBrands = new AddableDatabaseCache<LuggageBrand>(this, "SELECT * FROM `luggagebrands`",
                 "INSERT INTO `luggagebrands` VALUES (NULL, ?)", LuggageBrand.class) {
 
-                    @Override
-                    public Object[] getDbParams(LuggageBrand brand) {
-                        return new Object[]{brand.name};
-                    }
-                };
+            @Override
+            public Object[] getDbParams(LuggageBrand brand) {
+                return new Object[]{brand.name};
+            }
+        };
         this.dbColors = new AddableDatabaseCache<LuggageColor>(this, "SELECT * FROM `luggagecolors`",
                 "INSERT INTO `luggagecolors` VALUES (NULL, ?)", LuggageColor.class) {
 
-                    @Override
-                    public Object[] getDbParams(LuggageColor color) {
-                        return new Object[]{color.name};
-                    }
-                };
+            @Override
+            public Object[] getDbParams(LuggageColor color) {
+                return new Object[]{color.name};
+            }
+        };
 
         // Schakel naar het eerste scherm: het inlogscherm.
         this.switchMainScene(Login.class);
@@ -238,7 +239,7 @@ public class ILuggageApplication extends Application {
             // Indien de meegegeven class null is, dan word een leeg scherm 
             // getoont. Anders word de meegegeven class aangemaakt.
             if (sceneClass == null) {
-                ((MainMenu)currentScene).subscene = null;
+                ((MainMenu) currentScene).subscene = null;
                 switchSubScene(WelcomeScreen.class);
                 return null;
             } else {
@@ -246,7 +247,7 @@ public class ILuggageApplication extends Application {
                 T controller = initScene(sceneClass);
                 controller.onCreate();
                 controller.stage = this.currentScene.stage;
-                ((MainMenu)currentScene).subscene = controller;
+                ((MainMenu) currentScene).subscene = controller;
 
                 // Veranderd het center gedeelte van de BorderedPane naar de 
                 // aangemaakte View van de controller.
@@ -298,23 +299,24 @@ public class ILuggageApplication extends Application {
             throw new RuntimeException(ex);
         }
     }
-    
+
     /**
      * Geeft het huidig taalbestand mee terug.
+     *
      * @return Het huidig taalbestand.
      */
     public ResourceBundle getLanguage() {
         return this.language;
     }
-    
+
     public String getCountry() {
         return this.languageCountry;
     }
-    
+
     public void setLanguage(String language, String country) {
         this.language = ResourceBundle.getBundle("language", new Locale(language, country));
         this.languageCountry = language;
-        
+
         if (primaryStage != null && primaryStage.isShowing()) {
             if (currentScene instanceof MainMenu) {
                 if (showConfirmDialog("change_language")) {
@@ -510,9 +512,10 @@ public class ILuggageApplication extends Application {
         Optional<ButtonType> result = alert.showAndWait();
         return (result.isPresent() && result.get() == ButtonType.OK);
     }
-    
+
     /**
      * Veranderd de status-text in het mainmenu naar de meegegeven key
+     *
      * @param key De naam van de key in het talenbestand.
      * @param params De parameters die vervangen worden in de status.
      */
@@ -522,7 +525,7 @@ public class ILuggageApplication extends Application {
             if (params != null && params.length > 0) {
                 text = String.format(text, params);
             }
-            ((MainMenu)this.currentScene).changeStatus(text);
+            ((MainMenu) this.currentScene).changeStatus(text);
         }
     }
 

@@ -28,7 +28,7 @@ public class DatabaseCache<T> {
      * De huidige cache die gebruikt word.
      */
     protected List<T> cache;
-    
+
     /**
      * De class dat gebruikt word om nieuwe objecten te initialiseren.
      */

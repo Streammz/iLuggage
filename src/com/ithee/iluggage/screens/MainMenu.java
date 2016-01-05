@@ -15,7 +15,7 @@ import javafx.scene.text.Text;
 public class MainMenu extends SceneController {
 
     public SubSceneController subscene;
-    
+
     @FXML
     private Text adminTitle, mngrTitle;
     @FXML
@@ -29,10 +29,10 @@ public class MainMenu extends SceneController {
     private Button btnReport;
     @FXML
     private Button btnManageUsers;
-    
+
     @FXML
     private ChoiceBox<Language> cbLanguage;
-    
+
     @FXML
     private Text txtStatus;
 
@@ -41,7 +41,7 @@ public class MainMenu extends SceneController {
     @Override
     public void onCreate() {
         loggedinUser.setText(app.getUser().name);
-        
+
         // Verander de taal-menu
         cbLanguage.getItems().add(new Language("en", "EN", "English"));
         cbLanguage.getItems().add(new Language("nl", "NL", "Nederlands"));
@@ -50,7 +50,7 @@ public class MainMenu extends SceneController {
         } else {
             cbLanguage.setValue(cbLanguage.getItems().get(1));
         }
-        
+
         cbLanguage.getSelectionModel().selectedItemProperty().addListener((ov, oldVal, newVal) -> {
             app.setLanguage(newVal.language, newVal.country);
         });
@@ -60,7 +60,7 @@ public class MainMenu extends SceneController {
         } else if (!app.isUserAdmin()) {
             removeNode(btnManageUsers, adminTitle);
         }
-        
+
         app.changeStatus("logged_in");
     }
 
@@ -114,10 +114,11 @@ public class MainMenu extends SceneController {
     }
 
     private static class Language {
+
         private final String language;
         private final String country;
         private final String display;
-        
+
         public Language(String language, String country, String display) {
             this.language = language;
             this.country = country;
@@ -129,9 +130,9 @@ public class MainMenu extends SceneController {
             return display;
         }
     }
-    
+
     public void changeStatus(String text) {
         this.txtStatus.setText(text);
     }
-    
+
 }

@@ -16,7 +16,7 @@
                 <ColumnConstraints hgrow="NEVER" />
                 <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" />
                 <ColumnConstraints hgrow="NEVER" maxWidth="195.0" minWidth="129.0" prefWidth="129.0" />
-            <ColumnConstraints hgrow="NEVER" maxWidth="195.0" minWidth="129.0" prefWidth="129.0" />
+                <ColumnConstraints hgrow="NEVER" maxWidth="195.0" minWidth="129.0" prefWidth="129.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="109.0" minHeight="10.0" prefHeight="109.0" vgrow="SOMETIMES" />
@@ -32,9 +32,10 @@
                     </GridPane.margin>
                 </ImageView>
                 <Pane styleClass="bgTheme" GridPane.columnSpan="4" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="-1.0" right="-1.0" />
-               </GridPane.margin></Pane>
+                    <GridPane.margin>
+                        <Insets left="-1.0" right="-1.0" />
+                    </GridPane.margin>
+                </Pane>
                 <TextFlow textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                     <GridPane.margin>
                         <Insets bottom="13.0" left="13.0" right="13.0" top="13.0" />
@@ -49,7 +50,7 @@
                         <Insets right="10.0" />
                     </GridPane.margin>
                 </Button>
-            <ChoiceBox fx:id="cbLanguage" prefHeight="36.0" prefWidth="126.0" style="-fx-background-color: #ddd; -fx-font-weight: bold;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <ChoiceBox fx:id="cbLanguage" prefHeight="36.0" prefWidth="126.0" style="-fx-background-color: #ddd; -fx-font-weight: bold;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             </children>
         </GridPane>
     </top>

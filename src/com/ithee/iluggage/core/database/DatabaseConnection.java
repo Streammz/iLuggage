@@ -27,26 +27,26 @@ public class DatabaseConnection {
      * De database driver classnaam die gebruikt word om te verbinden.
      */
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    
+
     /**
      * De database connectie URL om verbinding te maken met de database.
      */
     private static final String DB_URL = "jdbc:mysql://oege.ie.hva.nl/zvisserr026";
     //private static final String DB_URL = "jdbc:mysql://localhost:3306/iluggage";
     //private static final String DB_URL = "jdbc:mysql://192.168.178.26:3306/iluggage";
-    
+
     /**
      * De gebruikersnaam waarmee SQL verbinding maakt met de database.
      */
     private static final String DB_USER = "visserr026";
     //private static final String DB_USER = "root";
-    
+
     /**
      * De gebruikersnaam waarmee SQL verbinding maakt met de database.
      */
     private static final String DB_PASS = "/Q1a5le$8agKUw";
     //private static final String DB_PASS = null;
-    
+
     /**
      * Een referentie naar de applicatie.
      */
@@ -70,7 +70,7 @@ public class DatabaseConnection {
         try {
             Class.forName(JDBC_DRIVER);
         } catch (ClassNotFoundException ex) {
-            ILuggageApplication.showSimpleMessage(Alert.AlertType.ERROR, "Driver niet gevonden", 
+            ILuggageApplication.showSimpleMessage(Alert.AlertType.ERROR, "Driver niet gevonden",
                     "De MySQL-driver is niet gevonden. "
                     + "Indien dit bestand word geopend vanuit een ZIP-bestand, graag uitpakken.");
             throw new RuntimeException("MySQL database driver not found");
@@ -109,7 +109,7 @@ public class DatabaseConnection {
             // Indien er een error ontstaat, geef deze weer in de console en sla
             // deze foutmelding op.
             System.out.println(lastError = ex.getMessage());
-            
+
             // Sluit de verbinding indien deze nog open staat.
             try {
                 if (conn != null) {
@@ -148,7 +148,7 @@ public class DatabaseConnection {
             // Indien er een error ontstaat, geef deze weer in de console en sla
             // deze foutmelding op.
             System.out.println(lastError = ex.getMessage());
-            
+
             // Sluit de verbinding indien deze nog open staat.
             try {
                 if (conn != null) {
@@ -387,13 +387,12 @@ public class DatabaseConnection {
     private <T> List<T> executeAndReadList(Class<T> c, ResultSet rs) {
         // Maak een lege lijst aan voor de objecten.
         List<T> result = new ArrayList<>();
-        
+
         // Indien het gelezen resultaat null is, geef dan enkel de lege lijst 
         // mee terug.
         if (rs == null) {
             return result;
         }
-
 
         try {
             // Blijft de resultaten lezen zolang er meerdere rows zijn om te 
@@ -407,7 +406,7 @@ public class DatabaseConnection {
                         // Pakt de naam van een veld, en maakt de eerste letter 
                         // een hoofdletter om aan standaarden te houden.
                         String fieldName = f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1);
-                        
+
                         // Leest, aan de hand van het type van het veld, de 
                         // waarde uit de query resultaten.
                         if (f.getType().equals(String.class)) {

@@ -15,22 +15,22 @@
         <URL value="@../../../../main.css" />
     </stylesheets>
     <children>
-      <TextFlow prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <Text fill="WHITE" text="%welcome_space">
-                <font>
-                    <Font name="Uni-Sans-Heavy-Italic" size="130.0" />
-                </font>
-            </Text>
-            <Text fx:id="tfNaam" fill="WHITE">
-               <font>
-                  <Font name="Uni-Sans-Heavy-Italic" size="80.0" />
-               </font>
-            </Text>
-         </children>
-         <StackPane.margin>
-            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
-         </StackPane.margin>
-      </TextFlow>
+        <TextFlow prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <Text fill="WHITE" text="%welcome_space">
+                    <font>
+                        <Font name="Uni-Sans-Heavy-Italic" size="130.0" />
+                    </font>
+                </Text>
+                <Text fx:id="tfNaam" fill="WHITE">
+                    <font>
+                        <Font name="Uni-Sans-Heavy-Italic" size="80.0" />
+                    </font>
+                </Text>
+            </children>
+            <StackPane.margin>
+                <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+            </StackPane.margin>
+        </TextFlow>
     </children>
 </StackPane>
