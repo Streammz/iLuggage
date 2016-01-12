@@ -68,6 +68,7 @@ public class CustomerDetails extends SceneController {
             statement.add(myCustomer.addition);
             statement.add(myCustomer.id);
         });
+   
 
         this.stage.close();
         // Verander de status
@@ -75,6 +76,10 @@ public class CustomerDetails extends SceneController {
         if (afterSave != null) {
             afterSave.run();
         }
+    }
+    public static void onSearchBagageKlant(){
+     
+        
     }
 
 }
