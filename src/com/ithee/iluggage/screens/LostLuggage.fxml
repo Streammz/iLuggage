@@ -68,8 +68,8 @@
             
                 <HBox alignment="CENTER_RIGHT" spacing="5" GridPane.columnSpan="6" GridPane.rowIndex="11">
                     <children>
-                        <Button onAction="#onCancel" text="Annuleer" />
-                        <Button onAction="#onAdd" text="Toevoegen" />
+                        <Button onAction="#onCancel" text="%cancel" />
+                        <Button onAction="#onAdd" text="%add"/>
                     </children>
                 </HBox>
                 <Separator prefWidth="200.0" GridPane.columnSpan="6" GridPane.rowIndex="3"/>
