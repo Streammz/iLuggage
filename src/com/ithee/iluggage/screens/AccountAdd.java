@@ -107,7 +107,7 @@ public class AccountAdd extends SceneController {
                 afterSave.run();
             }
         } else if (app.db.lastError.matches("Duplicate entry .* for key 'Username'")) {
-            // Controleert of het gebruikersnaam al in gebruik is
+            // Controleert of de gebruikersnaam al in gebruik is
             app.showErrorMessage("account_already_exists", acc.username);
         }
     }
