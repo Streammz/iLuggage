@@ -45,7 +45,7 @@
                         <Text fx:id="loggedinUser" fill="WHITE" style="-fx-font-weight: bold;" text="Admin" />
                     </children>
                 </TextFlow>
-                <Button onAction="#onPressLogout" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: DDD; -fx-font-weight: bold;" text="Uitloggen" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                <Button onAction="#onPressLogout" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: DDD; -fx-font-weight: bold;" text="%logout" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                     <GridPane.margin>
                         <Insets right="10.0" />
                     </GridPane.margin>
@@ -103,7 +103,7 @@
             <right>
                 <TextFlow BorderPane.alignment="CENTER_RIGHT">
                     <children>
-                        <Text text="" fx:id="txtStatus" />
+                        <Text fx:id="txtStatus" text="" />
                     </children>
                 </TextFlow>
             </right>
