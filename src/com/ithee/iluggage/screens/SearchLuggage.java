@@ -64,10 +64,9 @@ public class SearchLuggage extends SubSceneController {
         tfCustomer.getEntries().addAll(customers);
         tfCustomer.setOnSelect((customer) -> {
             this.selectedCustomer = customer;
-            this.selectedCustomerSet = true;
             tfCustomer.setText(customer.name);
         });
-
+        System.out.println(selectedCustomer);
         List<Luggage> list = app.db.executeAndReadList(Luggage.class, "SELECT * FROM `luggage` WHERE `Status` = 2 OR `Status` = 1");
         showResults(list);
     }
