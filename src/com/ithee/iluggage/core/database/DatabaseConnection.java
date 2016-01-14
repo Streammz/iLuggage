@@ -31,21 +31,21 @@ public class DatabaseConnection {
     /**
      * De database connectie URL om verbinding te maken met de database.
      */
-    private static final String DB_URL = "jdbc:mysql://oege.ie.hva.nl/zvisserr026";
-    //private static final String DB_URL = "jdbc:mysql://localhost:3306/iluggage";
+//    private static final String DB_URL = "jdbc:mysql://oege.ie.hva.nl/zvisserr026";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/iluggage";
     //private static final String DB_URL = "jdbc:mysql://192.168.178.26:3306/iluggage";
 
     /**
      * De gebruikersnaam waarmee SQL verbinding maakt met de database.
      */
-    private static final String DB_USER = "visserr026";
-    //private static final String DB_USER = "root";
+//    private static final String DB_USER = "visserr026";
+    private static final String DB_USER = "root";
 
     /**
      * De gebruikersnaam waarmee SQL verbinding maakt met de database.
      */
-    private static final String DB_PASS = "/Q1a5le$8agKUw";
-    //private static final String DB_PASS = null;
+//    private static final String DB_PASS = "/Q1a5le$8agKUw";
+    private static final String DB_PASS = "evil112";
 
     /**
      * Een referentie naar de applicatie.

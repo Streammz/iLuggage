@@ -82,7 +82,7 @@
                 <TextField fx:id="tfAddition" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                 
                 <Button onAction="#onSave" text="%save" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
-            <Button onAction="#onSearchBagageKlant" text="Zoek bagage van klant" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+           
             </children>
         </GridPane>
     </children>

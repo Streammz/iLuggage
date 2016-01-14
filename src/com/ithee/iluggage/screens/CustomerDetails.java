@@ -77,9 +77,6 @@ public class CustomerDetails extends SceneController {
             afterSave.run();
         }
     }
-    public static void onSearchBagageKlant(){
-     
-        
-    }
+
 
 }

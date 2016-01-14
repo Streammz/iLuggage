@@ -61,6 +61,7 @@ public class ILuggageApplication extends Application {
      * Een cache voor bagagemerken. Aan deze cache kan worden toegevoegd.
      */
     public AddableDatabaseCache<LuggageBrand> dbBrands;
+    
 
     /**
      * Een cache voor kleuren. Aan deze cache kan worden toegevoegd.

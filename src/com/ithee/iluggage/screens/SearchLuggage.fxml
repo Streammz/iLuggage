@@ -21,6 +21,8 @@
                 <ColumnConstraints />
                 <ColumnConstraints />
                 <ColumnConstraints />
+            <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints prefWidth="200.0" />
                 <ColumnConstraints hgrow="ALWAYS" />
                 <ColumnConstraints />
             </columnConstraints>
@@ -45,13 +47,29 @@
                         <Insets left="20.0" right="5.0" />
                     </GridPane.margin>
                 </Text>
-            
+                <Text text="%name" GridPane.columnIndex="4" GridPane.halignment="RIGHT">
+               <GridPane.margin>
+                  <Insets left="20.0" right="5.0" />
+               </GridPane.margin>
+            </Text>
+            <Text text="Status" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="20.0" right="5.0" />
+               </GridPane.margin>
+            </Text>
                 <ChoiceBox fx:id="cbKind" prefWidth="150.0" GridPane.columnIndex="1" />
                 <ChoiceBox fx:id="cbColor" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <ChoiceBox fx:id="cbBrand" prefWidth="150.0" GridPane.columnIndex="3" />
                 <TextField fx:id="tfKeywords" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             
-                <Button onAction="#onSearch" prefWidth="100.0" text="%search" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                <Button onAction="#onSearch" prefWidth="100.0" text="%search" GridPane.columnIndex="7" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+
+            <TextField fx:id="tfName" GridPane.columnIndex="5">
+               <GridPane.margin>
+                  <Insets right="5.0" />
+               </GridPane.margin>
+            </TextField>
+     
             </children>
             <BorderPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -65,7 +83,7 @@
         
     </center>
     <center>
-        <ScrollPane hbarPolicy="AS_NEEDED" vbarPolicy="AS_NEEDED" fitToHeight="true" fitToWidth="true">
+        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="AS_NEEDED" vbarPolicy="AS_NEEDED">
             <content>
                 <VBox fx:id="results" fillWidth="true" style="-fx-border-color: darkgray;" BorderPane.alignment="CENTER">
                     <BorderPane.margin>

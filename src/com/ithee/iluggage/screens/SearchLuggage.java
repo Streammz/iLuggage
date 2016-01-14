@@ -29,6 +29,8 @@ public class SearchLuggage extends SubSceneController {
     private ChoiceBox<LuggageBrand> cbBrand;
     @FXML
     private TextField tfKeywords;
+    @FXML
+    private TextField tfStatus;
 
     @FXML
     private VBox results;
@@ -49,7 +51,7 @@ public class SearchLuggage extends SubSceneController {
             cbBrand.getItems().add(o);
         });
 
-        List<Luggage> list = app.db.executeAndReadList(Luggage.class, "SELECT * FROM `luggage`");
+        List<Luggage> list = app.db.executeAndReadList(Luggage.class, "SELECT * FROM `luggage` WHERE `Status` = 2 OR `Status` = 1");
         showResults(list);
     }
 
@@ -80,7 +82,8 @@ public class SearchLuggage extends SubSceneController {
                 }
             });
         }
-  
+   
+
 
         String query = "SELECT * FROM `luggage`";
         if (wheres.size() > 0) {
@@ -94,9 +97,7 @@ public class SearchLuggage extends SubSceneController {
         List<Luggage> list = app.db.executeAndReadList(Luggage.class, query, params.toArray());
         showResults(list);
     }
-          public static void searchByCustomer(int customerID){
-            
-        }
+
 
     public void showResults(List<Luggage> list) {
         // Clear old list (if there is anything in it)
