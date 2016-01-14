@@ -39,7 +39,6 @@ public class SearchLuggage extends SubSceneController {
     private VBox results;
 
     private Customer selectedCustomer;
-    private boolean selectedCustomerSet = false;
 
     @Override
     public void onCreate() {
@@ -103,7 +102,7 @@ public class SearchLuggage extends SubSceneController {
             params.add(cbType.getValue().getId());
         }
 
-        if (this.selectedCustomerSet = true) {
+        if (!(this.selectedCustomer == null)) {
             if (selectedCustomer.id > 0) {
                 wheres.add("`Customerid` = ?");
                 params.add(this.selectedCustomer.id);
