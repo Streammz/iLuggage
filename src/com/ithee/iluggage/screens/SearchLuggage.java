@@ -72,6 +72,7 @@ public class SearchLuggage extends SubSceneController {
 
     @FXML
     public void onSearch() {
+        this.selectedCustomer = null;// DEZE
         List<String> wheres = new ArrayList<>();
         List<Object> params = new ArrayList<>();
 
@@ -101,11 +102,13 @@ public class SearchLuggage extends SubSceneController {
             wheres.add("`status` = ?");
             params.add(cbType.getValue().getId());
         }
-
-        if (!(this.selectedCustomer == null)) {
-            if (selectedCustomer.id > 0) {
+        
+        if (tfCustomer.getLength() > 0) {
+            if (!(this.selectedCustomer == null)) {
                 wheres.add("`Customerid` = ?");
                 params.add(this.selectedCustomer.id);
+            } else {
+                wheres.add("`Customerid` = -1");//WHERE clause zonder waarden.
             }
         }
 
