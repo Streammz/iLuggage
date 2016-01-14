@@ -61,14 +61,11 @@
                 <ChoiceBox fx:id="cbColor" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <ChoiceBox fx:id="cbBrand" prefWidth="150.0" GridPane.columnIndex="3" />
                 <TextField fx:id="tfKeywords" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            
+              <SelectingTextField fx:id="tfCustomer" GridPane.columnIndex="5"/>
+            <TextField fx:id="tfStatus" GridPane.columnIndex="5" GridPane.rowIndex="1" />
                 <Button onAction="#onSearch" prefWidth="100.0" text="%search" GridPane.columnIndex="7" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
 
-            <TextField fx:id="tfName" GridPane.columnIndex="5">
-               <GridPane.margin>
-                  <Insets right="5.0" />
-               </GridPane.margin>
-            </TextField>
+          
      
             </children>
             <BorderPane.margin>

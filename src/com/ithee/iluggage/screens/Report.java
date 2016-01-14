@@ -63,6 +63,9 @@ public class Report extends SubSceneController {
 
     @FXML
     private BorderPane printView;
+        @FXML
+    private TextField tfStatus;
+
 
     private List<Luggage> results;
 
@@ -309,6 +312,21 @@ public class Report extends SubSceneController {
                     params.add("%" + keyword + "%");
                 }
             });
+        }
+        if (tfKeywords.getLength() > 0) {
+            String[] keywords = tfKeywords.getText().split("(, ?| )");
+            Arrays.stream(keywords).forEach((keyword) -> {
+                keyword = keyword.trim();
+                wheres.add("`Miscellaneous` LIKE ? OR `FlightCode` LIKE ?");
+                for (int i = 0; i < 2; i++) {
+                    params.add("%" + keyword + "%");
+                }
+            });
+        }
+        if (tfStatus.getLength() > 0) {
+            String status = tfStatus.getText();
+            wheres.add("`status` = ?");
+            params.add(status);         
         }
 
         String query = "SELECT * FROM `luggage`";

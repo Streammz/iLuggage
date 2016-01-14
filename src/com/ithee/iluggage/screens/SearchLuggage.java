@@ -1,5 +1,6 @@
 package com.ithee.iluggage.screens;
 
+import com.ithee.iluggage.core.controls.SelectingTextField;
 import com.ithee.iluggage.core.database.classes.*;
 import com.ithee.iluggage.core.scene.SubSceneController;
 import java.util.ArrayList;
@@ -30,11 +31,16 @@ public class SearchLuggage extends SubSceneController {
     @FXML
     private TextField tfKeywords;
     @FXML
+    private SelectingTextField<Customer> tfCustomer;
+    @FXML
     private TextField tfStatus;
 
     @FXML
     private VBox results;
+    
 
+    private Customer selectedCustomer;
+        
     @Override
     public void onCreate() {
 
@@ -50,7 +56,13 @@ public class SearchLuggage extends SubSceneController {
         app.dbBrands.getValues().forEach((o) -> {
             cbBrand.getItems().add(o);
         });
-
+        List<Customer> customers = app.db.executeAndReadList(Customer.class, "SELECT * FROM `customers`");       
+        tfCustomer.getEntries().addAll(customers);
+        tfCustomer.setOnSelect((customer) -> {
+            this.selectedCustomer = customer;
+            tfCustomer.setText(customer.name);
+        });
+        System.out.println( this.selectedCustomer);
         List<Luggage> list = app.db.executeAndReadList(Luggage.class, "SELECT * FROM `luggage` WHERE `Status` = 2 OR `Status` = 1");
         showResults(list);
     }
@@ -81,6 +93,18 @@ public class SearchLuggage extends SubSceneController {
                     params.add("%" + keyword + "%");
                 }
             });
+        }
+        
+        if (tfCustomer.getLength() > 0) {
+      
+            wheres.add("`Customerid` = ?");
+            params.add(this.selectedCustomer.id);         
+        } 
+ 
+        if (tfStatus.getLength() > 0) {
+            String status = tfStatus.getText();
+            wheres.add("`status` = ?");
+            params.add(status);         
         }
    
 
