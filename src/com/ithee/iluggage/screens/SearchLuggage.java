@@ -37,10 +37,9 @@ public class SearchLuggage extends SubSceneController {
 
     @FXML
     private VBox results;
-    
 
     private Customer selectedCustomer;
-        
+
     @Override
     public void onCreate() {
 
@@ -56,17 +55,17 @@ public class SearchLuggage extends SubSceneController {
         app.dbBrands.getValues().forEach((o) -> {
             cbBrand.getItems().add(o);
         });
-           for (int i = 1; i <= 3; i++) {
+        for (int i = 1; i <= 3; i++) {
             cbType.getItems().add(new LuggageDetails.LuggageStatus(i, app.getString("luggage_type_" + i)));
         }
-  
-        List<Customer> customers = app.db.executeAndReadList(Customer.class, "SELECT * FROM `customers`");       
+
+        List<Customer> customers = app.db.executeAndReadList(Customer.class, "SELECT * FROM `customers`");
         tfCustomer.getEntries().addAll(customers);
         tfCustomer.setOnSelect((customer) -> {
             this.selectedCustomer = customer;
             tfCustomer.setText(customer.name);
         });
-    
+
         List<Luggage> list = app.db.executeAndReadList(Luggage.class, "SELECT * FROM `luggage` WHERE `Status` = 2 OR `Status` = 1");
         showResults(list);
     }
@@ -98,20 +97,19 @@ public class SearchLuggage extends SubSceneController {
                 }
             });
         }
-       if (cbType.getValue() != null) {
+        if (cbType.getValue() != null) {
             wheres.add("`status` = ?");
             params.add(cbType.getValue().getId());
         }
 
-       
-        if (tfCustomer.getLength() > 0) {
-      
+        //if (tfCustomer.getLength() > 0) {
+        //    wheres.add("`Customerid` = ?");
+        //    params.add(this.selectedCustomer.id);
+        //}
+        if (selectedCustomer.id >= 0) {
             wheres.add("`Customerid` = ?");
-            params.add(this.selectedCustomer.id);         
-        } 
- 
-  
-
+            params.add(this.selectedCustomer.id);
+        }
 
         String query = "SELECT * FROM `luggage`";
         if (wheres.size() > 0) {
@@ -125,7 +123,6 @@ public class SearchLuggage extends SubSceneController {
         List<Luggage> list = app.db.executeAndReadList(Luggage.class, query, params.toArray());
         showResults(list);
     }
-
 
     public void showResults(List<Luggage> list) {
         // Clear old list (if there is anything in it)
