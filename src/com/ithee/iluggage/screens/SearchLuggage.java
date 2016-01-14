@@ -109,6 +109,8 @@ public class SearchLuggage extends SubSceneController {
         if (selectedCustomer.id >= 0) {
             wheres.add("`Customerid` = ?");
             params.add(this.selectedCustomer.id);
+        } else {
+            wheres.add(" `Customerid` = 0");
         }
 
         String query = "SELECT * FROM `luggage`";
