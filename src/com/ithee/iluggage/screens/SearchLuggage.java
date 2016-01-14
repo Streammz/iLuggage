@@ -39,6 +39,7 @@ public class SearchLuggage extends SubSceneController {
     private VBox results;
 
     private Customer selectedCustomer;
+    private boolean selectedCustomerSet = false;
 
     @Override
     public void onCreate() {
@@ -63,6 +64,7 @@ public class SearchLuggage extends SubSceneController {
         tfCustomer.getEntries().addAll(customers);
         tfCustomer.setOnSelect((customer) -> {
             this.selectedCustomer = customer;
+            this.selectedCustomerSet = true;
             tfCustomer.setText(customer.name);
         });
 
@@ -102,15 +104,11 @@ public class SearchLuggage extends SubSceneController {
             params.add(cbType.getValue().getId());
         }
 
-        //if (tfCustomer.getLength() > 0) {
-        //    wheres.add("`Customerid` = ?");
-        //    params.add(this.selectedCustomer.id);
-        //}
-        if (selectedCustomer.id >= 0) {
-            wheres.add("`Customerid` = ?");
-            params.add(this.selectedCustomer.id);
-        } else {
-            wheres.add(" `Customerid` = 0");
+        if (this.selectedCustomerSet = true) {
+            if (selectedCustomer.id > 0) {
+                wheres.add("`Customerid` = ?");
+                params.add(this.selectedCustomer.id);
+            }
         }
 
         String query = "SELECT * FROM `luggage`";
