@@ -64,8 +64,7 @@ public class Report extends SubSceneController {
     @FXML
     private BorderPane printView;
         @FXML
-    private TextField tfStatus;
-
+    private ChoiceBox<LuggageDetails.LuggageStatus> cbType;
 
     private List<Luggage> results;
 
@@ -88,7 +87,9 @@ public class Report extends SubSceneController {
         app.dbBrands.getValues().forEach((o) -> {
             cbBrand.getItems().add(o);
         });
-
+        for (int i = 1; i <= 3; i++) {
+            cbType.getItems().add(new LuggageDetails.LuggageStatus(i, app.getString("luggage_type_" + i)));
+        }
         // Datum filters
         cbGraphType.getItems().add("Week");
         cbGraphType.getItems().add("Maand");
@@ -323,11 +324,11 @@ public class Report extends SubSceneController {
                 }
             });
         }
-        if (tfStatus.getLength() > 0) {
-            String status = tfStatus.getText();
+               if (cbType.getValue() != null) {
             wheres.add("`status` = ?");
-            params.add(status);         
+            params.add(cbType.getValue().getId());
         }
+
 
         String query = "SELECT * FROM `luggage`";
         if (wheres.size() > 0) {

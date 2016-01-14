@@ -74,7 +74,7 @@
                 <ChoiceBox fx:id="cbColor" prefWidth="150" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <ChoiceBox fx:id="cbBrand" prefWidth="150" GridPane.columnIndex="3" />
                 <TextField fx:id="tfKeywords" prefWidth="150" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                <TextField fx:id="tfStatus" prefWidth="150" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <ChoiceBox fx:id="cbType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                 <ChoiceBox fx:id="cbGraphType" prefWidth="150" GridPane.columnIndex="1" GridPane.rowIndex="3" />  
                 <ChoiceBox fx:id="cbGraphStart" prefWidth="150" GridPane.columnIndex="3" GridPane.rowIndex="3">
                     <opaqueInsets>

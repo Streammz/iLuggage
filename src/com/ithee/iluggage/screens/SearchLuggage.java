@@ -33,7 +33,7 @@ public class SearchLuggage extends SubSceneController {
     @FXML
     private SelectingTextField<Customer> tfCustomer;
     @FXML
-    private TextField tfStatus;
+    private ChoiceBox<LuggageDetails.LuggageStatus> cbType;
 
     @FXML
     private VBox results;
@@ -56,13 +56,17 @@ public class SearchLuggage extends SubSceneController {
         app.dbBrands.getValues().forEach((o) -> {
             cbBrand.getItems().add(o);
         });
+           for (int i = 1; i <= 3; i++) {
+            cbType.getItems().add(new LuggageDetails.LuggageStatus(i, app.getString("luggage_type_" + i)));
+        }
+  
         List<Customer> customers = app.db.executeAndReadList(Customer.class, "SELECT * FROM `customers`");       
         tfCustomer.getEntries().addAll(customers);
         tfCustomer.setOnSelect((customer) -> {
             this.selectedCustomer = customer;
             tfCustomer.setText(customer.name);
         });
-        System.out.println( this.selectedCustomer);
+    
         List<Luggage> list = app.db.executeAndReadList(Luggage.class, "SELECT * FROM `luggage` WHERE `Status` = 2 OR `Status` = 1");
         showResults(list);
     }
@@ -94,19 +98,19 @@ public class SearchLuggage extends SubSceneController {
                 }
             });
         }
-        
+       if (cbType.getValue() != null) {
+            wheres.add("`status` = ?");
+            params.add(cbType.getValue().getId());
+        }
+
+       
         if (tfCustomer.getLength() > 0) {
       
             wheres.add("`Customerid` = ?");
             params.add(this.selectedCustomer.id);         
         } 
  
-        if (tfStatus.getLength() > 0) {
-            String status = tfStatus.getText();
-            wheres.add("`status` = ?");
-            params.add(status);         
-        }
-   
+  
 
 
         String query = "SELECT * FROM `luggage`";
